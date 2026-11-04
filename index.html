@@ -335,6 +335,39 @@
   .pg .flows { grid-template-columns:230px minmax(0,1fr); gap:12px; }
   .flow-list button { font-size:13.5px; padding:7px 9px; }
   .flow-window { min-height:430px; }
+  .wbs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .wb { min-width:0; margin:0; overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:8px; box-shadow:0 5px 15px rgba(20,30,40,.08); }
+  .wb-t { display:flex; align-items:center; gap:7px; padding:6px 9px; color:#fff; background:#217346; font-size:12.5px; }
+  .wb-t b { display:grid; place-items:center; width:18px; height:18px; color:#217346; background:#fff; border-radius:3px; font-size:11px; }
+  .wb-t span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:600; }
+  .wb-t em { flex:none; margin-left:auto; font-style:normal; font-size:11.5px; opacity:.9; }
+  .wb h3 { margin:0; padding:10px 12px 6px; font:600 14px var(--body); }
+  .wb > div:not(.wb-t):not(.wb-tabs) { padding:0 12px 10px; }
+  .wb svg { display:block; width:100%; height:auto; }
+  .wb .donut { min-height:190px; justify-content:center; gap:26px; }
+  .wb .donut svg { width:160px; flex:none; }
+  .wb .donut ul { font-size:14px; }
+  .wb svg text { font:500 12px var(--body); fill:var(--soft); }
+  .wb-tabs { display:flex; gap:1px; overflow:hidden; padding:0 6px; background:#f0f2f5; border-top:1px solid var(--line); font-size:12px; }
+  .wb-tabs i { flex:none; padding:4px 9px; color:var(--soft); font-style:normal; }
+  .wb-tabs i:first-child { color:#217346; background:#fff; font-weight:700; border-bottom:2px solid #217346; }
+  .wb-legend { display:flex; flex-wrap:wrap; gap:12px; margin:0 0 3px; padding:0; list-style:none; font-size:12.5px; }
+  .wb-legend i { display:inline-block; width:9px; height:9px; margin-right:5px; border-radius:50%; }
+  .wb-h > div { display:grid; grid-template-columns:82px minmax(0,1fr) 38px; align-items:center; gap:7px; font-size:13px; }
+  .wb-h .bar-s { margin:7px 0; }
+  .wb-h b { text-align:right; }
+  .wb-draw { stroke-dasharray:1; stroke-dashoffset:1; animation:wbDraw 1.4s ease forwards; }
+  .wb-fade { opacity:0; animation:wbFade .7s .8s ease forwards; }
+  .wb-rise { transform-box:fill-box; transform-origin:bottom; animation:wbRise .7s cubic-bezier(.2,.7,.2,1) both; }
+  .wb-pop { transform-box:fill-box; transform-origin:center; animation:wbPop .4s ease both; }
+  @keyframes wbDraw { to { stroke-dashoffset:0; } }
+  @keyframes wbFade { to { opacity:.14; } }
+  @keyframes wbRise { from { transform:scaleY(0); } }
+  @keyframes wbPop { from { transform:scale(0); } }
+  .shots { grid-template-columns:repeat(4,minmax(0,1fr)); gap:9px; }
+  @media (max-width:1040px) { .shots { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:860px) { .wbs { grid-template-columns:minmax(0,1fr); } .wb-t em { display:none; } .wb-t span::after { content:" (sample)"; } }
+  @media (prefers-reduced-motion:reduce) { .wb-draw { animation:none; stroke-dashoffset:0; } .wb-fade { animation:none; opacity:.14; } .wb-rise, .wb-pop { animation:none; } }
   @media (max-width:1040px) {
     .report-trio, .levels { grid-template-columns:repeat(2,minmax(0,1fr)); }
     .gallery { grid-template-columns:repeat(3,minmax(0,1fr)); }
@@ -459,11 +492,21 @@
     </section>
 
     <section class="pg" data-pg="reports" hidden>
-      <div class="shots" id="shots"></div>
-      <div class="report-trio">
-        <div class="box"><div class="box-h"><h2>Sale rate by first-call speed</h2><span class="pill">Sample</span></div><div id="speed"></div></div>
-        <div class="box"><div class="box-h"><h2>City and advisor conversion</h2><span class="pill">Sample</span></div><div class="heat" id="heat"></div></div>
-        <div class="box"><div class="box-h"><h2>Who buys</h2><span class="pill">Sample</span></div><div id="donut"></div></div>
+      <div class="wbs">
+        <figure class="wb"><div class="wb-t"><b>X</b><span>SEO and AEO dashboard</span><em>Sample numbers</em></div><h3>Nonbrand clicks per month</h3><div data-chart="seoLine"></div><div class="wb-tabs"><i>Dashboard</i><i>Action plan</i><i>Keyword gap</i><i>AI answer test</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>SEO and AEO dashboard</span><em>Sample numbers</em></div><h3>AI assistant sessions per month</h3><div data-chart="aiArea"></div><div class="wb-tabs"><i>Dashboard</i><i>AEO-GEO</i><i>AI platforms</i><i>Bing</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Instagram analysis</span><em>Sample numbers</em></div><h3>Accounts reached per month</h3><div data-chart="igLine"></div><div class="wb-tabs"><i>Scorecard</i><i>Monthly trend</i><i>Content mix</i><i>Reel review</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Instagram analysis</span><em>Sample numbers</em></div><h3>Follows vs unfollows</h3><div data-chart="igBars"></div><div class="wb-tabs"><i>Format and timing</i><i>Captions and CTA</i><i>Audience</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Funnel speed vs conversion</span><em>Sample numbers</em></div><h3>Sale rate by first-call speed</h3><div id="speed"></div><div class="wb-tabs"><i>Summary</i><i>Funnel</i><i>Stage timing</i><i>Speed vs conv</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Advisor and city conversion</span><em>Sample numbers</em></div><h3>Conversion matrix</h3><div class="heat" id="heat"></div><div class="wb-tabs"><i>By city</i><i>Leads matrix</i><i>Sales matrix</i><i>Conversion %</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Converted customer profile</span><em>Sample numbers</em></div><h3>Who buys, by age</h3><div id="donut"></div><div class="wb-tabs"><i>Key findings</i><i>Customer profile</i><i>Profile</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Converted customer profile</span><em>Sample numbers</em></div><h3>Where buyers come from</h3><div data-chart="source"></div><div class="wb-tabs"><i>Key findings</i><i>Customer profile</i><i>Profile</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Competitor video analysis</span><em>Sample numbers</em></div><h3>Hook vs days running</h3><div data-chart="scatter"></div><div class="wb-tabs"><i>Top 25 videos</i><i>Key findings</i><i>Patterns</i><i>Advertisers</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Campaign structure plan</span><em>Sample numbers</em></div><h3>Monthly budget by channel</h3><div data-chart="budget"></div><div class="wb-tabs"><i>Findings</i><i>Meta structure</i><i>Google structure</i><i>Budget and targets</i></div></figure>
+      </div>
+      <div class="box">
+        <div class="box-h"><h2>Dashboard screens</h2><span class="pill">Sample data</span></div>
+        <div class="shots" id="shots"></div>
       </div>
       <p class="link-row"><a class="am-cta" href="dashboard.html">Open interactive dashboard</a></p>
       <div class="mock" id="mock">
@@ -963,6 +1006,71 @@
     if (!document.querySelector('[data-pg="systems"]').hidden) chatTick();
   }, 950);
   go(location.hash.slice(1) || 'overview', false);
+})();
+</script>
+<script>
+(() => {
+  const C = { blue:'#2456B8', orange:'#C4620E', green:'#0B8469' };
+  const grid = (w, h, p, top, fmt) => [0, .5, 1].map(f => { const y = h - p.b - f * (h - p.t - p.b); return `<path d="M${p.l} ${y}H${w - p.r}" stroke="#e6e9ed"/><text x="${p.l - 6}" y="${y + 4}" text-anchor="end">${fmt(top * f)}</text>`; }).join('');
+  const legend = s => s.length > 1 ? `<ul class="wb-legend">${s.map(x => `<li><i style="background:${x.c}"></i>${x.n}</li>`).join('')}</ul>` : '';
+  const nice = v => { const m = Math.pow(10, Math.floor(Math.log10(v))); return [1, 1.5, 2, 2.5, 3, 4, 5, 7.5, 10].map(f => f * m).find(x => x >= v); };
+  const k = v => v >= 1000 ? (v / 1000).toFixed(v >= 10000 ? 0 : 1) + 'K' : Math.round(v);
+  function line(series, labels, opts = {}) {
+    const w = 520, h = 210, p = { l:42, r:14, t:10, b:24 };
+    const top = nice(opts.top || Math.max(...series.flatMap(s => s.v)) * 1.05);
+    const n = labels.length;
+    const x = i => p.l + i * (w - p.l - p.r) / (n - 1), y = v => h - p.b - v / top * (h - p.t - p.b);
+    const body = series.map(s => {
+      const d = s.v.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join('');
+      const area = opts.area ? `<path class="wb-fade" d="${d}L${x(n - 1)} ${y(0)}L${x(0)} ${y(0)}Z" fill="${s.c}" opacity=".14"/>` : '';
+      return `${area}<path class="wb-draw" pathLength="1" d="${d}" fill="none" stroke="${s.c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`;
+    }).join('');
+    const ticks = labels.map((l, i) => i % Math.ceil(n / 6) ? '' : `<text x="${x(i)}" y="${h - 6}" text-anchor="middle">${l}</text>`).join('');
+    return legend(series) + `<svg viewBox="0 0 ${w} ${h}" aria-hidden="true">${grid(w, h, p, top, k)}${ticks}${body}</svg>`;
+  }
+  function bars(series, labels, opts = {}) {
+    const w = 520, h = 210, p = { l:42, r:10, t:10, b:24 };
+    const stacked = opts.stacked;
+    const totals = labels.map((_, i) => stacked ? series.reduce((t, s) => t + s.v[i], 0) : Math.max(...series.map(s => s.v[i])));
+    const top = nice(Math.max(...totals) * 1.05), band = (w - p.l - p.r) / labels.length;
+    const y = v => (h - p.t - p.b) * v / top, base = h - p.b;
+    let out = '';
+    labels.forEach((l, i) => {
+      let stack = 0;
+      const each = stacked ? band * .58 : band * .78 / series.length;
+      series.forEach((s, j) => {
+        const bh = y(s.v[i]);
+        const bx = p.l + i * band + (stacked ? band * .21 : band * .11 + j * each);
+        out += `<rect class="wb-rise" x="${bx.toFixed(1)}" y="${(base - stack - bh).toFixed(1)}" width="${(each - 2).toFixed(1)}" height="${Math.max(bh - (stacked ? 1.5 : 0), 1).toFixed(1)}" rx="2" fill="${s.c}"/>`;
+        if (stacked) stack += bh;
+      });
+      out += `<text x="${p.l + i * band + band / 2}" y="${h - 6}" text-anchor="middle">${l}</text>`;
+    });
+    return legend(series) + `<svg viewBox="0 0 ${w} ${h}" aria-hidden="true">${grid(w, h, p, top, opts.fmt || k)}${out}</svg>`;
+  }
+  function hbars(rows) {
+    const max = Math.max(...rows.map(r => r[1]));
+    return `<div class="wb-h">${rows.map((r, i) => `<div><span>${r[0]}</span><div class="bar-s"><i class="${i ? '' : 'good'}" data-w="${r[1] / max * 100}"></i></div><b>${r[1]}%</b></div>`).join('')}</div>`;
+  }
+  function scatter(points) {
+    const w = 520, h = 216, p = { l:42, r:14, t:10, b:42 };
+    const x = v => p.l + v / 220 * (w - p.l - p.r), y = v => h - p.b - v / 5 * (h - p.t - p.b);
+    const body = points.map((d, i) => `<circle class="wb-pop" style="animation-delay:${i * 45}ms" cx="${x(d[0]).toFixed(1)}" cy="${y(d[1]).toFixed(1)}" r="${d[2]}" fill="${d[3]}" fill-opacity=".72" stroke="#fff"/>`).join('');
+    const ticks = [0, 75, 150, 220].map(t => `<text x="${x(t)}" y="${h - 24}" text-anchor="middle">${t}d</text>`).join('');
+    return `<ul class="wb-legend"><li><i style="background:${C.green}"></i>Proven winner</li><li><i style="background:${C.orange}"></i>Being scaled</li><li><i style="background:${C.blue}"></i>New test</li></ul><svg viewBox="0 0 ${w} ${h}" aria-hidden="true">${[0, 2.5, 5].map(v => `<path d="M${p.l} ${y(v)}H${w - p.r}" stroke="#e6e9ed"/><text x="${p.l - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`).join('')}${ticks}<text x="${w / 2}" y="${h - 6}" text-anchor="middle">Days running vs hook rating</text>${body}</svg>`;
+  }
+  const months = ['Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun'];
+  const charts = {
+    seoLine: line([{ n:'This year', c:C.blue, v:[820,790,760,800,742,710,690,735,760,801,840,905] }, { n:'Last year', c:C.orange, v:[600,620,655,680,640,660,690,700,688,720,735,780] }], months),
+    aiArea: line([{ n:'AI sessions', c:C.green, v:[12,18,24,31,29,44,58,63,80,96,121,148] }], months, { area:true }),
+    igLine: line([{ n:'Accounts reached', c:C.blue, v:[182000,214000,196000,248000,231000,276000,262000,301000,286000,334000,318000,362000] }], months),
+    igBars: bars([{ n:'Follows', c:C.green, v:[4200,3900,4600,5100,4800,5600] }, { n:'Unfollows', c:C.orange, v:[2600,2900,2500,2300,2700,2400] }], ['May','Jun','Jul','Aug','Sep','Oct']),
+    source: hbars([['Referral',32],['Google Ads',24],['Campus',14],['Website',12],['Meta',10],['Other',8]]),
+    scatter: scatter([[206,4.4,9,C.green],[197,4.1,8,C.green],[212,3.9,7,C.green],[107,3.7,7,C.green],[150,3.3,6,C.green],[13,4.2,8,C.orange],[20,3.8,6,C.orange],[34,3.5,6,C.orange],[55,3.2,5,C.orange],[40,2.9,5,C.blue],[26,3.1,5,C.blue],[9,2.5,4,C.blue],[16,2.1,4,C.blue],[66,2.4,4,C.blue]]),
+    budget: bars([{ n:'Search', c:C.blue, v:[8.1,7.6,6.2,5.8] }, { n:'Meta', c:C.green, v:[1.1,1.8,3.4,4.2] }, { n:'Display', c:C.orange, v:[.6,.8,.9,1.1] }], ['Programme A','Programme B','Programme C','Programme D'], { stacked:true, fmt:v => '₹' + +v.toFixed(1) + 'L' })
+  };
+  document.querySelectorAll('[data-chart]').forEach(el => { el.innerHTML = charts[el.dataset.chart]; });
+  requestAnimationFrame(() => document.querySelectorAll('.wb [data-w]').forEach(b => { b.style.width = b.dataset.w + '%'; }));
 })();
 </script>
 </body>
