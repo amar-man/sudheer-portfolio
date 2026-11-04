@@ -507,7 +507,7 @@
         <figure class="wb"><div class="wb-t"><b>X</b><span>SEO and AEO dashboard</span><em>Sample numbers</em></div><h3>AI assistant sessions per month</h3><div data-chart="aiArea"></div><div class="wb-tabs"><i>Dashboard</i><i>AEO-GEO</i><i>AI platforms</i><i>Bing</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>Instagram analysis</span><em>Sample numbers</em></div><h3>Accounts reached per month</h3><div data-chart="igLine"></div><div class="wb-tabs"><i>Scorecard</i><i>Monthly trend</i><i>Content mix</i><i>Reel review</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>Instagram analysis</span><em>Sample numbers</em></div><h3>Follows vs unfollows</h3><div data-chart="igBars"></div><div class="wb-tabs"><i>Format and timing</i><i>Captions and CTA</i><i>Audience</i></div></figure>
-        <figure class="wb"><div class="wb-t"><b>X</b><span>Funnel speed vs conversion</span><em>Sample numbers</em></div><h3>Sale rate by first-call speed</h3><div id="speed"></div><div class="wb-tabs"><i>Summary</i><i>Funnel</i><i>Stage timing</i><i>Speed vs conv</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Funnel speed vs conversion</span><em>Real percentages</em></div><h3>Sale rate by time to reach lead</h3><div id="speed"></div><div class="wb-tabs"><i>Summary</i><i>Funnel</i><i>Stage timing</i><i>Speed vs conv</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>Advisor and city conversion</span><em>Sample numbers</em></div><h3>Conversion matrix</h3><div class="heat" id="heat"></div><div class="wb-tabs"><i>By city</i><i>Leads matrix</i><i>Sales matrix</i><i>Conversion %</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>Converted customer profile</span><em>Sample numbers</em></div><h3>Who buys, by age</h3><div id="donut"></div><div class="wb-tabs"><i>Key findings</i><i>Customer profile</i><i>Profile</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>Converted customer profile</span><em>Sample numbers</em></div><h3>Where buyers come from</h3><div data-chart="source"></div><div class="wb-tabs"><i>Key findings</i><i>Customer profile</i><i>Profile</i></div></figure>
@@ -859,8 +859,9 @@
 
   // Overview
   cards('ovCards', [['Cost per lead','-37%',[10,9,8.6,7.8,7,6.3],'#0a7d4f'],['Meta conversion','1.30%',[.75,.8,.92,1.04,1.18,1.3]],['Google click to lead','6.4%',[1.2,2.1,3,4.2,5.4,6.4]],['Qualified lead rate','+55%',[100,108,118,131,144,155],'#0a7d4f']]);
-  cards('ovMore', [['Quarterly ROAS','3.2'],['Webinar ROAS','9+'],['Cost per sale','-42% est.'],['Leads analysed','28K+'],['Customers studied','4,442'],['First reply','1 sec']]);
+  cards('ovMore', [['Lead to sale','3.1%'],['Qualified to sale','19%'],['Fast-contact sale rate','13.3%'],['Quarterly ROAS','3.2'],['Webinar ROAS','9+'],['Leads analysed','63K+']]);
   $('ovChannels').innerHTML = '<thead><tr><th>Channel</th><th>From</th><th></th><th>To</th><th>Change</th></tr></thead><tbody>' + [
+    ['Sales conversion','Reached after 7 days vs within 1 hour','0.9%','13.3%','+12.4 pts','reports'],
     ['Meta Ads','Click-through rate','0.35%','0.85%','+143%','meta'],
     ['Google Ads','Click to lead, old vs new page','0%','6.4%','+6.4 pts','google'],
     ['CRM attribution','Lead to interest','14%','23%','+64%','reports'],
@@ -952,7 +953,7 @@
 
   // Dashboards
   $('shots').innerHTML = [['ui-dashboard','Funnel dashboard'],['ui-insights','Insights'],['ui-ad-performance','Ad performance'],['ui-budget','Budget and spend']].map(s => `<figure class="browser"><div class="lid"><i></i><i></i><i></i><span>${s[1]}, sample data</span></div><img src="media/${s[0]}.jpg" alt="${s[1]} screen on sample data" loading="lazy"></figure>`).join('');
-  $('speed').innerHTML = [['Under 1 hour','1.7%',100,'good'],['1 to 4 hours','1.2%',71,'good'],['4 to 24 hours','0.8%',47,''],['1 to 3 days','0.5%',29,'bad'],['Over 3 days','0.2%',12,'bad']].map(r => bar(r[0], r[1], r[2], r[3])).join('');
+  $('speed').innerHTML = [['Reached in 1 hour','13.3%',100,'good'],['1 to 4 hours','7.8%',59,'good'],['4 to 24 hours','4.9%',37,''],['After 7 days','0.9%',7,'bad']].map(r => bar(r[0], r[1], r[2], r[3])).join('');
   const heat = [[9,6,11,4,8],[5,12,7,3,6],[10,8,4,9,5],[3,6,8,11,7]];
   $('heat').innerHTML = '<div></div>' + 'ABCDE'.split('').map(c => `<div><b>Adv ${c}</b></div>`).join('') + heat.map((r, i) => `<div><b>City ${i + 1}</b></div>` + r.map(v => `<div style="background:rgba(26,115,232,${(v / 12 * .85).toFixed(2)});color:${v > 7 ? '#fff' : '#1c2b33'}">${v}%</div>`).join('')).join('');
   const seg = [['21 to 24',46,'#1a73e8'],['25 to 29',28,'#0b8469'],['30 to 34',16,'#c4620e'],['35+',10,'#8a5cbe']];
