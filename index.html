@@ -215,7 +215,7 @@
   :root { --spruce:#1c2b33; --spruce-2:#33424c; --mist:#f0f2f5; --white:#fff; --ink:#1c2b33; --soft:#5f6b76; --line:#dde1e6; --marigold:#ffc53d; --good:#0a7d4f; --blue:#1a73e8; --red:#c5372c; --body:"Inter","Segoe UI",Arial,sans-serif; --display:"Inter","Segoe UI",Arial,sans-serif; }
   body { font:400 14px/1.45 var(--body); background:var(--mist); }
   .am { display:grid; grid-template-columns:216px minmax(0,1fr); min-height:100vh; }
-  .rail { position:sticky; top:0; align-self:start; height:100vh; display:flex; flex-direction:column; gap:14px; padding:14px 10px; background:#fff; border-right:1px solid var(--line); }
+  .rail { position:sticky; top:0; align-self:start; height:100vh; overflow-y:auto; scrollbar-width:none; display:flex; flex-direction:column; gap:14px; padding:14px 10px; background:#fff; border-right:1px solid var(--line); }
   .rail-brand { display:flex; align-items:center; gap:9px; padding:4px 7px; font-weight:700; }
   .rail-brand b { display:grid; place-items:center; width:32px; height:32px; color:#fff; background:var(--blue); border-radius:50%; font-size:13px; }
   .rail nav { display:flex; flex-direction:column; gap:2px; }
@@ -239,6 +239,10 @@
   .pill { padding:2px 7px; color:var(--soft); background:var(--mist); border-radius:5px; font-size:12px; font-weight:600; white-space:nowrap; }
   .cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
   .cards.three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .cards.six { grid-template-columns:repeat(6,minmax(0,1fr)); }
+  .cards.six .card { padding:9px 11px; }
+  .cards.six .card b { font-size:20px; }
+  .cards.six .card span { font-size:12.5px; }
   .card { padding:12px 13px; background:#fff; border:1px solid var(--line); border-radius:9px; }
   .card span { display:block; color:var(--soft); font-size:13px; }
   .card b { display:block; margin-top:2px; font-size:26px; line-height:1.15; font-variant-numeric:tabular-nums; }
@@ -368,6 +372,7 @@
   @media (max-width:1040px) { .shots { grid-template-columns:repeat(2,minmax(0,1fr)); } }
   @media (max-width:860px) { .wbs { grid-template-columns:minmax(0,1fr); } .wb-t em { display:none; } .wb-t span::after { content:" (sample)"; } }
   @media (prefers-reduced-motion:reduce) { .wb-draw { animation:none; stroke-dashoffset:0; } .wb-fade { animation:none; opacity:.14; } .wb-rise, .wb-pop { animation:none; } }
+  @media (max-width:1180px) { .cards.six { grid-template-columns:repeat(3,minmax(0,1fr)); } }
   @media (max-width:1040px) {
     .report-trio, .levels { grid-template-columns:repeat(2,minmax(0,1fr)); }
     .gallery { grid-template-columns:repeat(3,minmax(0,1fr)); }
@@ -382,7 +387,7 @@
     .am-top { position:static; padding:9px 14px; }
     .pg { padding:12px 14px 22px; }
     section.pg { padding-block:12px 22px; }
-    .cards, .cards.three, .chips { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .cards, .cards.three, .cards.six, .chips { grid-template-columns:repeat(2,minmax(0,1fr)); }
     .split, .meta-grid, .media-row, .sys, .report-trio, .pg .flows { grid-template-columns:minmax(0,1fr); }
     .shots { grid-template-columns:minmax(0,1fr); }
     .levels { grid-template-columns:minmax(0,1fr); }
@@ -427,6 +432,7 @@
 
     <section class="pg" data-pg="overview">
       <div class="cards" id="ovCards"></div>
+      <div class="cards six" id="ovMore"></div>
       <div class="split">
         <div class="trace" aria-live="polite">
           <p class="trace-label" id="traceLabel">Cost per lead in the ad account</p>
@@ -849,9 +855,15 @@
 
   // Overview
   cards('ovCards', [['Cost per lead','-37%',[10,9,8.6,7.8,7,6.3],'#0a7d4f'],['Meta conversion','1.30%',[.75,.8,.92,1.04,1.18,1.3]],['Google conversion','1.5%',[.65,.72,.9,1.1,1.3,1.5]],['Qualified lead rate','+55%',[100,108,118,131,144,155],'#0a7d4f']]);
-  $('ovChannels').innerHTML = '<thead><tr><th>Channel</th><th>Status</th><th>Proof</th></tr></thead><tbody>' + [
-    ['Meta Ads','Active','Results','meta'],['Google Ads','Active','Results','google'],['CRM attribution','Active','Results','reports'],['AI and automation','Active','Built','ai'],['SEO and AEO','Active','Audit and build','seo'],['Creative','Active','Pre-launch score','creative']
-  ].map(r => `<tr data-open="${r[3]}" style="cursor:pointer"><td><b>${r[0]}</b></td><td><span class="dot"></span>${r[1]}</td><td>${r[2]}</td></tr>`).join('') + '</tbody>';
+  cards('ovMore', [['Quarterly ROAS','3.2'],['Webinar ROAS','9+'],['Cost per sale','-42% est.'],['Leads analysed','28K+'],['Customers studied','4,442'],['First reply','1 sec']]);
+  $('ovChannels').innerHTML = '<thead><tr><th>Channel</th><th>Key metric</th><th>Result</th><th>Proof</th></tr></thead><tbody>' + [
+    ['Meta Ads','Conversion rate','0.75% to 1.30%','Results','meta'],
+    ['Google Ads','Conversion rate','0.65% to 1.5%','Results','google'],
+    ['CRM attribution','Qualified lead rate','+55%','Results','reports'],
+    ['AI and automation','First reply time','122s to 1s','Built','ai'],
+    ['SEO and AEO','FAQ answers built','268','Audit and build','seo'],
+    ['Creative','Pre-launch score','8.13 vs 7.14','Scored','creative']
+  ].map(r => `<tr data-open="${r[4]}" style="cursor:pointer"><td><b>${r[0]}</b></td><td>${r[1]}</td><td class="up">${r[2]}</td><td>${r[3]}</td></tr>`).join('') + '</tbody>';
   $('ovChannels').addEventListener('click', e => { const tr = e.target.closest('[data-open]'); if (tr) go(tr.dataset.open); });
 
   // Meta
