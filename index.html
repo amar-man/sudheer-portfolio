@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sudheer Amarthya, AI-first growth marketer</title>
+<meta name="description" content="AI-first growth marketer in Bengaluru. Paid media, CRM attribution, automation, SEO and AEO, with proof of what each one did.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --spruce:#0f3b33; --spruce-2:#17503f; --mist:#eaf1ec; --white:#fbfdfb; --ink:#12322b;
+    --soft:#4b655d; --line:#c6d6cd; --marigold:#f5b82e; --plum:#5a2a6e;
+    --good:#0b6b55; --stop:#a33a1f;
+    --display:"Bricolage Grotesque", "Trebuchet MS", sans-serif;
+    --body:"Instrument Sans", "Segoe UI", Arial, sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--mist); color:var(--ink); font:400 17px/1.55 var(--body); }
+  a { color:inherit; text-underline-offset:3px; }
+  :focus-visible { outline:3px solid var(--plum); outline-offset:3px; border-radius:3px; }
+  .hero :focus-visible { outline-color:var(--marigold); }
+  .wrap { width:min(1120px, 100% - 40px); margin-inline:auto; }
+
+  /* Header and hero */
+  .hero { background:var(--spruce); color:var(--white); padding-bottom:72px; }
+  .top { display:flex; justify-content:space-between; align-items:center; gap:16px; padding-block:22px; }
+  .top strong { font:700 18px var(--display); }
+  .top nav { display:flex; gap:22px; font-size:15px; }
+  .top nav a { text-decoration:none; }
+  .top nav a:hover { text-decoration:underline; }
+  .hero-grid { display:grid; grid-template-columns:minmax(0, 1.05fr) minmax(0, .95fr); gap:56px; align-items:end; padding-top:52px; }
+  h1 { margin:0; font:800 clamp(44px, 7.2vw, 88px)/.96 var(--display); letter-spacing:-.025em; max-width:11ch; }
+  .intro { max-width:48ch; margin:26px 0 0; color:#d8e6df; font-size:19px; }
+  .trace { color:var(--ink); background:var(--marigold); padding:26px 26px 24px; border-radius:18px 18px 18px 4px; }
+  .trace-label { margin:0; font-weight:600; font-size:16px; min-height:26px; }
+  .trace-number { display:block; margin:2px 0 6px; font:800 clamp(92px, 15vw, 170px)/1 var(--display); letter-spacing:-.04em; font-variant-numeric:tabular-nums; }
+  .trace-note { margin:0 0 18px; min-height:78px; max-width:40ch; }
+  .trace button { font:600 16px var(--body); color:var(--white); background:var(--spruce); border:0; border-radius:8px; padding:12px 16px; cursor:pointer; }
+  .trace button:hover { background:var(--spruce-2); }
+
+  /* Sections */
+  section { padding-block:76px; }
+  h2 { margin:0 0 14px; font:700 clamp(32px, 4.4vw, 50px)/1.05 var(--display); letter-spacing:-.018em; max-width:20ch; }
+  .lede { margin:0 0 34px; max-width:62ch; color:var(--soft); font-size:18px; }
+  table { width:100%; border-collapse:collapse; }
+  th { font-size:14px; font-weight:600; color:var(--soft); text-align:left; }
+  .stack th, .stack td { padding:14px 18px 14px 0; border-bottom:1px solid var(--line); vertical-align:top; }
+  .stack td:first-child { width:21%; font:700 18px/1.25 var(--display); }
+  .stack td:last-child { width:21%; padding-right:0; font-weight:600; font-size:15px; }
+  .proof-res { color:var(--good); }
+  .proof-built { color:var(--spruce-2); }
+  .proof-pre { color:var(--plum); }
+
+  .shift { list-style:none; margin:0; padding:0; }
+  .shift li { display:grid; grid-template-columns:1fr 1.15fr; gap:38px; align-items:baseline; padding-block:22px; border-top:1px solid var(--line); }
+  .shift li:last-child { border-bottom:1px solid var(--line); }
+  .figure { font:800 clamp(38px, 5vw, 58px)/1 var(--display); letter-spacing:-.025em; }
+  .figure small { display:block; margin-top:7px; font:500 15px/1.3 var(--body); letter-spacing:0; color:var(--soft); }
+  .shift h3 { margin:0 0 4px; font:700 21px/1.2 var(--display); }
+  .shift p { margin:0; color:var(--soft); }
+
+  /* Animated mock */
+  .band { background:var(--white); }
+  .mock { background:var(--mist); border:1px solid var(--line); border-radius:14px; padding:18px; }
+  .mock-head { display:flex; justify-content:space-between; gap:14px; align-items:center; margin-bottom:14px; }
+  .mock-head p { margin:0; font-weight:600; }
+  .mock-head span { color:var(--soft); font-weight:400; }
+  .pause { font:600 14px var(--body); color:var(--ink); background:var(--white); border:1px solid var(--line); border-radius:7px; padding:7px 11px; cursor:pointer; flex:none; }
+  .kpis { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px; }
+  .kpi { background:var(--white); border-radius:9px; padding:12px 13px; }
+  .kpi span { display:block; color:var(--soft); font-size:14px; }
+  .kpi b { font:700 clamp(24px, 3vw, 32px)/1.15 var(--display); font-variant-numeric:tabular-nums; }
+  .mock-grid { display:grid; grid-template-columns:.85fr 1.15fr; gap:10px; margin-top:10px; }
+  .panel { background:var(--white); border-radius:9px; padding:14px; min-width:0; }
+  .panel h3 { margin:0 0 11px; font:600 15px var(--body); }
+  .bar { margin-bottom:10px; }
+  .bar div:first-child { display:flex; justify-content:space-between; gap:8px; font-size:14px; }
+  .track { height:9px; margin-top:3px; background:var(--mist); border-radius:0 4px 4px 0; }
+  .track i { display:block; height:100%; width:0; background:var(--spruce-2); border-radius:0 4px 4px 0; transition:width .8s cubic-bezier(.2,.7,.2,1); }
+  .ads th, .ads td { padding:7px 7px 7px 0; border-bottom:1px solid var(--mist); font-size:14px; }
+  .ads td:not(:first-child), .ads th:not(:first-child) { text-align:right; font-variant-numeric:tabular-nums; }
+  .ads tbody tr { transition:background .35s; }
+  .ads tr.pause-row { background:#f8e8e2; }
+  .ads tr.scale-row { background:#dff0e8; }
+  .tag { display:block; min-height:18px; font-size:12.5px; font-weight:700; opacity:0; transition:opacity .35s; }
+  .pause-row .tag { color:var(--stop); opacity:1; }
+  .scale-row .tag { color:var(--good); opacity:1; }
+  .ask { margin-top:10px; background:var(--spruce); color:var(--white); border-radius:9px; padding:14px; min-height:128px; }
+  .ask p { margin:0; }
+  .q { font-weight:600; min-height:26px; }
+  .a { margin-top:7px; color:#e4efe9; max-width:74ch; opacity:0; transition:opacity .45s; }
+  .a.on { opacity:1; }
+  .caret { display:inline-block; width:8px; height:1em; margin-left:2px; vertical-align:-2px; background:var(--marigold); }
+  .note { margin:14px 0 0; color:var(--soft); font-size:15px; max-width:68ch; }
+
+  /* Dashboard views */
+  .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+  .dash-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+  .dash-tabs button { font:600 14px var(--body); color:var(--soft); background:transparent; border:1px solid var(--line); border-radius:7px; padding:6px 10px; cursor:pointer; }
+  .dash-tabs button[aria-pressed="true"] { color:var(--white); background:var(--spruce); border-color:var(--spruce); }
+  .sync { display:inline-block; margin-left:8px; font-size:14px; font-weight:400; color:var(--good) !important; }
+  .view[hidden] { display:none; }
+  .pace { margin-bottom:12px; }
+  .pace > div:first-child { display:flex; justify-content:space-between; gap:8px; font-size:14px; }
+  .pace .track { position:relative; }
+  .pace .track::after { content:""; position:absolute; left:67%; top:-3px; bottom:-3px; width:2px; background:var(--plum); }
+  .pace small { display:block; margin-top:4px; font-size:13px; color:var(--soft); }
+  .pace b.warn { color:var(--stop); }
+  .pace b.ok { color:var(--good); }
+  .pace b.low { color:var(--plum); }
+  .trend { width:100%; height:auto; display:block; }
+  .trend text { font:600 12px var(--body); fill:var(--ink); }
+  .trend .axis { fill:var(--soft); font-weight:400; font-size:11px; }
+  .legend { display:flex; flex-wrap:wrap; gap:12px; margin:0 0 6px; padding:0; list-style:none; font-size:13px; }
+  .legend i { display:inline-block; width:10px; height:10px; margin-right:5px; border-radius:50%; }
+
+  /* AI workflows */
+  .flows { display:grid; grid-template-columns:240px minmax(0, 1fr); gap:18px; align-items:start; }
+  .flow-list { display:flex; flex-direction:column; gap:4px; }
+  .flow-list button { width:100%; text-align:left; font:600 15px/1.25 var(--body); color:var(--ink); background:transparent; border:0; border-left:3px solid var(--line); padding:9px 10px; cursor:pointer; }
+  .flow-list button[aria-pressed="true"] { border-left-color:var(--marigold); background:var(--white); font-weight:700; }
+  .flow-window { min-width:0; min-height:468px; background:var(--spruce); color:var(--white); border-radius:14px; padding:20px; }
+  .flow-top { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:14px; }
+  .flow-top h3 { margin:0; font:700 22px/1.2 var(--display); }
+  .flow-proof { flex:none; padding:3px 8px; border-radius:6px; background:var(--white); color:var(--ink); font-size:13px; font-weight:600; }
+  .flow-proof.off { background:var(--marigold); }
+  .flow-prompt { margin:0 0 14px; padding:11px 13px; min-height:68px; background:var(--spruce-2); border-radius:9px; }
+  .flow-steps { margin:0 0 14px; padding:0; list-style:none; }
+  .flow-steps li { display:flex; gap:9px; padding:5px 0; color:#a8c2b7; }
+  .flow-steps li::before { content:""; flex:none; width:12px; height:12px; margin-top:6px; border:2px solid #6f9385; border-radius:50%; }
+  .flow-steps li.run { color:var(--white); }
+  .flow-steps li.run::before { border-color:var(--marigold); }
+  .flow-steps li.done { color:var(--white); }
+  .flow-steps li.done::before { border-color:var(--marigold); background:var(--marigold); }
+  .flow-out { padding:12px 13px; background:var(--white); color:var(--ink); border-radius:9px; opacity:0; transition:opacity .4s; }
+  .flow-out.on { opacity:1; }
+  .flow-out p { margin:0 0 6px; font-size:14px; font-weight:600; color:var(--soft); }
+  .flow-out div { display:flex; justify-content:space-between; gap:14px; padding:4px 0; border-top:1px solid var(--mist); font-size:15px; }
+  .flow-out div b { flex:none; font-variant-numeric:tabular-nums; }
+  .flow-foot { display:flex; justify-content:space-between; gap:14px; align-items:center; margin-top:12px; }
+  .flow-foot p { margin:0; font-size:14px; color:#d8e6df; }
+  .flow-foot .pause { background:transparent; color:var(--white); border-color:#6f9385; }
+
+  /* Lists */
+  .two { display:grid; grid-template-columns:.8fr 1.2fr; gap:48px; }
+  .plain { margin:0; padding:0; list-style:none; }
+  .plain li { padding-block:14px; border-top:1px solid var(--line); }
+  .plain li:last-child { border-bottom:1px solid var(--line); }
+  .plain strong { display:block; font:700 19px/1.25 var(--display); }
+  .plain span { color:var(--soft); }
+  .numbers { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:22px; margin-bottom:22px; }
+  .numbers b { display:block; font:800 clamp(36px, 5vw, 54px)/1 var(--display); }
+  .numbers span { font-size:15px; color:var(--soft); }
+  .limit { margin:0; padding:14px 16px; border-left:4px solid var(--plum); background:var(--white); max-width:70ch; }
+
+  .role { display:flex; justify-content:space-between; gap:18px; padding-block:12px; border-top:1px solid var(--line); }
+  .role:last-child { border-bottom:1px solid var(--line); }
+  .role span:last-child { flex:none; color:var(--soft); }
+  footer { background:var(--spruce); color:var(--white); padding-block:60px; }
+  footer h2 { margin-bottom:12px; }
+  footer p { margin:0 0 24px; max-width:50ch; color:#d8e6df; }
+  .cta { display:flex; flex-wrap:wrap; gap:12px; }
+  .cta a { padding:12px 16px; border-radius:8px; font-weight:600; text-decoration:none; background:var(--marigold); color:var(--ink); }
+  .cta a + a { background:transparent; color:var(--white); outline:1px solid #6f9385; outline-offset:-1px; }
+
+  @media (max-width:860px) {
+    body { font-size:16px; }
+    .wrap { width:calc(100% - 32px); }
+    .top nav a:not(:last-child) { display:none; }
+    .hero-grid, .two, .mock-grid { grid-template-columns:minmax(0, 1fr); gap:30px; }
+    .hero-grid { padding-top:24px; gap:34px; }
+    section { padding-block:54px; }
+    .shift li { grid-template-columns:minmax(0, 1fr); gap:10px; }
+    .numbers { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .kpis { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .mock { padding:12px; }
+    .mock-grid { gap:10px; }
+    .stack thead { position:absolute; left:-9999px; }
+    .stack tr, .stack td { display:block; width:auto !important; }
+    .stack tr { padding-block:14px; border-bottom:1px solid var(--line); }
+    .stack td { padding:0 0 4px; border:0; }
+    .trace-note { min-height:102px; }
+    .role { display:block; }
+    .role span:last-child { display:block; }
+    .ads .opt { display:none; }
+    .flows { grid-template-columns:minmax(0, 1fr); }
+    .flow-list { flex-direction:row; flex-wrap:wrap; }
+    .flow-list button { width:auto; border:1px solid var(--line); border-radius:7px; font-size:14px; padding:7px 9px; }
+    .flow-list button[aria-pressed="true"] { border-color:var(--spruce); }
+    .flow-window { min-height:540px; padding:15px; }
+    .flow-top { display:block; }
+    .flow-proof { display:inline-block; margin-top:7px; }
+    .flow-foot { align-items:flex-start; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    html { scroll-behavior:auto; }
+    .track i, .tag, .a, .ads tbody tr, .flow-out { transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <header class="top">
+      <strong>Sudheer Amarthya</strong>
+      <nav aria-label="Page sections">
+        <a href="#work">Work</a>
+        <a href="#dashboard">AI dashboard</a>
+        <a href="#ai-work">AI workflows</a>
+        <a href="#organic">SEO and AEO</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+    <div class="hero-grid">
+      <div>
+        <h1>I find what ad spend really bought.</h1>
+        <p class="intro">AI-first growth marketer in Bengaluru. I run paid media, connect it to CRM outcomes, and build the automation and reporting that keep it honest.</p>
+      </div>
+      <div class="trace" aria-live="polite">
+        <p class="trace-label" id="traceLabel">Cost per lead in the ad account</p>
+        <strong class="trace-number" id="traceNumber">₹60</strong>
+        <p class="trace-note" id="traceNote">Looks cheap. This is the number most campaign reports stop at.</p>
+        <button type="button" id="traceButton">Check it against the CRM</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section id="work">
+    <div class="wrap">
+      <h2>One marketer across the whole funnel</h2>
+      <p class="lede">Each area shows what I did and what kind of proof exists, so you can tell measured results from systems I built.</p>
+      <table class="stack">
+        <thead><tr><th>Area</th><th>What I've done</th><th>Proof</th></tr></thead>
+        <tbody>
+          <tr><td>Social ads</td><td>Plan and optimise Meta and Instagram lead generation for high-ticket programmes, including creative, audience, form and budget decisions. LinkedIn Ads for high-intent audiences.</td><td class="proof-res">Measured results</td></tr>
+          <tr><td>Google Search</td><td>Keyword structure, ad copy, search-term mining, Quality Score review and 800+ negative keywords, including city-specific lists.</td><td class="proof-res">Measured results</td></tr>
+          <tr><td>CRM attribution</td><td>Link creatives, form answers and CRM stages to judge spend on qualified leads and sales. Plan conversion feedback from the CRM to Google.</td><td class="proof-res">Measured results</td></tr>
+          <tr><td>AI and reporting</td><td>Scope and launch live dashboards, AI reply agents and AI call coaching using AI tools. I direct the build and test the outcome.</td><td class="proof-built">Built and in use</td></tr>
+          <tr><td>Automation</td><td>Self-hosted n8n, CRM workflows, WhatsApp journeys, email nurture, webinars and lead routing, plus Zapier, ManyChat and MoEngage.</td><td class="proof-built">Built and in use</td></tr>
+          <tr><td>Landing pages</td><td>Conversion audits, short versus long page research, tracking fixes, test plans and masterclass pages.</td><td class="proof-res">Measured results</td></tr>
+          <tr><td>Organic SEO and AEO</td><td>A 70-page marketing site with technical SEO, structured data, FAQ content and regional-language pages.</td><td class="proof-built">Built, outcome not yet measured</td></tr>
+          <tr><td>AI ad creative</td><td>Update static creatives in the evening using AI and lead-quality data. Also produced a pre-launch ad set scored against 282 competitor ads, plus AI-assisted video and sound.</td><td class="proof-pre">Scored before launch</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>What changed</h2>
+      <p class="lede">Campaign results, and problems found by comparing what reports said with what actually happened.</p>
+      <ul class="shift">
+        <li><div class="figure">55% higher<small>qualified-lead rate at similar CPL</small></div><div><h3>Lead form analysis</h3><p>Matched form answers to CRM stages. The same setup showed an estimated 42% lower cost per sale. Ad sets differed, so I treated this as strong but not final evidence.</p></div></li>
+        <li><div class="figure">37% lower<small>cost per lead</small></div><div><h3>Lead form and creative testing</h3><p>Combined form optimisation, creative A/B tests and controlled budget pacing. Conversion also rose from 0.75% to 1.30% on Meta and 0.65% to 1.5% on Google Search.</p></div></li>
+        <li><div class="figure">55% of ad spend<small>was missing from reports</small></div><div><h3>Hidden channel cost</h3><p>Messaging, SMS and automation costs sat outside ad reporting. Joining them changed how every efficiency number should be read.</p></div></li>
+        <li><div class="figure">122s to 1s<small>first reply time</small></div><div><h3>Speed to lead</h3><p>Every reply took exactly 122 seconds. Constant delay pointed to a routing fault, so the fix was in the wiring, not server capacity.</p></div></li>
+        <li><div class="figure">736 to 487<small>send attempts vs billed conversations</small></div><div><h3>Spend reporting fix</h3><p>Reports treated attempts as cost. Separating attempts, deliveries and billed conversations removed a 34% gap.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="dashboard" class="band">
+    <div class="wrap">
+      <h2>AI dashboard preview</h2>
+      <p class="lede">See data refresh, move through the funnel and become a budget decision. The views match how I check performance, pacing and creative.</p>
+      <div class="mock" id="mock">
+        <p class="sr">Animated mock dashboard with sample numbers. It shows campaign performance, budget pacing and creative comparison, with an AI assistant recommending a budget change on each view.</p>
+        <div class="mock-head">
+          <p>Growth dashboard <span>Sample numbers</span><span class="sync" id="syncState" aria-hidden="true">Synced just now</span></p>
+          <button type="button" class="pause" id="mockPause">Pause animation</button>
+        </div>
+        <div class="dash-tabs" id="dashTabs" aria-label="Dashboard views">
+          <button type="button" data-tab="0" aria-pressed="true">Performance</button>
+          <button type="button" data-tab="1" aria-pressed="false">Budget pacing</button>
+          <button type="button" data-tab="2" aria-pressed="false">Creative and competitors</button>
+        </div>
+
+        <div class="view" data-view="0" aria-hidden="true">
+          <div class="kpis">
+            <div class="kpi"><span>Spend</span><b data-count="4.2" data-pre="₹" data-post="L" data-dec="1">₹0</b></div>
+            <div class="kpi"><span>Leads</span><b data-count="1576">0</b></div>
+            <div class="kpi"><span>Qualified</span><b data-count="214">0</b></div>
+            <div class="kpi"><span>Sales</span><b data-count="19">0</b></div>
+          </div>
+          <div class="mock-grid">
+            <div class="panel">
+              <h3>Lead funnel</h3>
+              <div class="bar"><div><span>Leads</span><span>1,576</span></div><div class="track"><i data-w="100"></i></div></div>
+              <div class="bar"><div><span>Contacted</span><span>1,176</span></div><div class="track"><i data-w="74.6"></i></div></div>
+              <div class="bar"><div><span>Qualified</span><span>214</span></div><div class="track"><i data-w="13.6"></i></div></div>
+              <div class="bar"><div><span>Sales</span><span>19</span></div><div class="track"><i data-w="1.8"></i></div></div>
+            </div>
+            <div class="panel">
+              <h3>Ad comparison</h3>
+              <table class="ads">
+                <thead><tr><th>Ad</th><th class="opt">Spend</th><th>Per lead</th><th>Per qualified</th></tr></thead>
+                <tbody>
+                  <tr data-mark="scale"><td>Career switch reel<span class="tag">▲ Scale</span></td><td class="opt">₹1.6L</td><td>₹444</td><td>₹1,481</td></tr>
+                  <tr><td>Salary hook static<span class="tag"></span></td><td class="opt">₹1.5L</td><td>₹349</td><td>₹2,083</td></tr>
+                  <tr data-mark="pause"><td>Course offer static<span class="tag">■ Pause</span></td><td class="opt">₹1.1L</td><td>₹140</td><td>₹3,235</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="view" data-view="1" aria-hidden="true" hidden>
+          <div class="kpis">
+            <div class="kpi"><span>Month gone</span><b data-count="67" data-post="%">0%</b></div>
+            <div class="kpi"><span>Budget used</span><b data-count="66" data-post="%">0%</b></div>
+            <div class="kpi"><span>Spent</span><b data-count="9.3" data-pre="₹" data-post="L" data-dec="1">₹0</b></div>
+            <div class="kpi"><span>Monthly plan</span><b data-count="14" data-pre="₹" data-post="L">₹0</b></div>
+          </div>
+          <div class="mock-grid">
+            <div class="panel">
+              <h3>Budget used by programme</h3>
+              <div class="pace"><div><span>Programme A</span><span>₹2.0L of ₹3L</span></div><div class="track"><i data-w="67"></i></div><small><b class="ok">● On pace</b></small></div>
+              <div class="pace"><div><span>Programme B</span><span>₹4.9L of ₹6L</span></div><div class="track"><i data-w="81"></i></div><small><b class="warn">▲ Ahead of plan</b></small></div>
+              <div class="pace"><div><span>Programme C</span><span>₹2.4L of ₹5L</span></div><div class="track"><i data-w="48"></i></div><small><b class="low">▼ Behind plan</b></small></div>
+              <small style="color:var(--soft);font-size:13px">Purple line marks expected spend by today.</small>
+            </div>
+            <div class="panel">
+              <h3>Qualified leads by week</h3>
+              <ul class="legend"><li><i style="background:#2456B8"></i>Meta</li><li><i style="background:#C4620E"></i>Google</li><li><i style="background:#0B8469"></i>WhatsApp</li></ul>
+              <svg class="trend" id="trend" viewBox="0 0 480 190" aria-hidden="true"></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="view" data-view="2" aria-hidden="true" hidden>
+          <div class="mock-grid">
+            <div class="panel">
+              <h3>Long-running competitor hooks</h3>
+              <div class="bar"><div><span>Salary jump story</span><span>38%</span></div><div class="track"><i data-w="38"></i></div></div>
+              <div class="bar"><div><span>Founder proof</span><span>24%</span></div><div class="track"><i data-w="24"></i></div></div>
+              <div class="bar"><div><span>Free tool demo</span><span>16%</span></div><div class="track"><i data-w="16"></i></div></div>
+              <div class="bar"><div><span>Price offer</span><span>11%</span></div><div class="track"><i data-w="11"></i></div></div>
+            </div>
+            <div class="panel">
+              <h3>Our creative scorecard</h3>
+              <table class="ads">
+                <thead><tr><th>Ad</th><th>Score</th><th>Qualified</th></tr></thead>
+                <tbody>
+                  <tr data-mark="scale"><td>Career switch reel<span class="tag">▲ Scale</span></td><td>8/9</td><td>30%</td></tr>
+                  <tr><td>Salary hook static<span class="tag"></span></td><td>7/9</td><td>17%</td></tr>
+                  <tr data-mark="pause"><td>Course offer static<span class="tag">■ Pause</span></td><td>5/9</td><td>4%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="ask" aria-hidden="true">
+          <p class="q"><span id="askText"></span><span class="caret" id="caret"></span></p>
+          <p class="a" id="askAnswer"></p>
+        </div>
+      </div>
+      <p class="note">This mirrors how my real dashboards work, including data movement and AI review. All ads, programmes and numbers here are sample data, so no company data is shown.</p>
+    </div>
+  </section>
+
+  <section id="ai-work">
+    <div class="wrap">
+      <h2>How I use AI at work</h2>
+      <p class="lede">These mockups show the jobs I hand to AI, from competitor research to scheduled reporting. Outputs are samples, and each one is labelled with its real status.</p>
+      <div class="flows">
+        <div class="flow-list" id="flowList" aria-label="AI workflows"></div>
+        <div class="flow-window">
+          <div class="flow-top"><h3 id="flowTitle"></h3><span class="flow-proof" id="flowProof"></span></div>
+          <p class="flow-prompt" id="flowPrompt"></p>
+          <ul class="flow-steps" id="flowSteps"></ul>
+          <div class="flow-out" id="flowOut"></div>
+          <div class="flow-foot"><p id="flowTool"></p><button type="button" class="pause" id="flowPause">Pause animation</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two">
+      <div>
+        <h2>Systems I've built with AI</h2>
+        <p class="lede">I'm a marketer, not a software engineer. I define the problem, direct AI tools, test the result and fix what breaks in real use.</p>
+      </div>
+      <ul class="plain">
+        <li><strong>CRM and messaging platform</strong><span>A self-built product with lead capture, inbox, campaigns and analytics, used by one paying business customer.</span></li>
+        <li><strong>n8n and automation</strong><span>Started campaign delivery on self-hosted n8n, then moved to queue workers as send volume grew.</span></li>
+        <li><strong>WhatsApp journeys</strong><span>Click-to-WhatsApp flow with 27 nodes, buttons, list menus, media, booking and follow-up steps.</span></li>
+        <li><strong>AI reply and call coaching</strong><span>AI replies using a knowledge base, plus call recording, pre-call briefs and scorecards.</span></li>
+        <li><strong>Sales rep mobile app</strong><span>A 24-screen app with SIM calling, recording and follow-up tools, tested on real devices.</span></li>
+        <li><strong>Marketing dashboards</strong><span>Live reporting that joins CRM and ad-platform data with budget tracking.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="organic" class="band">
+    <div class="wrap">
+      <h2>Organic SEO and answer engine optimisation</h2>
+      <p class="lede">AEO means structuring content so AI tools and search engines can quote clear answers. This is what I built for a product marketing site.</p>
+      <div class="numbers">
+        <div><b>70</b><span>pages with structured data</span></div>
+        <div><b>268</b><span>FAQ answers in schema</span></div>
+        <div><b>81</b><span>URLs in the sitemap</span></div>
+        <div><b>6</b><span>language homepages</span></div>
+      </div>
+      <p class="limit">Traffic and AI citation results are not shown because I haven't measured them yet. This proves the build, not the ranking outcome.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap two">
+      <div>
+        <h2>AI creative</h2>
+        <p class="lede">Competitor research first, then production. Scores are pre-launch quality checks, not ad results.</p>
+      </div>
+      <ul class="plain">
+        <li><strong>282 competitor ads analysed</strong><span>Reviewed for both message and visual design.</span></li>
+        <li><strong>34 ad files across 2 formats</strong><span>17 feed and 17 vertical ads, scored 8.13 out of 9 against a 7.14 competitor baseline.</span></li>
+        <li><strong>56-second product film</strong><span>Made with AI video, voice and a custom sound mix.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <h2>Experience</h2>
+      <div class="role"><span><b>Senior Performance Marketer</b>, Imarticus Learning</span><span>Jan 2024 to present</span></div>
+      <div class="role"><span><b>Digital Marketer, founding team</b>, Bversity</span><span>Jul 2022 to Dec 2023</span></div>
+      <div class="role"><span><b>Early roles</b> in lead generation, email marketing and design</span><span>Dec 2020 to Jun 2022</span></div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's talk growth</h2>
+    <p>Open to remote performance marketing and growth roles.</p>
+    <div class="cta">
+      <a href="mailto:amarthya999@gmail.com">Email me</a>
+      <a href="https://www.linkedin.com/in/sudheeramarthya/">View LinkedIn</a>
+      <a href="Sudheer_Amarthya_Resume.pdf">Open resume</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Hero: same spend, two truths.
+  const label = document.getElementById('traceLabel');
+  const number = document.getElementById('traceNumber');
+  const note = document.getElementById('traceNote');
+  const button = document.getElementById('traceButton');
+  let real = false, frame;
+  const rupee = n => '₹' + Math.round(n).toLocaleString('en-IN');
+  function moveNumber(from, to) {
+    cancelAnimationFrame(frame);
+    if (reduced) { number.textContent = rupee(to); return; }
+    const start = performance.now();
+    const tick = now => {
+      const t = Math.min((now - start) / 800, 1);
+      number.textContent = rupee(from + (to - from) * (1 - Math.pow(1 - t, 3)));
+      if (t < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+  }
+  button.addEventListener('click', () => {
+    real = !real;
+    label.textContent = real ? 'Cost per qualified lead in the CRM' : 'Cost per lead in the ad account';
+    note.textContent = real
+      ? 'Same campaigns, ten times the cost. Once lead quality was visible, budget could move to what actually worked.'
+      : 'Looks cheap. This is the number most campaign reports stop at.';
+    button.textContent = real ? 'Back to the ad account' : 'Check it against the CRM';
+    moveNumber(real ? 60 : 597, real ? 597 : 60);
+  });
+
+  // Mock dashboard: three views with moving data.
+  const mock = document.getElementById('mock');
+  const views = [...mock.querySelectorAll('.view')];
+  const tabs = [...mock.querySelectorAll('[data-tab]')];
+  const askText = document.getElementById('askText');
+  const answer = document.getElementById('askAnswer');
+  const caret = document.getElementById('caret');
+  const pause = document.getElementById('mockPause');
+  const syncState = document.getElementById('syncState');
+  const trend = document.getElementById('trend');
+  const script = [
+    { q:'Which ad should I pause this week?', a:'Pause Course offer static. It has the cheapest lead at ₹140, but the highest qualified-lead cost at ₹3,235. Move that budget to Career switch reel at ₹1,481.' },
+    { q:'Which programme needs a budget change today?', a:'Programme B has used 81% of its budget with 67% of the month gone. At this pace it ends ₹1.3L over plan, so cut about ₹13,000 a day.' },
+    { q:'What should we test next?', a:'Test a salary jump story as a reel. It is the most common long-running competitor hook and fits your best qualified-lead ad.' }
+  ];
+  const series = [
+    { name:'Meta', color:'#2456B8', data:[42,46,51,49,58,62,60,68] },
+    { name:'Google', color:'#C4620E', nudge:-6, data:[18,20,19,23,22,25,27,26] },
+    { name:'WhatsApp', color:'#0B8469', nudge:8, data:[6,8,11,13,15,19,22,24] }
+  ];
+  const X = i => 30 + i * 54, Y = v => 165 - v * 2.1;
+  trend.innerHTML = [0,20,40,60].map(v => `<path d="M30 ${Y(v)}H408" stroke="#dbe5df"/><text class="axis" x="4" y="${Y(v)+4}">${v}</text>`).join('')
+    + series[0].data.map((_, i) => i % 2 ? '' : `<text class="axis" x="${X(i)-8}" y="184">Wk ${i+1}</text>`).join('')
+    + series.map(s => {
+        const d = s.data.map((v, i) => `${i ? 'L' : 'M'}${X(i)} ${Y(v)}`).join('');
+        const last = s.data.length - 1;
+        return `<path class="draw" d="${d}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linecap="round"/><text class="end" x="${X(last)+7}" y="${Y(s.data[last])+4+(s.nudge||0)}">${s.name}</text>`;
+      }).join('');
+  const lines = [...trend.querySelectorAll('.draw')];
+  const ends = [...trend.querySelectorAll('.end')];
+  const lengths = series.map(s => s.data.reduce((sum, v, i, a) => i ? sum + Math.hypot(54, (v - a[i-1]) * 2.1) : 0, 0) + 2);
+  lines.forEach((p, i) => { p.style.strokeDasharray = lengths[i]; });
+
+  const fmt = (el, value) => {
+    const dec = +(el.dataset.dec || 0);
+    const text = dec ? value.toFixed(dec) : Math.round(value).toLocaleString('en-IN');
+    el.textContent = (el.dataset.pre || '') + text + (el.dataset.post || '');
+  };
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  let scene = -1;
+  function showScene(i) {
+    if (i === scene) return;
+    scene = i;
+    views.forEach((v, n) => { v.hidden = n !== i; });
+    tabs.forEach((t, n) => t.setAttribute('aria-pressed', String(n === i)));
+    answer.textContent = script[i].a;
+  }
+  function renderDash(ms) {
+    const pane = views[scene];
+    pane.querySelectorAll('[data-count]').forEach(el => fmt(el, +el.dataset.count * ease(Math.min(ms / 1300, 1))));
+    pane.querySelectorAll('[data-w]').forEach((el, i) => { el.style.width = ms > 500 + i * 260 ? el.dataset.w + '%' : '0'; });
+    lines.forEach((p, i) => {
+      const t = ease(Math.min(Math.max(ms - 500 - i * 180, 0) / 1800, 1));
+      p.style.strokeDashoffset = lengths[i] * (1 - t);
+      ends[i].style.opacity = t > .96 ? 1 : 0;
+    });
+    const q = script[scene].q;
+    askText.textContent = q.slice(0, Math.max(0, Math.min(q.length, Math.floor((ms - 2600) / 40))));
+    caret.style.display = ms > 2400 && ms < 2800 + q.length * 40 ? 'inline-block' : 'none';
+    answer.classList.toggle('on', ms > 4700);
+    pane.querySelectorAll('[data-mark]').forEach(r => r.classList.toggle(r.dataset.mark + '-row', ms > (r.dataset.mark === 'pause' ? 5300 : 6000)));
+    syncState.textContent = ms < 900 ? 'Syncing data...' : 'Synced just now';
+  }
+
+  // AI workflow mockups.
+  const flows = [
+    { name:'Competitor ad analysis', proof:'Used on real work', prompt:'Read every competitor ad, then tell me what they say, how they look and which ones keep running.', steps:['Collect ads from Meta Ad Library','Gemini reads each video and image','Rank by days running and copied ideas'], title:'Sample output: top patterns', out:[['Most-used hook','Salary jump'],['Longest-running format','Talking-head reel'],['Ads reviewed in my real study','282']], tool:'Gemini API with a repeatable script' },
+    { name:'Landing page analysis', proof:'Used on real work', prompt:'Audit this page against the ad, then give me fixes, a tracking check and a test plan.', steps:['Check message match with the ad','Review form, trust and speed','Turn findings into a test plan'], title:'Sample output: page audit', out:[['Ad and page match','Needs work'],['Hidden tracking fields','Missing'],['First test','Short page vs long page']], tool:'Competitor pages, keyword data and AI review' },
+    { name:'Creative scoring', proof:'Scored before launch', prompt:'Score each ad on 9 rules and compare it with the competitor baseline.', steps:['Read the creative','Check 9 scoring rules','Compare with competitors'], title:'Sample output: scorecard', out:[['Says who it is for','Yes'],['Names the problem','Yes'],['Score','8 of 9']], tool:'Same scoring rules used for our ads and competitor ads' },
+    { name:'Evening static updates', proof:'Used on real work', prompt:'Review today\'s lead quality, then suggest which static ads to update this evening.', steps:['Compare leads and qualified rate by static','AI drafts new hooks and image versions','I review and update the ads'], title:'Sample output: evening update', out:[['Keep','Career switch static'],['Update','Salary hook headline'],['Stop','Course offer static']], tool:'AI drafts the options. I choose what goes live.' },
+    { name:'Lead and account scoring', proof:'Built and in use', prompt:'Score the ad account and show which leads deserve attention first.', steps:['Read spend, CRM and lead signals','Apply weighted rules','Show actions in the dashboard'], title:'Sample output: priorities', out:[['Account health','74 of 100'],['Top lead group','Paid-intent Yes'],['Next action','Call within 5 minutes']], tool:'Weighted signals, CRM stages and lead filters' },
+    { name:'CAPI and conversion feedback', proof:'Built, not switched on yet', off:true, prompt:'When a lead becomes qualified, send that result back to ad platforms with the right value.', steps:['Watch CRM stage changes','Apply the conversion rule','Queue the Meta or Google event'], title:'Sample output: conversion rule', out:[['When lead reaches','Qualified'],['Send event','InitiateCheckout'],['Value','80% of course price']], tool:'Rules are built. Live sending needs account access and final testing.' },
+    { name:'Scheduled reporting server', proof:'Built and in use', prompt:'Refresh CRM and ad data every hour, and let the team request a new sync.', steps:['Hourly job starts on a private server','Pull CRM, Google and Meta data','Publish to the team dashboard'], title:'Sample output: sync log', out:[['Hourly refresh','Finished'],['Team sync request','Starts within 2 minutes'],['Dashboard','Updated']], tool:'Scheduled jobs run without anyone opening a laptop' },
+    { name:'Long video research', proof:'Used on real work', prompt:'Study these long tutorials and turn them into a practical learning plan.', steps:['Split each video into segments','Run on a separate research API key','Merge notes into one summary'], title:'Sample output: research run', out:[['Input','Long tutorials'],['Cost control','Separate research key'],['Output','Action notes']], tool:'Lesson learned: bulk research must never share production AI credits' },
+    { name:'Building without developers', proof:'Built and in use', prompt:'Build the tool the team needs, then test it on real workflows before release.', steps:['Write the business problem and rules','Build and fix with AI coding tools','Test, release and improve'], title:'Sample output: release', out:[['Requirement','Clear'],['Real-use test','Passed'],['Team update','Released']], tool:'I direct the build and test the outcome. I do not write code by hand.' },
+    { name:'Sharing with the team', proof:'Built and in use', prompt:'Give each teammate the right access and a report they can filter themselves.', steps:['Add company sign-in','Set admin, manager and viewer roles','Share filters, reports and alerts'], title:'Sample output: access', out:[['Marketing lead','Admin'],['Programme manager','Manager'],['Team member','Viewer']], tool:'Stakeholders can check numbers without asking for a new report' }
+  ];
+  const fl = {
+    list:document.getElementById('flowList'), title:document.getElementById('flowTitle'), proof:document.getElementById('flowProof'),
+    prompt:document.getElementById('flowPrompt'), steps:document.getElementById('flowSteps'), out:document.getElementById('flowOut'),
+    tool:document.getElementById('flowTool'), pause:document.getElementById('flowPause')
+  };
+  fl.list.innerHTML = flows.map((f, i) => `<button type="button" data-flow="${i}" aria-pressed="false">${f.name}</button>`).join('');
+  const flowButtons = [...fl.list.querySelectorAll('button')];
+  let flowIndex = -1;
+  function showFlow(i) {
+    flowIndex = i;
+    const f = flows[i];
+    flowButtons.forEach((b, n) => b.setAttribute('aria-pressed', String(n === i)));
+    fl.title.textContent = f.name;
+    fl.proof.textContent = f.proof;
+    fl.proof.classList.toggle('off', !!f.off);
+    fl.tool.textContent = f.tool;
+    fl.steps.innerHTML = f.steps.map(s => `<li>${s}</li>`).join('');
+    fl.out.innerHTML = `<p>${f.title}</p>` + f.out.map(r => `<div><span>${r[0]}</span><b>${r[1]}</b></div>`).join('');
+  }
+  function renderFlow(ms) {
+    const f = flows[flowIndex];
+    fl.prompt.textContent = f.prompt.slice(0, Math.floor(ms / 18));
+    [...fl.steps.children].forEach((li, i) => {
+      const start = 1900 + i * 900;
+      li.className = ms > start + 900 ? 'done' : ms > start ? 'run' : '';
+    });
+    fl.out.classList.toggle('on', ms > 4800);
+  }
+  showFlow(0);
+
+  if (reduced) {
+    showScene(0);
+    renderDash(99999);
+    renderFlow(99999);
+    pause.hidden = true;
+    fl.pause.hidden = true;
+    tabs.forEach((t, n) => t.addEventListener('click', () => { showScene(n); renderDash(99999); }));
+    flowButtons.forEach((b, n) => b.addEventListener('click', () => { showFlow(n); renderFlow(99999); }));
+    return;
+  }
+
+  const SCENE_MS = 10500, FLOW_MS = 9000;
+  let paused = false, dashVisible = false, dashClock = 0, dashAuto = true;
+  let flowPaused = false, flowVisible = false, flowClock = 0, flowAuto = true, last = 0;
+  showScene(0);
+  renderDash(0);
+  renderFlow(0);
+  function loop(now) {
+    const dt = last ? Math.min(now - last, 100) : 0;
+    last = now;
+    if (dashVisible && !paused) {
+      dashClock += dt;
+      if (dashClock >= SCENE_MS) { dashClock = 0; showScene(dashAuto ? (scene + 1) % views.length : scene); }
+      renderDash(dashClock);
+    }
+    if (flowVisible && !flowPaused) {
+      flowClock += dt;
+      if (flowClock >= FLOW_MS) { flowClock = 0; showFlow(flowAuto ? (flowIndex + 1) % flows.length : flowIndex); }
+      renderFlow(flowClock);
+    }
+    requestAnimationFrame(loop);
+  }
+  new IntersectionObserver(e => { dashVisible = e[0].isIntersecting; }, { threshold:.2 }).observe(mock);
+  new IntersectionObserver(e => { flowVisible = e[0].isIntersecting; }, { threshold:.2 }).observe(fl.prompt.parentElement);
+  tabs.forEach((t, n) => t.addEventListener('click', () => { dashAuto = false; dashClock = 0; showScene(n); renderDash(0); }));
+  flowButtons.forEach((b, n) => b.addEventListener('click', () => { flowAuto = false; flowClock = 0; showFlow(n); renderFlow(0); }));
+  pause.addEventListener('click', () => { paused = !paused; pause.textContent = paused ? 'Play animation' : 'Pause animation'; });
+  fl.pause.addEventListener('click', () => { flowPaused = !flowPaused; fl.pause.textContent = flowPaused ? 'Play animation' : 'Pause animation'; });
+  requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
