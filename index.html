@@ -145,6 +145,16 @@
   .flow-foot .pause { background:transparent; color:var(--white); border-color:#6f9385; }
 
   .open-dash { display:inline-block; padding:11px 15px; color:var(--ink); background:var(--marigold); border-radius:8px; font-weight:600; text-decoration:none; }
+  .real-ui { margin:0 0 12px; }
+  .real-ui video { display:block; width:100%; aspect-ratio:16 / 10; background:var(--mist); border:1px solid var(--line); border-radius:12px; }
+  .real-ui figcaption { margin-top:8px; color:var(--soft); font-size:15px; }
+  .real-link { margin:0 0 42px; }
+  .sub { margin:0 0 12px; font:700 24px/1.2 var(--display); }
+  .samples { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:0 42px; }
+  .samples article { padding-block:15px; border-top:1px solid var(--line); }
+  .samples h3 { margin:0 0 4px; font:700 20px/1.2 var(--display); }
+  .samples p { margin:0; color:var(--soft); }
+  .samples b { color:var(--ink); }
   /* Lists */
   .two { display:grid; grid-template-columns:.8fr 1.2fr; gap:48px; }
   .plain { margin:0; padding:0; list-style:none; }
@@ -188,6 +198,7 @@
     .role span:last-child { display:block; }
     .ads .opt { display:none; }
     .flows { grid-template-columns:minmax(0, 1fr); }
+    .samples { grid-template-columns:minmax(0, 1fr); }
     .flow-list { flex-direction:row; flex-wrap:wrap; }
     .flow-list button { width:auto; border:1px solid var(--line); border-radius:7px; font-size:14px; padding:7px 9px; }
     .flow-list button[aria-pressed="true"] { border-color:var(--spruce); }
@@ -210,7 +221,8 @@
       <strong>Sudheer Amarthya</strong>
       <nav aria-label="Page sections">
         <a href="#work">Work</a>
-        <a href="dashboard.html">AI dashboard</a>
+        <a href="#dashboard">AI dashboard</a>
+        <a href="#samples">Work samples</a>
         <a href="#ai-work">AI workflows</a>
         <a href="#organic">SEO and AEO</a>
         <a href="#contact">Contact</a>
@@ -245,7 +257,7 @@
           <tr><td>AI and reporting</td><td>Scope and launch live dashboards, AI reply agents and AI call coaching using AI tools. I direct the build and test the outcome.</td><td class="proof-built">Built and in use</td></tr>
           <tr><td>Automation</td><td>Self-hosted n8n, CRM workflows, WhatsApp journeys, email nurture, webinars and lead routing, plus Zapier, ManyChat and MoEngage.</td><td class="proof-built">Built and in use</td></tr>
           <tr><td>Landing pages</td><td>Conversion audits, short versus long page research, tracking fixes, test plans and masterclass pages.</td><td class="proof-res">Measured results</td></tr>
-          <tr><td>Organic SEO and AEO</td><td>A 70-page marketing site with technical SEO, structured data, FAQ content and regional-language pages.</td><td class="proof-built">Built, outcome not yet measured</td></tr>
+          <tr><td>Organic SEO and AEO</td><td>Search Console, GA4, Bing and AI answer audits, plus a 70-page site with technical SEO, structured data, FAQ content and regional-language pages.</td><td class="proof-built">Audit delivered, site outcome not measured</td></tr>
           <tr><td>AI ad creative</td><td>Update static creatives in the evening using AI and lead-quality data. Also produced a pre-launch ad set scored against 282 competitor ads, plus AI-assisted video and sound.</td><td class="proof-pre">Scored before launch</td></tr>
         </tbody>
       </table>
@@ -269,8 +281,13 @@
   <section id="dashboard" class="band">
     <div class="wrap">
       <h2>AI dashboard preview</h2>
-      <p class="lede">See data refresh, move through the funnel and become a budget decision. The views match how I check performance, pacing and creative.</p>
-      <p style="margin:-18px 0 26px"><a class="open-dash" href="dashboard.html">Open the full dashboard</a></p>
+      <p class="lede">I built a live team dashboard joining CRM, Google Ads and Meta data. The real one needs company sign-in, so this recording uses sample data.</p>
+      <figure class="real-ui">
+        <video src="dashboard-walkthrough.mp4" poster="dashboard-poster.jpg" controls muted loop playsinline preload="metadata" aria-label="Walkthrough of the real dashboard interface using sample data"></video>
+        <figcaption>Real dashboard interface, recorded on sample data. Company names, people and numbers are replaced.</figcaption>
+      </figure>
+      <p class="real-link">Want to click around? <a href="dashboard.html">Open the interactive demo</a></p>
+      <h3 class="sub">How the dashboard thinks</h3>
       <div class="mock" id="mock">
         <p class="sr">Animated mock dashboard with sample numbers. It shows campaign performance, budget pacing and creative comparison, with an AI assistant recommending a budget change on each view.</p>
         <div class="mock-head">
@@ -384,6 +401,41 @@
     </div>
   </section>
 
+  <section id="samples">
+    <div class="wrap">
+      <h2>Real analysis I've delivered</h2>
+      <p class="lede">Scope of work from real projects. Company names, private results and customer data are left out.</p>
+      <div class="samples">
+        <article><h3>Competitor video analysis</h3><p><b>853 ads</b> reviewed, then the top 25 videos analysed for hook, proof, message and format, with new hook ideas.</p></article>
+        <article><h3>Pre-launch growth review</h3><p><b>1,766 ads</b> collected from 30 competitors, plus 30 landing pages, social channels and a launch plan.</p></article>
+        <article><h3>Converted customer profile</h3><p><b>4,442 converted customers</b> studied by age, background, source, city and fee to define who actually buys.</p></article>
+        <article><h3>Funnel speed vs conversion</h3><p><b>28,078 leads</b> traced through CRM stage history to measure how first-call speed changes sales.</p></article>
+        <article><h3>Advisor and city conversion</h3><p>Six months of leads compared by city and advisor to find where conversion can improve.</p></article>
+        <article><h3>Campaign structure plan</h3><p>Analysis turned into Meta and Google structure, forms, creatives, budgets, rules and a timeline.</p></article>
+        <article><h3>SEO and AEO audit</h3><p>Search Console, GA4, Bing and CRM data combined, with keyword gaps, developer tickets and a 20-prompt AI answer test.</p></article>
+        <article><h3>Instagram content analysis</h3><p>A <b>900K+ follower</b> account reviewed across 5,689 posts to see what content performs.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="tools">
+    <div class="wrap two">
+      <div>
+        <h2>Tools and APIs I connect</h2>
+        <p class="lede">Data comes from each platform, then Gemini and Claude help turn it into clear decisions. Keys and customer data stay private.</p>
+      </div>
+      <ul class="plain">
+        <li><strong>Apify</strong><span>Collect competitor ads from Meta Ad Library at scale.</span></li>
+        <li><strong>Meta and Google Ads APIs</strong><span>Pull spend, campaigns, ads, search terms and Quality Score.</span></li>
+        <li><strong>Meta Business Discovery API</strong><span>Compare public Instagram account activity.</span></li>
+        <li><strong>LeadSquared API</strong><span>Read lead stages, sources and activity history.</span></li>
+        <li><strong>Search Console, GA4 and Bing</strong><span>Measure organic visibility and traffic.</span></li>
+        <li><strong>Gemini API and Claude</strong><span>Read video and images, review creative and analyse data.</span></li>
+        <li><strong>n8n and scheduled jobs</strong><span>Run repeat work and refresh reports automatically.</span></li>
+      </ul>
+    </div>
+  </section>
+
   <section>
     <div class="wrap two">
       <div>
@@ -404,14 +456,14 @@
   <section id="organic" class="band">
     <div class="wrap">
       <h2>Organic SEO and answer engine optimisation</h2>
-      <p class="lede">AEO means structuring content so AI tools and search engines can quote clear answers. This is what I built for a product marketing site.</p>
+      <p class="lede">AEO means structuring content so AI tools and search engines can quote clear answers. I audited this on a large education brand, and built it into a product marketing site.</p>
       <div class="numbers">
         <div><b>70</b><span>pages with structured data</span></div>
         <div><b>268</b><span>FAQ answers in schema</span></div>
         <div><b>81</b><span>URLs in the sitemap</span></div>
         <div><b>6</b><span>language homepages</span></div>
       </div>
-      <p class="limit">Traffic and AI citation results are not shown because I haven't measured them yet. This proves the build, not the ranking outcome.</p>
+      <p class="limit">The audit tested 20 prompts across ChatGPT, Gemini, Perplexity and Google AI Overviews. For my own site build, traffic and AI citation results are not measured yet.</p>
     </div>
   </section>
 
