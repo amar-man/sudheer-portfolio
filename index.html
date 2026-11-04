@@ -435,9 +435,9 @@
       <div class="cards six" id="ovMore"></div>
       <div class="split">
         <div class="trace" aria-live="polite">
-          <p class="trace-label" id="traceLabel">Cost per lead in the ad account</p>
+          <p class="trace-label" id="traceLabel">One ad: cost per lead in the ad account</p>
           <strong class="trace-number" id="traceNumber">₹60</strong>
-          <p class="trace-note" id="traceNote">Looks cheap. This is the number most campaign reports stop at.</p>
+          <p class="trace-note" id="traceNote">Example from one ad over 14 days. Looks cheap in the ad account.</p>
           <button type="button" id="traceButton">Check it against the CRM</button>
         </div>
         <div class="box">
@@ -681,10 +681,10 @@
   }
   button.addEventListener('click', () => {
     real = !real;
-    label.textContent = real ? 'Cost per qualified lead in the CRM' : 'Cost per lead in the ad account';
+    label.textContent = real ? 'One ad: cost per qualified lead in the CRM' : 'One ad: cost per lead in the ad account';
     note.textContent = real
-      ? 'Same campaigns, ten times the cost. Once lead quality was visible, budget could move to what actually worked.'
-      : 'Looks cheap. This is the number most campaign reports stop at.';
+      ? 'One ad, 14 days. Only 12 of 119 leads qualified.'
+      : 'Example from one ad over 14 days. Looks cheap in the ad account.';
     button.textContent = real ? 'Back to the ad account' : 'Check it against the CRM';
     moveNumber(real ? 60 : 597, real ? 597 : 60);
   });
