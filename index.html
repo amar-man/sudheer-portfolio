@@ -239,6 +239,10 @@
   .pill { padding:2px 7px; color:var(--soft); background:var(--mist); border-radius:5px; font-size:12px; font-weight:600; white-space:nowrap; }
   .cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
   .cards.three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .ch-m { display:block; color:var(--soft); font-size:12.5px; font-weight:400; }
+  .ch-from { color:var(--soft); white-space:nowrap; }
+  .ch-to { font-weight:700; font-size:15px; white-space:nowrap; }
+  .ch-arrow { width:18px; padding-inline:2px !important; color:var(--blue); font-size:10px; }
   .cards.six { grid-template-columns:repeat(6,minmax(0,1fr)); }
   .cards.six .card { padding:9px 11px; }
   .cards.six .card b { font-size:20px; }
@@ -473,8 +477,8 @@
       <div class="crumb">Google Ads view <em>Real results and sample rows are labelled</em></div>
       <div class="chips" id="gChips"></div>
       <div class="box">
-        <div class="box-h"><h2>Conversion rate by month</h2><span class="pill">Sample trend</span></div>
-        <svg class="g-line" id="gLine" viewBox="0 0 900 230" role="img" aria-label="Sample rising conversion rate chart"></svg>
+        <div class="box-h"><h2>Click-to-lead rate by month</h2><span class="pill">Sample trend</span></div>
+        <svg class="g-line" id="gLine" viewBox="0 0 900 230" role="img" aria-label="Sample rising click-to-lead chart"></svg>
       </div>
       <div class="split">
         <div class="box">
@@ -854,16 +858,16 @@
   const fillBars = root => requestAnimationFrame(() => root.querySelectorAll('[data-w]').forEach(b => { b.style.width = b.dataset.w + '%'; }));
 
   // Overview
-  cards('ovCards', [['Cost per lead','-37%',[10,9,8.6,7.8,7,6.3],'#0a7d4f'],['Meta conversion','1.30%',[.75,.8,.92,1.04,1.18,1.3]],['Google conversion','1.5%',[.65,.72,.9,1.1,1.3,1.5]],['Qualified lead rate','+55%',[100,108,118,131,144,155],'#0a7d4f']]);
+  cards('ovCards', [['Cost per lead','-37%',[10,9,8.6,7.8,7,6.3],'#0a7d4f'],['Meta conversion','1.30%',[.75,.8,.92,1.04,1.18,1.3]],['Google click to lead','6.4%',[1.2,2.1,3,4.2,5.4,6.4]],['Qualified lead rate','+55%',[100,108,118,131,144,155],'#0a7d4f']]);
   cards('ovMore', [['Quarterly ROAS','3.2'],['Webinar ROAS','9+'],['Cost per sale','-42% est.'],['Leads analysed','28K+'],['Customers studied','4,442'],['First reply','1 sec']]);
-  $('ovChannels').innerHTML = '<thead><tr><th>Channel</th><th>Key metric</th><th>Result</th><th>Proof</th></tr></thead><tbody>' + [
-    ['Meta Ads','Conversion rate','0.75% to 1.30%','Results','meta'],
-    ['Google Ads','Conversion rate','0.65% to 1.5%','Results','google'],
-    ['CRM attribution','Qualified lead rate','+55%','Results','reports'],
-    ['AI and automation','First reply time','122s to 1s','Built','ai'],
-    ['SEO and AEO','FAQ answers built','268','Audit and build','seo'],
-    ['Creative','Pre-launch score','8.13 vs 7.14','Scored','creative']
-  ].map(r => `<tr data-open="${r[4]}" style="cursor:pointer"><td><b>${r[0]}</b></td><td>${r[1]}</td><td class="up">${r[2]}</td><td>${r[3]}</td></tr>`).join('') + '</tbody>';
+  $('ovChannels').innerHTML = '<thead><tr><th>Channel</th><th>From</th><th></th><th>To</th><th>Change</th></tr></thead><tbody>' + [
+    ['Meta Ads','Click-through rate','0.35%','0.85%','+143%','meta'],
+    ['Google Ads','Click to lead, old vs new page','0%','6.4%','+6.4 pts','google'],
+    ['CRM attribution','Lead to interest','14%','23%','+64%','reports'],
+    ['Lead nurture','Form completion','6%','16%','+167%','systems'],
+    ['AI and automation','First reply time','122s','1s','-99%','ai'],
+    ['Creative','Competitor vs my score','7.14','8.13','+14%','creative']
+  ].map(r => `<tr data-open="${r[5]}" style="cursor:pointer"><td><b>${r[0]}</b><small class="ch-m">${r[1]}</small></td><td class="ch-from">${r[2]}</td><td class="ch-arrow" aria-hidden="true">▶</td><td class="ch-to">${r[3]}</td><td class="up">${r[4]}</td></tr>`).join('') + '</tbody>';
   $('ovChannels').addEventListener('click', e => { const tr = e.target.closest('[data-open]'); if (tr) go(tr.dataset.open); });
 
   // Meta
@@ -919,12 +923,12 @@
     .map(([t, rows]) => `<div><h3>${t}</h3>${rows.map(r => bar(r[0], r[1], r[1], r[2])).join('')}</div>`).join('');
 
   // Google
-  $('gChips').innerHTML = [['Conversion rate','1.5%','#1a73e8'],['Before','0.65%','#d93025'],['Negative keywords','800+','#f29900'],['Quality checks','4 levels','#188038']].map(c => `<div class="chip" style="background:${c[2]}"><span>${c[0]}</span><b>${c[1]}</b></div>`).join('');
-  const line = [.65,.68,.74,.8,.92,1.02,1.1,1.21,1.3,1.38,1.44,1.5];
-  const X = i => 44 + i * 760 / 11, Y = v => 200 - v / 1.8 * 180;
+  $('gChips').innerHTML = [['Click to lead','6.4%','#1a73e8'],['Old page','0%','#d93025'],['Negative keywords','800+','#f29900'],['Quality checks','4 levels','#188038']].map(c => `<div class="chip" style="background:${c[2]}"><span>${c[0]}</span><b>${c[1]}</b></div>`).join('');
+  const line = [1.2,1.6,2.1,2.5,3,3.6,4.1,4.6,5.1,5.5,6,6.4];
+  const X = i => 44 + i * 760 / 11, Y = v => 200 - v / 8 * 180;
   const gPath = line.map((v, i) => `${i ? 'L' : 'M'}${X(i)} ${Y(v).toFixed(1)}`).join('');
-  $('gLine').innerHTML = [0,.6,1.2,1.8].map(v => `<path d="M44 ${Y(v)}H860" stroke="#e6e9ed"/><text x="36" y="${Y(v)+4}" text-anchor="end">${v.toFixed(1)}%</text>`).join('')
-    + `<path id="gPath" d="${gPath}" fill="none" stroke="#1a73e8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${X(11)}" cy="${Y(1.5)}" r="5" fill="#1a73e8"/><text x="${X(11)+10}" y="${Y(1.5)+5}" style="fill:#1c2b33;font-weight:700">1.5%</text>`;
+  $('gLine').innerHTML = [0,2,4,6,8].map(v => `<path d="M44 ${Y(v)}H860" stroke="#e6e9ed"/><text x="36" y="${Y(v)+4}" text-anchor="end">${v}%</text>`).join('')
+    + `<path id="gPath" d="${gPath}" fill="none" stroke="#1a73e8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${X(11)}" cy="${Y(6.4)}" r="5" fill="#1a73e8"/><text x="${X(11)+10}" y="${Y(6.4)+5}" style="fill:#1c2b33;font-weight:700">6.4%</text>`;
   $('gNeg').innerHTML = [['Master list',492,100,'good'],['Bengaluru list',105,21,''],['Mumbai list',102,21,''],['Delhi list',93,19,''],['Check first',21,5,'bad']].map(r => bar(r[0], r[1], r[2], r[3])).join('');
   $('gKeywords').innerHTML = '<thead><tr><th>Keyword</th><th>Match</th><th>Quality Score</th><th>Per lead</th><th>Qualified</th><th>Action</th></tr></thead><tbody>' + [
     ['performance marketing course','Phrase',8,'₹640','31%','▲ Scale','up'],['digital marketing with placement','Exact',7,'₹710','28%','▲ Scale','up'],['digital marketing course','Phrase',5,'₹510','18%','● Split','keep'],['marketing course fees','Broad',4,'₹420','9%','◆ Review','keep'],['free marketing course','Broad',3,'₹90','0%','■ Exclude','down']
