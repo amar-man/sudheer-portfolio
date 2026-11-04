@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Growth dashboard demo, Sudheer Amarthya</title>
+<meta name="description" content="Interactive growth marketing dashboard demo with sample data: campaigns, CRM funnel, budget pacing, creative and AI review.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --spruce:#0f3b33; --spruce-2:#17503f; --mist:#eaf1ec; --white:#fbfdfb; --ink:#12322b; --soft:#4b655d;
+    --line:#d3dfd8; --marigold:#f5b82e; --plum:#5a2a6e; --good:#0b6b55; --stop:#a33a1f;
+    --meta:#2456B8; --google:#C4620E; --whatsapp:#0B8469;
+    --display:"Bricolage Grotesque", "Trebuchet MS", sans-serif;
+    --body:"Instrument Sans", "Segoe UI", Arial, sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--mist); color:var(--ink); font:400 15px/1.45 var(--body); }
+  a { color:inherit; }
+  button, select { font:inherit; color:inherit; }
+  :focus-visible { outline:3px solid var(--plum); outline-offset:2px; }
+  .side :focus-visible { outline-color:var(--marigold); }
+  .app { display:grid; grid-template-columns:224px minmax(0, 1fr); min-height:100vh; }
+  .side { position:sticky; top:0; align-self:start; height:100vh; display:flex; flex-direction:column; gap:20px; padding:20px 14px; background:var(--spruce); color:var(--white); }
+  .brand { padding-inline:8px; }
+  .brand strong { display:block; font:800 21px/1.1 var(--display); }
+  .brand span { color:#c7dacf; font-size:13px; }
+  .side nav { display:flex; flex-direction:column; gap:3px; }
+  .side nav button { width:100%; padding:10px; text-align:left; font-weight:600; color:#dbe9e2; background:transparent; border:0; border-radius:7px; cursor:pointer; }
+  .side nav button:hover { background:var(--spruce-2); }
+  .side nav button[aria-current="page"] { color:var(--ink); background:var(--marigold); }
+  .back { margin-top:auto; padding:10px; color:#dbe9e2; font-size:14px; }
+  main { min-width:0; padding:20px 24px 34px; }
+  .top { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:12px; }
+  h1 { margin:0; font:800 30px/1.1 var(--display); letter-spacing:-.015em; }
+  .sample { margin:4px 0 0; color:var(--soft); }
+  .sync { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+  .sync-time { color:var(--good); font-size:14px; font-weight:600; }
+  .btn { padding:8px 11px; font-weight:600; background:var(--white); border:1px solid var(--line); border-radius:7px; cursor:pointer; }
+  .btn.primary { color:var(--white); background:var(--spruce); border-color:var(--spruce); }
+  .filters { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
+  .filters label { display:flex; flex-direction:column; gap:2px; color:var(--soft); font-size:13px; font-weight:600; }
+  .filters select { min-width:150px; padding:7px 8px; color:var(--ink); background:var(--white); border:1px solid var(--line); border-radius:7px; }
+  .kpis { display:grid; grid-template-columns:repeat(6, minmax(0, 1fr)); gap:9px; }
+  .kpi { min-width:0; padding:11px 12px; background:var(--white); border-radius:9px; transition:background .5s; }
+  .kpi.tick { background:#fdeec8; }
+  .kpi span { display:block; color:var(--soft); font-size:13.5px; }
+  .kpi b { display:block; font:700 clamp(22px, 2.3vw, 29px)/1.15 var(--display); font-variant-numeric:tabular-nums; }
+  .kpi small { display:block; min-height:18px; color:var(--soft); font-size:12.5px; }
+  .grid { display:grid; grid-template-columns:minmax(0, 1.55fr) minmax(0, 1fr); gap:10px; margin-top:10px; }
+  .panel { min-width:0; padding:14px; background:var(--white); border-radius:9px; }
+  .panel.full { grid-column:1 / -1; }
+  .head { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px; margin-bottom:9px; }
+  h2 { margin:0; font:600 16px/1.25 var(--body); }
+  .head select { padding:5px 7px; background:var(--white); border:1px solid var(--line); border-radius:6px; }
+  .legend { display:flex; flex-wrap:wrap; gap:13px; margin:0 0 5px; padding:0; list-style:none; font-size:13px; }
+  .legend i { display:inline-block; width:10px; height:10px; margin-right:5px; border-radius:50%; }
+  .chart { position:relative; touch-action:pan-y; }
+  .chart svg { display:block; width:100%; height:auto; }
+  .chart text { font:500 12px var(--body); fill:var(--soft); }
+  .chart .label { font-weight:600; fill:var(--ink); }
+  .tip { position:absolute; top:8px; z-index:2; min-width:138px; padding:8px 10px; color:var(--white); background:var(--spruce); border-radius:7px; font-size:13px; pointer-events:none; }
+  .tip b { display:block; margin-bottom:3px; }
+  .tip div { display:flex; justify-content:space-between; gap:12px; font-variant-numeric:tabular-nums; }
+  .tip[hidden] { display:none; }
+  .data-table { margin-top:7px; font-size:14px; }
+  .data-table summary { cursor:pointer; color:var(--soft); font-weight:600; }
+  .bar { margin-bottom:11px; }
+  .bar > div:first-child { display:flex; justify-content:space-between; gap:8px; }
+  .bar small { color:var(--soft); font-size:13px; }
+  .track { position:relative; height:9px; margin-top:3px; background:var(--mist); border-radius:0 4px 4px 0; }
+  .track i { display:block; height:100%; background:var(--spruce-2); border-radius:0 4px 4px 0; transition:width .55s cubic-bezier(.2,.7,.2,1); }
+  .mark { position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--plum); }
+  .scroll { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; }
+  th, td { padding:8px 9px; border-bottom:1px solid var(--mist); text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  th:first-child, td:first-child { text-align:left; white-space:normal; min-width:160px; }
+  th { color:var(--soft); font-size:13.5px; font-weight:600; }
+  th button { padding:0; font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+  th[aria-sort="descending"] button::after { content:" ▼"; }
+  th[aria-sort="ascending"] button::after { content:" ▲"; }
+  td small { display:block; color:var(--soft); font-size:12.5px; }
+  .status { font-weight:700; }
+  .scale { color:var(--good); } .keep { color:var(--soft); } .pause { color:var(--stop); } .behind { color:var(--plum); }
+  .ask { margin-top:10px; padding:14px; color:var(--white); background:var(--spruce); border-radius:9px; }
+  .ask h2 { margin-bottom:9px; }
+  .chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chips button { padding:6px 9px; color:var(--white); background:var(--spruce-2); border:1px solid #4f7a6b; border-radius:7px; cursor:pointer; font-size:14px; }
+  .chips button[aria-pressed="true"] { color:var(--ink); background:var(--marigold); border-color:var(--marigold); }
+  .answer { min-height:66px; margin:10px 0 0; max-width:78ch; color:#ebf3ee; }
+  .seg { display:flex; flex-wrap:wrap; gap:5px; }
+  .seg button { padding:6px 10px; color:var(--soft); background:transparent; border:1px solid var(--line); border-radius:7px; cursor:pointer; font-weight:600; }
+  .seg button[aria-pressed="true"] { color:var(--white); background:var(--spruce); border-color:var(--spruce); }
+  .clean-sum { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:9px; margin-bottom:11px; }
+  .clean-sum div { padding:10px 12px; background:var(--mist); border-radius:8px; }
+  .clean-sum b { display:block; font:700 24px/1.15 var(--display); }
+  .clean-sum span { color:var(--soft); font-size:13.5px; }
+  #qualityTable td, #qualityTable th, #termsTable td, #termsTable th { white-space:normal; text-align:left; }
+  #termsTable td:nth-child(2), #termsTable th:nth-child(2), #termsTable td:nth-child(3), #termsTable th:nth-child(3), #termsTable td:nth-child(4), #termsTable th:nth-child(4) { text-align:right; white-space:nowrap; }
+  #qualityTable, #termsTable { min-width:560px; }
+  [hidden] { display:none !important; }
+  @media (max-width:1120px) { .kpis { grid-template-columns:repeat(3, minmax(0, 1fr)); } }
+  @media (max-width:860px) {
+    .app { display:block; }
+    .side { position:static; height:auto; gap:10px; padding:13px 16px; }
+    .side nav { flex-direction:row; flex-wrap:wrap; gap:5px; }
+    .side nav button { width:auto; padding:7px 9px; font-size:14px; }
+    .back { margin-top:0; padding:0; }
+    main { padding:15px 16px 26px; }
+    h1 { font-size:25px; }
+    .grid { grid-template-columns:minmax(0, 1fr); }
+    .panel.full { grid-column:auto; }
+    .kpis { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .filters label { flex:1 1 100%; }
+    .filters select { width:100%; }
+  }
+  @media (prefers-reduced-motion:reduce) { .track i, .kpi { transition:none; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><strong>Growth dashboard</strong><span>Portfolio demo</span></div>
+    <nav aria-label="Dashboard pages" id="nav">
+      <button type="button" data-page="overview" aria-current="page">Overview</button>
+      <button type="button" data-page="campaigns">Campaigns</button>
+      <button type="button" data-page="budget">Budget pacing</button>
+      <button type="button" data-page="creative">Creative and competitors</button>
+      <button type="button" data-page="quality">Quality checks</button>
+      <button type="button" data-page="terms">Search term cleaning</button>
+    </nav>
+    <a class="back" href="./">Back to portfolio</a>
+  </aside>
+
+  <main>
+    <div class="top">
+      <div>
+        <h1 id="pageTitle">Overview</h1>
+        <p class="sample">Sample data. Campaigns and numbers are invented, and no company data is used.</p>
+      </div>
+      <div class="sync">
+        <span class="sync-time" id="syncTime" aria-live="polite">Synced just now</span>
+        <button type="button" class="btn primary" id="syncNow">Sync now</button>
+        <button type="button" class="btn" id="liveToggle">Pause live updates</button>
+      </div>
+    </div>
+
+    <div class="filters">
+      <label>Period
+        <select id="period"><option value="4">Last 4 weeks</option><option value="8">Last 8 weeks</option><option value="12">Last 12 weeks</option></select>
+      </label>
+      <label>Channel
+        <select id="channel"><option value="all">All channels</option><option>Meta</option><option>Google</option><option>WhatsApp</option></select>
+      </label>
+      <label>Programme
+        <select id="programme"><option value="all">All programmes</option><option>Programme A</option><option>Programme B</option><option>Programme C</option></select>
+      </label>
+    </div>
+
+    <section class="kpis" id="kpis" aria-label="Key numbers"></section>
+
+    <section data-view="overview" class="grid">
+      <div class="panel">
+        <div class="head">
+          <h2 id="trendTitle">Weekly trend</h2>
+          <select id="metric" aria-label="Trend metric"><option value="q">Qualified leads</option><option value="leads">Leads</option><option value="spend">Spend</option></select>
+        </div>
+        <ul class="legend" id="legend"></ul>
+        <div class="chart" id="chart"><div class="tip" id="tip" hidden></div></div>
+        <details class="data-table"><summary>Show chart data as a table</summary><div class="scroll" id="trendTable"></div></details>
+      </div>
+      <div class="panel">
+        <div class="head"><h2>Lead funnel</h2></div>
+        <div id="funnel"></div>
+      </div>
+    </section>
+
+    <section data-view="campaigns" class="grid" hidden>
+      <div class="panel full">
+        <div class="head"><h2>Campaign performance</h2></div>
+        <div class="scroll"><table id="campaignTable"></table></div>
+      </div>
+    </section>
+
+    <section data-view="budget" class="grid" hidden>
+      <div class="panel">
+        <div class="head"><h2>Budget used this month</h2></div>
+        <div id="pace"></div>
+        <small style="color:var(--soft)">Purple line marks expected spend by today.</small>
+      </div>
+      <div class="panel">
+        <div class="head"><h2>Projected month end</h2></div>
+        <div class="scroll"><table id="paceTable"></table></div>
+      </div>
+    </section>
+
+    <section data-view="creative" class="grid" hidden>
+      <div class="panel">
+        <div class="head"><h2>Creative scorecard</h2></div>
+        <div class="scroll"><table id="creativeTable"></table></div>
+      </div>
+      <div class="panel">
+        <div class="head"><h2>Long-running competitor hooks</h2></div>
+        <div id="hooks"></div>
+      </div>
+    </section>
+
+    <section data-view="quality" class="grid" hidden>
+      <div class="panel full">
+        <div class="head">
+          <h2>Quality issues by level</h2>
+          <div class="seg" id="levels" aria-label="Choose level"></div>
+        </div>
+        <div class="scroll"><table id="qualityTable"></table></div>
+      </div>
+    </section>
+
+    <section data-view="terms" class="grid" hidden>
+      <div class="panel full">
+        <div class="head">
+          <h2>Search terms checked against history</h2>
+          <button type="button" class="btn primary" id="runClean">Run cleaning check</button>
+        </div>
+        <div class="clean-sum" id="cleanSummary"></div>
+        <div class="scroll"><table id="termsTable"></table></div>
+      </div>
+    </section>
+
+    <section class="ask" aria-label="Ask AI">
+      <h2>Ask AI about this view</h2>
+      <div class="chips" id="chips"></div>
+      <p class="answer" id="answer" aria-live="polite"></p>
+    </section>
+  </main>
+</div>
+
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = id => document.getElementById(id);
+  const WEEKS = 24;
+  const colors = { Meta:'#2456B8', Google:'#C4620E', WhatsApp:'#0B8469' };
+  const base = [
+    ['Career switch reel','Meta','Programme A','Video',26000,440,.30,.095,8],
+    ['Salary hook static','Meta','Programme A','Static',24000,350,.17,.08,7],
+    ['Course offer static','Meta','Programme B','Static',18000,140,.043,.06,5],
+    ['Founder proof video','Meta','Programme B','Video',15000,390,.24,.09,8],
+    ['City search campaign','Google','Programme B','Search',16000,620,.26,.10,7],
+    ['Brand search','Google','Programme C','Search',7000,300,.33,.13,8],
+    ['Click to WhatsApp ad','WhatsApp','Programme C','Video',12000,260,.21,.08,7],
+    ['Retargeting journey','WhatsApp','Programme A','Automation',5000,120,.28,.12,null]
+  ];
+  let seed = 20261104;
+  const rand = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  const campaigns = base.map(([name, channel, programme, format, spend, cpl, qr, sr, score]) => ({
+    name, channel, programme, format, score,
+    weeks: Array.from({ length:WEEKS }, (_, w) => {
+      const s = spend * (1 + w * .012) * (.88 + rand() * .24);
+      const leads = s / cpl * (.9 + rand() * .2);
+      const q = leads * qr * (.85 + rand() * .3);
+      return { spend:s, leads, q, sales:q * sr * (.8 + rand() * .4) };
+    })
+  }));
+
+  const inr = n => '₹' + Math.round(n).toLocaleString('en-IN');
+  const money = n => n >= 100000 ? '₹' + (n / 100000).toFixed(1) + 'L' : inr(n);
+  const whole = n => Math.round(n).toLocaleString('en-IN');
+  const REVENUE_PER_SALE = 60000;
+  const state = { page:'overview', period:4, channel:'all', programme:'all', metric:'q', sort:'cpq', dir:-1, chip:0, live:true, hover:null };
+  const shown = () => campaigns.filter(c => (state.channel === 'all' || c.channel === state.channel) && (state.programme === 'all' || c.programme === state.programme));
+  function sum(list, from, to) {
+    const out = { spend:0, leads:0, q:0, sales:0 };
+    list.forEach(c => { for (let i = from; i < to; i++) { const w = c.weeks[i]; out.spend += w.spend; out.leads += w.leads; out.q += w.q; out.sales += w.sales; } });
+    out.cpl = out.leads ? out.spend / out.leads : 0;
+    out.cpq = out.q ? out.spend / out.q : 0;
+    out.roas = out.spend ? out.sales * REVENUE_PER_SALE / out.spend : 0;
+    return out;
+  }
+  const current = list => sum(list, WEEKS - state.period, WEEKS);
+  const previous = list => sum(list, WEEKS - state.period * 2, WEEKS - state.period);
+
+  // KPI tiles with moving numbers.
+  const defs = [
+    ['spend','Spend',money,1], ['leads','Leads',whole,1], ['q','Qualified leads',whole,1],
+    ['sales','Sales',whole,1], ['cpq','Per qualified lead',inr,-1], ['roas','ROAS',n => n.toFixed(1) + 'x',1]
+  ];
+  $('kpis').innerHTML = defs.map(d => `<div class="kpi" id="kpi-${d[0]}"><span>${d[1]}</span><b>0</b><small></small></div>`).join('');
+  const lastValue = {};
+  function animate(el, from, to, format) {
+    if (reduced || from === undefined || from === to) { el.textContent = format(to); return; }
+    const start = performance.now();
+    const step = now => {
+      const t = Math.min((now - start) / 500, 1);
+      el.textContent = format(from + (to - from) * (1 - Math.pow(1 - t, 3)));
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  function renderKpis(flash) {
+    const list = shown(), now = current(list), before = previous(list);
+    defs.forEach(([key, , format, good]) => {
+      const box = $('kpi-' + key);
+      animate(box.querySelector('b'), lastValue[key], now[key], format);
+      if (flash && lastValue[key] !== undefined && Math.abs(lastValue[key] - now[key]) > 1e-6) {
+        box.classList.add('tick');
+        setTimeout(() => box.classList.remove('tick'), 700);
+      }
+      lastValue[key] = now[key];
+      const delta = before[key] ? (now[key] - before[key]) / before[key] * 100 : 0;
+      const up = delta >= 0;
+      const better = up === (good > 0);
+      const note = box.querySelector('small');
+      note.textContent = `${up ? '▲' : '▼'} ${Math.abs(delta).toFixed(1)}% vs previous`;
+      note.className = better ? 'scale' : 'pause';
+    });
+  }
+
+  // Sample quality checks and search terms.
+  const qualityData = {
+    Creative:[
+      ['Course offer static','₹140','4%','₹3,235','Cheap leads, very few qualify','Replace the offer hook'],
+      ['Career switch reel','₹440','30%','₹1,481','Fatigue starting after 5 weeks','Add new hook versions'],
+      ['Founder proof video','₹390','24%','₹1,625','Healthy quality','Keep and watch frequency']
+    ],
+    'Ad set':[
+      ['Broad, metro cities','₹310','8%','₹3,875','Low qualified rate for two weeks','Tighten form questions'],
+      ['Past buyers lookalike','₹470','29%','₹1,620','Limited by budget','Increase budget gradually'],
+      ['Interest, career switch','₹360','19%','₹1,895','Average quality','Test a new creative']
+    ],
+    Campaign:[
+      ['Lead form, online','₹300','11%','₹2,727','Form change lowered lead quality','Compare with the earlier form'],
+      ['City search','₹620','26%','₹2,385','Tracking missing on some leads','Fix tracking before scaling'],
+      ['Brand search','₹300','33%','₹909','Strong, low volume','Protect impression share']
+    ],
+    Keyword:[
+      ['digital marketing course','₹510','18%','₹2,833','Broad intent','Split by city and intent'],
+      ['performance marketing course','₹640','31%','₹2,065','Good quality, low Quality Score','Improve ad and page match'],
+      ['free marketing course','₹90','0%','No qualified leads','Wrong intent','Move to search term cleaning']
+    ]
+  };
+  const termData = [
+    ['free digital marketing course',4200,31,0,'Exclude','31 leads, none qualified'],
+    ['marketing course pdf',1850,9,0,'Exclude','Looking for free material'],
+    ['digital marketing salary',2600,12,0,'Exclude','Research intent, no buyers'],
+    ['course near another city',1400,6,0,'Exclude','Outside the campaign city'],
+    ['online diploma marketing',1900,8,1,'Check first','Few leads, mixed intent'],
+    ['marketing course fees',3300,19,2,'Check first','Price research can still convert'],
+    ['performance marketing course',9400,18,6,'Keep','Strong qualified rate'],
+    ['digital marketing course with placement',12600,27,8,'Keep','Best historical quality']
+  ];
+  state.level = 'Creative';
+  state.cleaned = false;
+
+  // Trend chart with hover and table view.
+  function seriesData() {
+    const names = state.channel === 'all' ? ['Meta','Google','WhatsApp'] : [state.channel];
+    const list = shown();
+    return names.map(name => ({
+      name,
+      values: Array.from({ length:state.period }, (_, i) => {
+        const w = WEEKS - state.period + i;
+        return list.filter(c => c.channel === name).reduce((t, c) => t + c.weeks[w][state.metric], 0);
+      })
+    }));
+  }
+  const metricFormat = v => state.metric === 'spend' ? money(v) : whole(v);
+  function renderTrend() {
+    const box = $('chart'), width = Math.max(box.clientWidth, 280), small = width < 480;
+    const height = small ? 230 : 280, pad = { l:46, r:small ? 82 : 82, t:14, b:26 };
+    const data = seriesData(), n = state.period;
+    const peak = Math.max(1, ...data.flatMap(s => s.values));
+    const unit = Math.pow(10, Math.floor(Math.log10(peak)));
+    const stepSize = [1, 2, 5, 10].map(m => m * unit).find(s => peak / s <= 4);
+    const top = Math.ceil(peak / stepSize) * stepSize;
+    const x = i => pad.l + (n === 1 ? 0 : i * (width - pad.l - pad.r) / (n - 1));
+    const y = v => height - pad.b - v / top * (height - pad.t - pad.b);
+    const ticks = []; for (let v = 0; v <= top + 1e-6; v += stepSize) ticks.push(v);
+    const every = n > 8 ? 3 : n > 4 ? 2 : 1;
+    const ends = data.map(s => ({ name:s.name, y:y(s.values[n - 1]) })).sort((a, b) => a.y - b.y);
+    ends.forEach((e, i) => { if (i && e.y - ends[i - 1].y < 15) e.y = ends[i - 1].y + 15; });
+    const svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${$('metric').selectedOptions[0].text} by week and channel">`
+      + ticks.map(v => `<path d="M${pad.l} ${y(v)}H${width - pad.r}" stroke="#dbe5df"/><text x="${pad.l - 7}" y="${y(v) + 4}" text-anchor="end">${state.metric === 'spend' ? money(v) : whole(v)}</text>`).join('')
+      + Array.from({ length:n }, (_, i) => (n - 1 - i) % every ? '' : `<text x="${x(i)}" y="${height - 7}" text-anchor="middle">Wk ${WEEKS - n + i + 1}</text>`).join('')
+      + data.map(s => `<path d="${s.values.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join('')}" fill="none" stroke="${colors[s.name]}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`
+        + `<circle cx="${x(n - 1)}" cy="${y(s.values[n - 1])}" r="4" fill="${colors[s.name]}" stroke="#fbfdfb" stroke-width="2"/>`).join('')
+      + ends.map(e => `<text class="label" x="${x(n - 1) + 9}" y="${e.y + 4}">${e.name}</text>`).join('')
+      + (state.hover === null ? '' : `<path d="M${x(state.hover)} ${pad.t}V${height - pad.b}" stroke="#4b655d" stroke-dasharray="3 3"/>`
+        + data.map(s => `<circle cx="${x(state.hover)}" cy="${y(s.values[state.hover])}" r="4.5" fill="${colors[s.name]}" stroke="#fbfdfb" stroke-width="2"/>`).join(''))
+      + `</svg>`;
+    box.querySelector('svg')?.remove();
+    box.insertAdjacentHTML('afterbegin', svg);
+    box.dataset.left = pad.l; box.dataset.right = width - pad.r;
+    const tip = $('tip');
+    if (state.hover === null) tip.hidden = true;
+    else {
+      tip.hidden = false;
+      tip.innerHTML = `<b>Week ${WEEKS - n + state.hover + 1}</b>` + data.map(s => `<div><span>${s.name}</span><span>${metricFormat(s.values[state.hover])}</span></div>`).join('');
+      const px = x(state.hover);
+      tip.style.left = (px > width / 2 ? Math.max(0, px - tip.offsetWidth - 12) : px + 12) + 'px';
+    }
+    $('trendTitle').textContent = $('metric').selectedOptions[0].text + ' by week';
+    $('legend').innerHTML = data.length > 1 ? data.map(s => `<li><i style="background:${colors[s.name]}"></i>${s.name}</li>`).join('') : '';
+    $('trendTable').innerHTML = `<table><thead><tr><th>Week</th>${data.map(s => `<th>${s.name}</th>`).join('')}</tr></thead><tbody>`
+      + Array.from({ length:n }, (_, i) => `<tr><td>Week ${WEEKS - n + i + 1}</td>${data.map(s => `<td>${metricFormat(s.values[i])}</td>`).join('')}</tr>`).join('') + '</tbody></table>';
+  }
+  function hoverAt(ev) {
+    const box = $('chart'), r = box.getBoundingClientRect();
+    const left = +box.dataset.left, right = +box.dataset.right;
+    const scale = (box.clientWidth || 1) / r.width;
+    const px = (ev.clientX - r.left) * scale;
+    const i = Math.round((px - left) / ((right - left) / Math.max(state.period - 1, 1)));
+    const next = Math.max(0, Math.min(state.period - 1, i));
+    if (next !== state.hover) { state.hover = next; renderTrend(); }
+  }
+  $('chart').addEventListener('pointermove', hoverAt);
+  $('chart').addEventListener('pointerdown', hoverAt);
+  $('chart').addEventListener('pointerleave', () => { state.hover = null; renderTrend(); });
+
+  function renderFunnel() {
+    const t = current(shown());
+    const stages = [['Leads',t.leads],['Contacted',t.leads * .746],['Qualified',t.q],['Sales',t.sales]];
+    $('funnel').innerHTML = stages.map(([name, v], i) => {
+      const pct = t.leads ? v / t.leads * 100 : 0;
+      const rate = i ? `${(stages[i - 1][1] ? v / stages[i - 1][1] * 100 : 0).toFixed(1)}% from previous stage` : 'Starting point';
+      return `<div class="bar"><div><span>${name}</span><b>${whole(v)}</b></div><div class="track"><i style="width:${Math.max(pct, 1)}%"></i></div><small>${rate}</small></div>`;
+    }).join('');
+  }
+
+  function rowsWithVerdict() {
+    const list = shown(), avg = current(list).cpq;
+    return list.map(c => {
+      const t = sum([c], WEEKS - state.period, WEEKS);
+      const verdict = t.cpq <= avg * .8 ? ['▲ Scale','scale'] : t.cpq >= avg * 1.4 ? ['■ Pause','pause'] : ['● Keep','keep'];
+      return { ...c, ...t, verdict, rate:t.leads ? t.q / t.leads * 100 : 0 };
+    });
+  }
+  const columns = [['name','Campaign'],['spend','Spend'],['leads','Leads'],['cpl','Per lead'],['q','Qualified'],['cpq','Per qualified'],['sales','Sales'],['roas','ROAS'],['verdict','Action']];
+  function renderCampaigns() {
+    const rows = rowsWithVerdict().sort((a, b) => {
+      if (state.sort === 'name') return a.name.localeCompare(b.name) * -state.dir;
+      if (state.sort === 'verdict') return a.verdict[0].localeCompare(b.verdict[0]) * -state.dir;
+      return (a[state.sort] - b[state.sort]) * -state.dir;
+    });
+    $('campaignTable').innerHTML = '<thead><tr>' + columns.map(([key, label]) => `<th scope="col"${state.sort === key ? ` aria-sort="${state.dir < 0 ? 'ascending' : 'descending'}"` : ''}><button type="button" data-sort="${key}">${label}</button></th>`).join('') + '</tr></thead><tbody>'
+      + rows.map(r => `<tr><td>${r.name}<small>${r.channel}, ${r.programme}</small></td><td>${money(r.spend)}</td><td>${whole(r.leads)}</td><td>${inr(r.cpl)}</td><td>${whole(r.q)}</td><td>${inr(r.cpq)}</td><td>${whole(r.sales)}</td><td>${r.roas.toFixed(1)}x</td><td class="status ${r.verdict[1]}">${r.verdict[0]}</td></tr>`).join('')
+      + '</tbody>';
+  }
+  $('campaignTable').addEventListener('click', e => {
+    const key = e.target.dataset && e.target.dataset.sort;
+    if (!key) return;
+    state.dir = state.sort === key ? -state.dir : 1;
+    state.sort = key;
+    renderCampaigns();
+  });
+
+  // Budget pacing follows today's date.
+  const budgets = [['Programme A',3,1],['Programme B',6,1.21],['Programme C',5,.72]];
+  function paceRows() {
+    const d = new Date(), days = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate();
+    const progress = Math.max((d.getDate() - .5) / days, .05);
+    const rows = budgets.filter(b => state.programme === 'all' || state.programme === b[0]).map(([name, lakh, factor]) => {
+      const budget = lakh * 100000, used = budget * progress * factor, end = used / progress;
+      const status = factor > 1.08 ? ['▲ Ahead of plan','pause'] : factor < .92 ? ['▼ Behind plan','behind'] : ['● On pace','scale'];
+      return { name, budget, used, end, status, gap:end - budget };
+    });
+    return { progress, rows, days, day:d.getDate() };
+  }
+  function renderBudget() {
+    const { progress, rows } = paceRows();
+    $('pace').innerHTML = rows.map(r => `<div class="bar"><div><span>${r.name}</span><span>${money(r.used)} of ${money(r.budget)}</span></div><div class="track"><i style="width:${Math.min(r.used / r.budget * 100, 100)}%"></i><span class="mark" style="left:${(progress * 100).toFixed(1)}%"></span></div><small class="status ${r.status[1]}">${r.status[0]}</small></div>`).join('');
+    $('paceTable').innerHTML = '<thead><tr><th>Programme</th><th>Projected</th><th>Vs plan</th></tr></thead><tbody>'
+      + rows.map(r => `<tr><td>${r.name}</td><td>${money(r.end)}</td><td>${r.gap >= 0 ? '+' : '-'}${money(Math.abs(r.gap))}</td></tr>`).join('') + '</tbody>';
+  }
+
+  function renderCreative() {
+    const rows = rowsWithVerdict().filter(r => r.score !== null).sort((a, b) => b.score - a.score || b.rate - a.rate);
+    $('creativeTable').innerHTML = '<thead><tr><th>Creative</th><th>Score</th><th>Qualified</th><th>Action</th></tr></thead><tbody>'
+      + rows.map(r => `<tr><td>${r.name}<small>${r.format}</small></td><td>${r.score}/9</td><td>${r.rate.toFixed(0)}%</td><td class="status ${r.verdict[1]}">${r.verdict[0]}</td></tr>`).join('') + '</tbody>';
+    $('hooks').innerHTML = [['Salary jump story',38],['Founder proof',24],['Free tool demo',16],['Price offer',11]].map(([n, v]) => `<div class="bar"><div><span>${n}</span><b>${v}%</b></div><div class="track"><i style="width:${v}%"></i></div></div>`).join('');
+  }
+
+  // Answers are worked out from the current filters.
+  const questions = {
+    overview:['Summarise this period','Where are leads dropping?'],
+    campaigns:['Which campaign should I pause?','Where should extra budget go?','Why can a cheap lead be costly?'],
+    budget:['Which programme needs a budget change?'],
+    creative:['What should we test next?'],
+    quality:['What should I fix first?'],
+    terms:['Which search terms should we exclude?','Why keep some terms for review?']
+  };
+  function answerFor(question) {
+    const list = shown();
+    if (!list.length) return 'No campaign matches these filters. Choose another channel or programme.';
+    const now = current(list), before = previous(list), rows = rowsWithVerdict().filter(r => r.q > 0);
+    const worst = [...rows].sort((a, b) => b.cpq - a.cpq)[0], best = [...rows].sort((a, b) => a.cpq - b.cpq)[0], cheap = [...rows].sort((a, b) => a.cpl - b.cpl)[0];
+    switch (question) {
+      case 'Summarise this period': { const d = before.q ? (now.q - before.q) / before.q * 100 : 0; return `You spent ${money(now.spend)} for ${whole(now.q)} qualified leads and ${whole(now.sales)} sales. Qualified leads are ${d >= 0 ? 'up' : 'down'} ${Math.abs(d).toFixed(1)}%, at ${inr(now.cpq)} each.`; }
+      case 'Where are leads dropping?': return `The biggest drop is from contacted to qualified. Only ${(now.q / (now.leads * .746) * 100).toFixed(1)}% of contacted leads qualify, so review ad promise and form questions first.`;
+      case 'Which campaign should I pause?': return worst === best ? `Only ${worst.name} matches these filters, so compare it with another programme first.` : `Review ${worst.name} first. It costs ${inr(worst.cpq)} per qualified lead, against ${inr(best.cpq)} for ${best.name}.`;
+      case 'Where should extra budget go?': return `Start with ${best.name}. It has the lowest qualified-lead cost at ${inr(best.cpq)} and a ${best.rate.toFixed(0)}% qualified rate. Increase gradually and keep watching cost.`;
+      case 'Why can a cheap lead be costly?': return `${cheap.name} has the cheapest lead at ${inr(cheap.cpl)}, but only ${cheap.rate.toFixed(0)}% qualify. That makes each qualified lead cost ${inr(cheap.cpq)}.`;
+      case 'Which programme needs a budget change?': { const p = paceRows(), r = [...p.rows].sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap))[0], left = Math.max(p.days - p.day + 1, 1); return Math.abs(r.gap) < 1000 ? `${r.name} is on pace, so no budget change is needed today.` : `${r.name} may end ${money(Math.abs(r.gap))} ${r.gap > 0 ? 'over' : 'under'} plan. ${r.gap > 0 ? 'Reduce' : 'Increase'} spend by about ${inr(Math.abs(r.gap) / left)} a day.`; }
+      case 'What should I fix first?': { const r = qualityData[state.level][0]; return `Start with ${r[0]}. ${r[4]}. Next step: ${r[5].toLowerCase()}.`; }
+      case 'Which search terms should we exclude?': { const x = termData.filter(t => t[4] === 'Exclude'); return `Exclude ${x.length} terms in this sample. They used ${inr(x.reduce((n, t) => n + t[1], 0))} and produced no qualified leads.`; }
+      case 'Why keep some terms for review?': return 'A term with few clicks or mixed intent may still bring good leads. It stays on the check-first list until a person reviews it.';
+      default: return 'Test a salary jump story as a reel. It is the most common long-running competitor hook in this sample and fits the best qualified-lead ad.';
+    }
+  }
+  let typing = 0;
+  function say(text) {
+    const el = $('answer'), id = ++typing;
+    if (reduced) { el.textContent = text; return; }
+    let i = 0;
+    const step = () => { if (id !== typing) return; i += 2; el.textContent = text.slice(0, i); if (i < text.length) setTimeout(step, 12); };
+    step();
+  }
+  function renderChips() {
+    const list = questions[state.page];
+    state.chip = Math.min(state.chip, list.length - 1);
+    $('chips').innerHTML = list.map((q, i) => `<button type="button" data-chip="${i}" aria-pressed="${i === state.chip}">${q}</button>`).join('');
+    say(answerFor(list[state.chip]));
+  }
+  $('chips').addEventListener('click', e => {
+    if (e.target.dataset.chip === undefined) return;
+    state.chip = +e.target.dataset.chip;
+    renderChips();
+  });
+
+  const titles = { overview:'Overview', campaigns:'Campaigns', budget:'Budget pacing', creative:'Creative and competitors', quality:'Quality checks', terms:'Search term cleaning' };
+  function renderQuality() {
+    $('levels').innerHTML = Object.keys(qualityData).map(l => `<button type="button" data-level="${l}" aria-pressed="${l === state.level}">${l}</button>`).join('');
+    $('qualityTable').innerHTML = '<thead><tr><th>Item</th><th>Per lead</th><th>Qualified rate</th><th>Per qualified</th><th>Issue found</th><th>Next step</th></tr></thead><tbody>'
+      + qualityData[state.level].map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td></tr>`).join('') + '</tbody>';
+  }
+  $('levels').addEventListener('click', e => {
+    if (!e.target.dataset.level) return;
+    state.level = e.target.dataset.level;
+    renderQuality();
+    renderChips();
+  });
+  function renderTerms() {
+    const rows = state.cleaned ? termData : termData.map(t => [...t.slice(0, 4), 'Not checked', 'Run the cleaning check']);
+    const counts = v => termData.filter(t => t[4] === v).length;
+    $('cleanSummary').innerHTML = state.cleaned
+      ? `<div><b>${counts('Exclude')}</b><span>Exclude</span></div><div><b>${counts('Check first')}</b><span>Check first</span></div><div><b>${counts('Keep')}</b><span>Keep</span></div>`
+      : `<div><b>${termData.length}</b><span>Terms waiting</span></div><div><b>${inr(termData.reduce((n, t) => n + t[1], 0))}</b><span>Historical spend</span></div><div><b>All-time</b><span>History window</span></div>`;
+    const cls = { Exclude:'pause', 'Check first':'behind', Keep:'scale' };
+    const icon = { Exclude:'■ ', 'Check first':'◆ ', Keep:'▲ ' };
+    $('termsTable').innerHTML = '<thead><tr><th>Search term</th><th>Spend</th><th>Leads</th><th>Qualified</th><th>Decision</th><th>Reason</th></tr></thead><tbody>'
+      + rows.map(t => `<tr><td>${t[0]}</td><td>${inr(t[1])}</td><td>${t[2]}</td><td>${t[3]}</td><td class="status ${cls[t[4]] || 'keep'}">${icon[t[4]] || ''}${t[4]}</td><td>${t[5]}</td></tr>`).join('') + '</tbody>';
+  }
+  $('runClean').addEventListener('click', e => {
+    state.cleaned = true;
+    e.currentTarget.textContent = 'Checked';
+    renderTerms();
+    state.chip = 0;
+    renderChips();
+  });
+  function renderPage(flash) {
+    renderKpis(flash);
+    if (state.page === 'overview') { renderTrend(); renderFunnel(); }
+    if (state.page === 'campaigns') renderCampaigns();
+    if (state.page === 'budget') renderBudget();
+    if (state.page === 'creative') renderCreative();
+    if (state.page === 'quality') renderQuality();
+    if (state.page === 'terms') renderTerms();
+  }
+  function go(page, push) {
+    state.page = page; state.chip = 0; state.hover = null;
+    document.querySelectorAll('[data-view]').forEach(v => { v.hidden = v.dataset.view !== page; });
+    document.querySelectorAll('[data-page]').forEach(b => { b.dataset.page === page ? b.setAttribute('aria-current', 'page') : b.removeAttribute('aria-current'); });
+    $('pageTitle').textContent = titles[page];
+    const sampleOnly = page === 'quality' || page === 'terms';
+    document.querySelector('.filters').hidden = sampleOnly;
+    $('kpis').hidden = sampleOnly;
+    if (push) history.replaceState(null, '', '#' + page);
+    renderPage(false);
+    renderChips();
+  }
+  $('nav').addEventListener('click', e => { if (e.target.dataset.page) go(e.target.dataset.page, true); });
+  [['period','period',Number],['channel','channel',String],['programme','programme',String],['metric','metric',String]].forEach(([id, key, cast]) => {
+    $(id).addEventListener('change', e => { state[key] = cast(e.target.value); state.hover = null; renderPage(false); renderChips(); });
+  });
+
+  // Sync adds a little new activity to the latest week.
+  let syncedAt = Date.now();
+  function sync() {
+    $('syncTime').textContent = 'Syncing data...';
+    setTimeout(() => {
+      [...campaigns].sort(() => rand() - .5).slice(0, 4).forEach(c => {
+        const w = c.weeks[WEEKS - 1], spend = 300 + rand() * 1200, leads = 1 + Math.floor(rand() * 6);
+        w.spend += spend; w.leads += leads;
+        if (rand() > .45) w.q += 1;
+        if (rand() > .88) w.sales += 1;
+      });
+      syncedAt = Date.now();
+      $('syncTime').textContent = 'Synced just now';
+      renderPage(true);
+    }, reduced ? 0 : 650);
+  }
+  $('syncNow').addEventListener('click', sync);
+  $('liveToggle').addEventListener('click', e => {
+    state.live = !state.live;
+    e.currentTarget.textContent = state.live ? 'Pause live updates' : 'Resume live updates';
+  });
+  setInterval(() => {
+    const age = Math.floor((Date.now() - syncedAt) / 1000);
+    if ($('syncTime').textContent !== 'Syncing data...') $('syncTime').textContent = age < 5 ? 'Synced just now' : `Synced ${age} seconds ago`;
+    if (state.live && !reduced && age >= 12 && !document.hidden) sync();
+  }, 1000);
+  let chartWidth = 0;
+  new ResizeObserver(() => {
+    const w = $('chart').clientWidth;
+    if (w === chartWidth) return;
+    chartWidth = w;
+    requestAnimationFrame(() => { if (state.page === 'overview') renderTrend(); });
+  }).observe($('chart'));
+
+  const start = location.hash.slice(1);
+  go(titles[start] ? start : 'overview', false);
+})();
+</script>
+</body>
+</html>
