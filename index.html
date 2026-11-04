@@ -7,7 +7,7 @@
 <meta name="description" content="AI-first growth marketer in Bengaluru. Paid media, CRM attribution, automation, SEO and AEO, with proof of what each one did.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
     --spruce:#0f3b33; --spruce-2:#17503f; --mist:#eaf1ec; --white:#fbfdfb; --ink:#12322b;
@@ -211,83 +211,261 @@
     html { scroll-behavior:auto; }
     .track i, .tag, .a, .ads tbody tr, .flow-out { transition:none; }
   }
+  /* Ads Manager shell */
+  :root { --spruce:#1c2b33; --spruce-2:#33424c; --mist:#f0f2f5; --white:#fff; --ink:#1c2b33; --soft:#5f6b76; --line:#dde1e6; --marigold:#ffc53d; --good:#0a7d4f; --blue:#1a73e8; --red:#c5372c; --body:"Inter","Segoe UI",Arial,sans-serif; --display:"Inter","Segoe UI",Arial,sans-serif; }
+  body { font:400 14px/1.45 var(--body); background:var(--mist); }
+  .am { display:grid; grid-template-columns:216px minmax(0,1fr); min-height:100vh; }
+  .rail { position:sticky; top:0; align-self:start; height:100vh; display:flex; flex-direction:column; gap:14px; padding:14px 10px; background:#fff; border-right:1px solid var(--line); }
+  .rail-brand { display:flex; align-items:center; gap:9px; padding:4px 7px; font-weight:700; }
+  .rail-brand b { display:grid; place-items:center; width:32px; height:32px; color:#fff; background:var(--blue); border-radius:50%; font-size:13px; }
+  .rail nav { display:flex; flex-direction:column; gap:2px; }
+  .rail nav button { padding:9px 11px; text-align:left; font:600 14px var(--body); color:var(--ink); background:transparent; border:0; border-radius:8px; cursor:pointer; }
+  .rail nav button:hover { background:var(--mist); }
+  .rail nav button[aria-current="page"] { color:var(--blue); background:#e8f0fe; }
+  .rail-foot { display:flex; flex-direction:column; gap:7px; margin-top:auto; padding:10px 9px; border-top:1px solid var(--line); font-size:13px; }
+  .rail-foot a { text-decoration:none; color:var(--soft); }
+  .rail-foot a:hover { color:var(--blue); }
+  .am-main { min-width:0; }
+  .am-top { position:sticky; top:0; z-index:5; display:flex; justify-content:space-between; align-items:center; gap:12px; padding:11px 22px; background:#fff; border-bottom:1px solid var(--line); }
+  .am-top strong { display:block; font-size:18px; }
+  .am-top span { color:var(--soft); font-size:13px; }
+  .am-cta { flex:none; display:inline-block; padding:8px 13px; color:#fff; background:var(--blue); border-radius:7px; font-weight:600; text-decoration:none; }
+  .pg { display:grid; gap:12px; padding:16px 22px 28px; max-width:1240px; }
+  .pg[hidden] { display:none; }
+  section.pg { padding-block:16px 28px; }
+  .box { min-width:0; padding:13px 14px; background:#fff; border:1px solid var(--line); border-radius:9px; }
+  .box-h { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px; }
+  .box-h h2, .pg h2 { margin:0; max-width:none; font:600 15px/1.3 var(--body); letter-spacing:0; }
+  .pill { padding:2px 7px; color:var(--soft); background:var(--mist); border-radius:5px; font-size:12px; font-weight:600; white-space:nowrap; }
+  .cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+  .cards.three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .card { padding:12px 13px; background:#fff; border:1px solid var(--line); border-radius:9px; }
+  .card span { display:block; color:var(--soft); font-size:13px; }
+  .card b { display:block; margin-top:2px; font-size:26px; line-height:1.15; font-variant-numeric:tabular-nums; }
+  .card svg { display:block; width:100%; height:34px; margin-top:7px; }
+  .split { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.25fr); gap:12px; }
+  .trace { padding:18px; border-radius:9px; }
+  .trace-number { font-size:clamp(72px,9vw,110px); }
+  .trace-note { min-height:46px; max-width:none; margin-bottom:12px; }
+  .grid-t { width:100%; border-collapse:collapse; font-size:13.5px; }
+  .grid-t th { padding:7px 8px; color:var(--soft); background:#f7f8fa; border-bottom:1px solid var(--line); font-weight:600; text-align:left; white-space:nowrap; }
+  .grid-t td { padding:8px; border-bottom:1px solid #eef0f3; vertical-align:middle; }
+  .grid-t tbody tr { cursor:default; }
+  .grid-t.pick tbody tr { cursor:pointer; }
+  .grid-t.pick tbody tr:hover, .grid-t tr.on { background:#e8f0fe; }
+  .grid-t.center th, .grid-t.center td { text-align:center; }
+  .grid-t.center th:first-child, .grid-t.center td:first-child { text-align:left; }
+  .scroll { overflow-x:auto; }
+  .toggle { display:inline-block; width:30px; height:17px; padding:2px; background:var(--blue); border-radius:10px; vertical-align:middle; }
+  .toggle::after { content:""; display:block; width:13px; height:13px; margin-left:13px; background:#fff; border-radius:50%; }
+  .dot { display:inline-block; width:8px; height:8px; margin-right:5px; border-radius:50%; background:var(--good); }
+  .dot.off { background:#b5bcc4; }
+  .thumb { display:inline-block; width:40px; height:48px; margin-right:9px; object-fit:cover; border-radius:4px; vertical-align:middle; }
+  .up { color:var(--good); font-weight:700; }
+  .down { color:var(--red); font-weight:700; }
+  .crumb { color:var(--soft); }
+  .crumb em { margin-left:8px; font-style:normal; font-size:12.5px; }
+  .tabs { display:flex; gap:2px; border-bottom:1px solid var(--line); }
+  .tabs button { padding:9px 15px; font:600 14px var(--body); color:var(--soft); background:transparent; border:0; border-bottom:3px solid transparent; cursor:pointer; }
+  .tabs button[aria-pressed="true"] { color:var(--blue); border-bottom-color:var(--blue); }
+  .meta-grid { display:grid; grid-template-columns:minmax(0,1fr) 236px; gap:12px; align-items:start; }
+  .phone { margin:0; padding:9px; background:#111; border-radius:30px; box-shadow:0 10px 26px rgba(20,30,40,.22); }
+  .phone .screen { overflow:hidden; background:#fff; border-radius:22px; }
+  .phone img, .phone video { display:block; width:100%; }
+  .feed-h { display:flex; align-items:center; gap:7px; padding:9px; font-size:12px; }
+  .feed-h i { width:22px; height:22px; background:var(--blue); border-radius:50%; }
+  .levels { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+  .levels h3, .clean h3 { margin:0 0 6px; font:600 13.5px var(--body); }
+  .lv-row { display:flex; justify-content:space-between; gap:8px; font-size:13px; }
+  .bar-s { height:7px; margin:3px 0 8px; background:var(--mist); border-radius:0 4px 4px 0; }
+  .bar-s i { display:block; width:0; height:100%; background:var(--blue); border-radius:0 4px 4px 0; transition:width .7s cubic-bezier(.2,.7,.2,1); }
+  .bar-s i.bad { background:var(--red); }
+  .bar-s i.good { background:var(--good); }
+  .chips { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border:1px solid var(--line); border-radius:9px; overflow:hidden; background:#fff; }
+  .chip { padding:11px 14px; color:#fff; }
+  .chip span { display:block; font-size:12.5px; opacity:.92; }
+  .chip b { font-size:24px; }
+  .g-line { display:block; width:100%; height:auto; }
+  .g-line text, .map text { font:500 13px var(--body); fill:var(--soft); }
+  .clean { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; min-height:232px; }
+  .clean > div { padding:7px; background:#f7f8fa; border-radius:7px; }
+  .term { margin-bottom:5px; padding:4px 6px; background:#fff; border:1px solid var(--line); border-radius:5px; font-size:12px; line-height:1.25; animation:pop .3s ease; }
+  @keyframes pop { from { opacity:0; transform:translateY(-5px); } }
+  .shots { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .browser { margin:0; overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:9px; box-shadow:0 6px 18px rgba(20,30,40,.1); }
+  .browser .lid, .laptop .lid { display:flex; align-items:center; gap:5px; padding:7px 10px; background:#e8ebef; color:var(--soft); font-size:12.5px; }
+  .lid i { width:9px; height:9px; background:#c2c8cf; border-radius:50%; }
+  .lid span { margin-left:7px; }
+  .browser img { display:block; width:100%; }
+  .laptop { margin:0 auto; width:min(100%,960px); overflow:hidden; background:#fff; border:9px solid #1c2024; border-radius:13px; box-shadow:0 14px 34px rgba(20,30,40,.24); }
+  .laptop video { display:block; width:100%; aspect-ratio:16/10; background:#f0f2f5; }
+  .report-trio { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+  .heat { display:grid; grid-template-columns:62px repeat(5,minmax(0,1fr)); gap:3px; font-size:12px; }
+  .heat div { display:grid; place-items:center; min-height:31px; border-radius:3px; font-variant-numeric:tabular-nums; }
+  .donut { display:flex; align-items:center; gap:13px; }
+  .donut svg { width:128px; flex:none; }
+  .donut ul { margin:0; padding:0; list-style:none; font-size:13px; }
+  .donut i { display:inline-block; width:9px; height:9px; margin-right:6px; border-radius:50%; }
+  .link-row { margin:0; }
+  .map { display:block; width:100%; height:auto; }
+  .map .nd { fill:#fff; stroke:#c9d0d8; }
+  .map .nt { font-weight:600; fill:var(--ink); text-anchor:middle; dominant-baseline:middle; }
+  .map .core { fill:var(--blue); stroke:none; }
+  .map .ct { fill:#fff; font-weight:700; text-anchor:middle; dominant-baseline:middle; }
+  .media-row { grid-template-columns:minmax(0,1fr) 210px; align-items:center; }
+  .tablet { margin:0; padding:9px; background:#111; border-radius:15px; box-shadow:0 10px 26px rgba(20,30,40,.22); }
+  .tablet video { display:block; width:100%; aspect-ratio:16/9; border-radius:7px; background:#222; }
+  .media-row figcaption { padding-top:7px; color:#d7dce1; text-align:center; font-size:12.5px; }
+  .phone.small .screen.dark { background:#111; }
+  .gallery { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:9px; }
+  .gallery figure { margin:0; }
+  .gallery img { display:block; width:100%; aspect-ratio:4 / 5; object-fit:cover; object-position:top; border-radius:6px; }
+  .toggle.is-off { background:#c2c8cf; }
+  .toggle.is-off::after { margin-left:0; }
+  .gallery figcaption { padding-top:3px; font-size:12.5px; font-weight:600; }
+  .sys { display:grid; grid-template-columns:260px minmax(0,1fr); gap:14px; align-items:start; }
+  .chat { height:430px; background:#ece5dd !important; display:flex; flex-direction:column; }
+  .chat-h { padding:10px; color:#fff; background:#075e54; font-weight:600; font-size:13px; }
+  .msgs { display:flex; flex:1; flex-direction:column; justify-content:flex-end; gap:6px; padding:9px; overflow:hidden; }
+  .msg { max-width:84%; padding:6px 8px; background:#fff; border-radius:7px; font-size:12.5px; animation:pop .3s ease; }
+  .msg.out { align-self:flex-end; background:#dcf8c6; }
+  .msg button { display:block; width:100%; margin-top:4px; padding:3px; color:#0a7cff; background:#fff; border:1px solid #e0e0e0; border-radius:4px; font-size:12px; }
+  .pg .mock { margin:0; }
+  .pg .note { font-size:13px; margin:0; }
+  .pg .flows { grid-template-columns:230px minmax(0,1fr); gap:12px; }
+  .flow-list button { font-size:13.5px; padding:7px 9px; }
+  .flow-window { min-height:430px; }
+  @media (max-width:1040px) {
+    .report-trio, .levels { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .gallery { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  }
+  @media (max-width:860px) {
+    body { font-size:14px; }
+    .am { display:block; }
+    .rail { position:sticky; z-index:6; height:auto; padding:7px 10px; gap:5px; border-right:0; border-bottom:1px solid var(--line); }
+    .rail-brand, .rail-foot { display:none; }
+    .rail nav { flex-direction:row; overflow-x:auto; scrollbar-width:none; }
+    .rail nav button { flex:none; padding:7px 10px; }
+    .am-top { position:static; padding:9px 14px; }
+    .pg { padding:12px 14px 22px; }
+    section.pg { padding-block:12px 22px; }
+    .cards, .cards.three, .chips { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .split, .meta-grid, .media-row, .sys, .report-trio, .pg .flows { grid-template-columns:minmax(0,1fr); }
+    .shots { grid-template-columns:minmax(0,1fr); }
+    .levels { grid-template-columns:minmax(0,1fr); }
+    .phone { width:min(240px,100%); margin-inline:auto; }
+    .clean { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .gallery { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .flow-window { min-height:520px; }
+    #metaTable .tg, #metaTable th:nth-child(3), #metaTable td:nth-child(3) { display:none; }
+    .grid-t td, .grid-t th { padding:7px 6px; }
+  }
+  @media (prefers-reduced-motion:reduce) { .term, .msg { animation:none; } .bar-s i { transition:none; } }
+
 </style>
 </head>
 <body>
+<div class="am">
+  <aside class="rail" aria-label="Portfolio sections">
+    <div class="rail-brand"><b>SA</b><span>Sudheer Amarthya</span></div>
+    <nav id="amNav">
+      <button type="button" data-go="overview">Overview</button>
+      <button type="button" data-go="meta">Meta Ads</button>
+      <button type="button" data-go="google">Google Ads</button>
+      <button type="button" data-go="reports">Dashboards</button>
+      <button type="button" data-go="ai">AI workflows</button>
+      <button type="button" data-go="seo">SEO and AEO</button>
+      <button type="button" data-go="creative">Creative</button>
+      <button type="button" data-go="systems">Systems</button>
+    </nav>
+    <div class="rail-foot">
+      <a href="mailto:amarthya999@gmail.com">Email</a>
+      <a href="tel:+919042999747">+91 90429 99747</a>
+      <a href="https://www.linkedin.com/in/sudheeramarthya/">LinkedIn</a>
+      <a href="Sudheer_Amarthya_Resume.pdf">Resume</a>
+    </div>
+  </aside>
 
-<div class="hero">
-  <div class="wrap">
-    <header class="top">
-      <strong>Sudheer Amarthya</strong>
-      <nav aria-label="Page sections">
-        <a href="#work">Work</a>
-        <a href="#dashboard">AI dashboard</a>
-        <a href="#samples">Work samples</a>
-        <a href="#ai-work">AI workflows</a>
-        <a href="#organic">SEO and AEO</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <div class="am-main">
+    <header class="am-top">
+      <div><strong id="amTitle">Overview</strong><span>AI-first growth marketer, Bengaluru</span></div>
+      <a class="am-cta" href="mailto:amarthya999@gmail.com">Contact me</a>
     </header>
-    <div class="hero-grid">
-      <div>
-        <h1>I find what ad spend really bought.</h1>
-        <p class="intro">AI-first growth marketer in Bengaluru. I run paid media, connect it to CRM outcomes, and build the automation and reporting that keep it honest.</p>
+
+    <section class="pg" data-pg="overview">
+      <div class="cards" id="ovCards"></div>
+      <div class="split">
+        <div class="trace" aria-live="polite">
+          <p class="trace-label" id="traceLabel">Cost per lead in the ad account</p>
+          <strong class="trace-number" id="traceNumber">₹60</strong>
+          <p class="trace-note" id="traceNote">Looks cheap. This is the number most campaign reports stop at.</p>
+          <button type="button" id="traceButton">Check it against the CRM</button>
+        </div>
+        <div class="box">
+          <div class="box-h"><h2>Channels</h2></div>
+          <table class="grid-t" id="ovChannels"></table>
+        </div>
       </div>
-      <div class="trace" aria-live="polite">
-        <p class="trace-label" id="traceLabel">Cost per lead in the ad account</p>
-        <strong class="trace-number" id="traceNumber">₹60</strong>
-        <p class="trace-note" id="traceNote">Looks cheap. This is the number most campaign reports stop at.</p>
-        <button type="button" id="traceButton">Check it against the CRM</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<main>
-  <section id="work">
-    <div class="wrap">
-      <h2>One marketer across the whole funnel</h2>
-      <p class="lede">Each area shows what I did and what kind of proof exists, so you can tell measured results from systems I built.</p>
-      <table class="stack">
-        <thead><tr><th>Area</th><th>What I've done</th><th>Proof</th></tr></thead>
-        <tbody>
-          <tr><td>Social ads</td><td>Plan and optimise Meta and Instagram lead generation for high-ticket programmes, including creative, audience, form and budget decisions. Use Claude Code with CRM, Meta Ads and Google Ads data to calculate quality metrics and solve issues sooner. LinkedIn Ads for high-intent audiences.</td><td class="proof-res">Measured results</td></tr>
-          <tr><td>Google Search</td><td>Keyword structure, ad copy, Quality Score review and search-term cleaning from historical data, with 800+ negative keywords and city-specific lists.</td><td class="proof-res">Measured results</td></tr>
-          <tr><td>CRM attribution</td><td>Link creatives, form answers and CRM stages to judge spend on qualified leads and sales. Plan conversion feedback from the CRM to Google.</td><td class="proof-res">Measured results</td></tr>
-          <tr><td>AI and reporting</td><td>Scope and launch live dashboards, AI reply agents and AI call coaching using Claude Code. I direct the build and test the outcome.</td><td class="proof-built">Built and in use</td></tr>
-          <tr><td>Automation</td><td>Self-hosted n8n, CRM workflows, WhatsApp journeys, email nurture, webinars and lead routing, plus Zapier, ManyChat and MoEngage.</td><td class="proof-built">Built and in use</td></tr>
-          <tr><td>Landing pages</td><td>Conversion audits, short versus long page research, tracking fixes, test plans and masterclass pages.</td><td class="proof-res">Measured results</td></tr>
-          <tr><td>Organic SEO and AEO</td><td>Search Console, GA4, Bing and AI answer audits, plus a 70-page site with technical SEO, structured data, FAQ content and regional-language pages.</td><td class="proof-built">Audit delivered, site outcome not measured</td></tr>
-          <tr><td>AI ad creative</td><td>Update static creatives in the evening using AI and lead-quality data. Also produced a pre-launch ad set scored against 282 competitor ads, plus AI-assisted video and sound.</td><td class="proof-pre">Scored before launch</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="wrap">
-      <h2>What changed</h2>
-      <p class="lede">Campaign results, and problems found by comparing what reports said with what actually happened.</p>
-      <ul class="shift">
-        <li><div class="figure">55% higher<small>qualified-lead rate at similar CPL</small></div><div><h3>Lead form analysis</h3><p>Matched form answers to CRM stages. The same setup showed an estimated 42% lower cost per sale. Ad sets differed, so I treated this as strong but not final evidence.</p></div></li>
-        <li><div class="figure">37% lower<small>cost per lead</small></div><div><h3>Lead form and creative testing</h3><p>Combined form optimisation, creative A/B tests and controlled budget pacing. Conversion also rose from 0.75% to 1.30% on Meta and 0.65% to 1.5% on Google Search.</p></div></li>
-        <li><div class="figure">55% of ad spend<small>was missing from reports</small></div><div><h3>Hidden channel cost</h3><p>Messaging, SMS and automation costs sat outside ad reporting. Joining them changed how every efficiency number should be read.</p></div></li>
-        <li><div class="figure">122s to 1s<small>first reply time</small></div><div><h3>Speed to lead</h3><p>Every reply took exactly 122 seconds. Constant delay pointed to a routing fault, so the fix was in the wiring, not server capacity.</p></div></li>
-        <li><div class="figure">736 to 487<small>send attempts vs billed conversations</small></div><div><h3>Spend reporting fix</h3><p>Reports treated attempts as cost. Separating attempts, deliveries and billed conversations removed a 34% gap.</p></div></li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="dashboard" class="band">
-    <div class="wrap">
-      <h2>AI dashboard preview</h2>
-      <p class="lede">I built a live team dashboard joining CRM, Google Ads and Meta data. The real one needs company sign-in, so this recording uses sample data.</p>
-      <figure class="real-ui">
-        <video src="dashboard-walkthrough.mp4" poster="dashboard-poster.jpg" controls muted loop playsinline preload="metadata" aria-label="Walkthrough of the real dashboard interface using sample data"></video>
-        <figcaption>Real dashboard interface, recorded on sample data. Company names, people and numbers are replaced.</figcaption>
+      <figure class="laptop">
+        <div class="lid"><i></i><i></i><i></i><span>Real dashboard, sample data</span></div>
+        <video src="media/dashboard-walkthrough.mp4" poster="media/dashboard-poster.jpg" controls muted loop playsinline preload="metadata" aria-label="Real dashboard interface on sample data"></video>
       </figure>
-      <p class="real-link">Want to click around? <a href="dashboard.html">Open the interactive demo</a></p>
-      <h3 class="sub">How the dashboard thinks</h3>
+    </section>
+
+    <section class="pg" data-pg="meta" hidden>
+      <div class="crumb">Ads Manager view <em>Real results and sample rows are labelled</em></div>
+      <div class="tabs" id="metaTabs">
+        <button type="button" data-tab="campaigns" aria-pressed="true">Campaigns</button>
+        <button type="button" data-tab="adsets" aria-pressed="false">Ad sets</button>
+        <button type="button" data-tab="ads" aria-pressed="false">Ads</button>
+      </div>
+      <div class="meta-grid">
+        <div class="box"><div class="scroll"><table class="grid-t" id="metaTable"></table></div></div>
+        <figure class="phone"><div class="screen"><div class="feed-h"><i></i><b>Sample creative</b></div><img id="metaPreview" src="media/ad-5.jpg" alt="Ad preview"></div></figure>
+      </div>
+      <div class="cards three" id="metaCards"></div>
+      <div class="box">
+        <div class="box-h"><h2>Quality by level</h2><span class="pill">Sample</span></div>
+        <div class="levels" id="metaLevels"></div>
+      </div>
+    </section>
+
+    <section class="pg" data-pg="google" hidden>
+      <div class="crumb">Google Ads view <em>Real results and sample rows are labelled</em></div>
+      <div class="chips" id="gChips"></div>
+      <div class="box">
+        <div class="box-h"><h2>Conversion rate by month</h2><span class="pill">Sample trend</span></div>
+        <svg class="g-line" id="gLine" viewBox="0 0 900 230" role="img" aria-label="Sample rising conversion rate chart"></svg>
+      </div>
+      <div class="split">
+        <div class="box">
+          <div class="box-h"><h2>Search term cleaning</h2><span class="pill">Sample</span></div>
+          <div class="clean" id="clean">
+            <div><h3>History</h3><div data-col="in"></div></div>
+            <div><h3>■ Exclude</h3><div data-col="Exclude"></div></div>
+            <div><h3>◆ Check first</h3><div data-col="Check first"></div></div>
+            <div><h3>▲ Keep</h3><div data-col="Keep"></div></div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-h"><h2>Negative keyword lists</h2></div>
+          <div id="gNeg"></div>
+        </div>
+      </div>
+      <div class="box">
+        <div class="box-h"><h2>Keywords</h2><span class="pill">Sample</span></div>
+        <div class="scroll"><table class="grid-t" id="gKeywords"></table></div>
+      </div>
+    </section>
+
+    <section class="pg" data-pg="reports" hidden>
+      <div class="shots" id="shots"></div>
+      <div class="report-trio">
+        <div class="box"><div class="box-h"><h2>Sale rate by first-call speed</h2><span class="pill">Sample</span></div><div id="speed"></div></div>
+        <div class="box"><div class="box-h"><h2>City and advisor conversion</h2><span class="pill">Sample</span></div><div class="heat" id="heat"></div></div>
+        <div class="box"><div class="box-h"><h2>Who buys</h2><span class="pill">Sample</span></div><div id="donut"></div></div>
+      </div>
+      <p class="link-row"><a class="am-cta" href="dashboard.html">Open interactive dashboard</a></p>
       <div class="mock" id="mock">
         <p class="sr">Animated mock dashboard with sample numbers. It shows campaign performance, budget pacing and creative comparison, with an AI assistant recommending a budget change on each view.</p>
         <div class="mock-head">
@@ -380,14 +558,14 @@
           <p class="a" id="askAnswer"></p>
         </div>
       </div>
-      <p class="note">This mirrors how my real dashboards work, including data movement and AI review. All ads, programmes and numbers here are sample data, so no company data is shown.</p>
-    </div>
-  </section>
+      <p class="note">Animated sample. All ads, programmes and numbers are invented.</p>
+    </section>
 
-  <section id="ai-work">
-    <div class="wrap">
-      <h2>How I use AI at work</h2>
-      <p class="lede">Claude Code is my main workspace across these jobs, from data pulls and analysis to reports, automation and tools. Outputs are samples, and each one is labelled with its real status.</p>
+    <section class="pg" data-pg="ai" hidden>
+      <div class="box">
+        <div class="box-h"><h2>Claude Code connected stack</h2></div>
+        <svg class="map" id="toolMap" viewBox="0 0 1000 400" role="img" aria-label="Marketing tools flowing through Claude Code into dashboards, reports, fix lists and creative briefs"></svg>
+      </div>
       <div class="flows">
         <div class="flow-list" id="flowList" aria-label="AI workflows"></div>
         <div class="flow-window">
@@ -398,113 +576,38 @@
           <div class="flow-foot"><p id="flowTool"></p><button type="button" class="pause" id="flowPause">Pause animation</button></div>
         </div>
       </div>
-    </div>
-  </section>
+    
+    </section>
 
-  <section id="samples">
-    <div class="wrap">
-      <h2>Real analysis I've delivered</h2>
-      <p class="lede">Scope of work from real projects. Company names, private results and customer data are left out.</p>
-      <div class="samples">
-        <article><h3>Competitor video analysis</h3><p><b>853 ads</b> reviewed, then the top 25 videos analysed for hook, proof, message and format, with new hook ideas.</p></article>
-        <article><h3>Pre-launch growth review</h3><p><b>1,766 ads</b> collected from 30 competitors, plus 30 landing pages, social channels and a launch plan.</p></article>
-        <article><h3>Converted customer profile</h3><p><b>4,442 converted customers</b> studied by age, background, source, city and fee to define who actually buys.</p></article>
-        <article><h3>Funnel speed vs conversion</h3><p><b>28,078 leads</b> traced through CRM stage history to measure how first-call speed changes sales.</p></article>
-        <article><h3>Advisor and city conversion</h3><p>Six months of leads compared by city and advisor to find where conversion can improve.</p></article>
-        <article><h3>Campaign structure plan</h3><p>Analysis turned into Meta and Google structure, forms, creatives, budgets, rules and a timeline.</p></article>
-        <article><h3>SEO and AEO audit</h3><p>Search Console, GA4, Bing and CRM data combined, with keyword gaps, developer tickets and a 20-prompt AI answer test.</p></article>
-        <article><h3>Instagram content analysis</h3><p>A <b>900K+ follower</b> account reviewed across 5,689 posts to see what content performs.</p></article>
+    <section class="pg" data-pg="seo" hidden>
+      <div class="cards" id="seoCards"></div>
+      <div class="split">
+        <div class="box"><div class="box-h"><h2>AI answer test</h2><span class="pill">Sample grid</span></div><div class="scroll"><table class="grid-t center" id="aeoTable"></table></div></div>
+        <div class="box"><div class="box-h"><h2>Keyword gap</h2><span class="pill">Sample</span></div><div id="gap"></div></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="band" id="tools">
-    <div class="wrap two">
-      <div>
-        <h2>Tools and APIs I connect</h2>
-        <p class="lede">Claude Code connects data from each platform, then AI helps turn it into clear decisions. Keys and customer data stay private.</p>
+    <section class="pg" data-pg="creative" hidden>
+      <div class="split media-row">
+        <figure class="tablet"><video src="media/film.mp4" poster="media/film-poster.jpg" controls playsinline preload="none" aria-label="AI product film"></video><figcaption>AI film with voice and sound</figcaption></figure>
+        <figure class="phone small"><div class="screen dark"><video src="media/reel-paper.mp4" poster="media/reel-poster.jpg" controls muted loop playsinline preload="none" aria-label="AI motion reel"></video></div><figcaption>AI motion reel</figcaption></figure>
       </div>
-      <ul class="plain">
-        <li><strong>Apify</strong><span>Collect competitor ads from Meta Ad Library at scale.</span></li>
-        <li><strong>Meta and Google Ads APIs</strong><span>Pull spend, campaigns, ads, search terms and Quality Score.</span></li>
-        <li><strong>Meta Business Discovery API</strong><span>Compare public Instagram account activity.</span></li>
-        <li><strong>LeadSquared API</strong><span>Read lead stages, sources and activity history.</span></li>
-        <li><strong>Search Console, GA4 and Bing</strong><span>Measure organic visibility and traffic.</span></li>
-        <li><strong>Claude Code</strong><span>My main workspace to connect these tools, analyse data, build reports and ship fixes.</span></li>
-        <li><strong>Gemini API and Claude</strong><span>Read video and images, review creative and analyse data.</span></li>
-        <li><strong>n8n and scheduled jobs</strong><span>Run repeat work and refresh reports automatically.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap two">
-      <div>
-        <h2>Systems I've built with AI</h2>
-        <p class="lede">I'm a marketer, not a software engineer. I define the problem, direct Claude Code, test the result and fix what breaks in real use.</p>
+      <div class="box">
+        <div class="box-h"><h2>Pre-launch static ads</h2><span class="pill">Scored before launch</span></div>
+        <div class="gallery" id="adGallery"></div>
       </div>
-      <ul class="plain">
-        <li><strong>CRM and messaging platform</strong><span>A self-built product with lead capture, inbox, campaigns and analytics, used by one paying business customer.</span></li>
-        <li><strong>n8n and automation</strong><span>Started campaign delivery on self-hosted n8n, then moved to queue workers as send volume grew.</span></li>
-        <li><strong>WhatsApp journeys</strong><span>Click-to-WhatsApp flow with 27 nodes, buttons, list menus, media, booking and follow-up steps.</span></li>
-        <li><strong>AI reply and call coaching</strong><span>AI replies using a knowledge base, plus call recording, pre-call briefs and scorecards.</span></li>
-        <li><strong>Sales rep mobile app</strong><span>A 24-screen app with SIM calling, recording and follow-up tools, tested on real devices.</span></li>
-        <li><strong>Marketing dashboards</strong><span>Live reporting that joins CRM and ad-platform data with budget tracking.</span></li>
-      </ul>
-    </div>
-  </section>
+      <div class="box"><div class="box-h"><h2>Creative score</h2></div><div id="score"></div></div>
+    </section>
 
-  <section id="organic" class="band">
-    <div class="wrap">
-      <h2>Organic SEO and answer engine optimisation</h2>
-      <p class="lede">AEO means structuring content so AI tools and search engines can quote clear answers. I audited this on a large education brand, and built it into a product marketing site.</p>
-      <div class="numbers">
-        <div><b>70</b><span>pages with structured data</span></div>
-        <div><b>268</b><span>FAQ answers in schema</span></div>
-        <div><b>81</b><span>URLs in the sitemap</span></div>
-        <div><b>6</b><span>language homepages</span></div>
+    <section class="pg" data-pg="systems" hidden>
+      <div class="sys">
+        <figure class="phone"><div class="screen chat" id="chat"><div class="chat-h">Sample lead chat</div><div class="msgs" id="msgs"></div></div></figure>
+        <div class="box"><div class="box-h"><h2>Automation journey</h2><span class="pill">Sample</span></div><svg class="map" id="journey" viewBox="0 0 700 410" role="img" aria-label="Automation journey from lead to booking"></svg></div>
       </div>
-      <p class="limit">The audit tested 20 prompts across ChatGPT, Gemini, Perplexity and Google AI Overviews. For my own site build, traffic and AI citation results are not measured yet.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap two">
-      <div>
-        <h2>AI creative</h2>
-        <p class="lede">Competitor research first, then production. Scores are pre-launch quality checks, not ad results.</p>
-      </div>
-      <ul class="plain">
-        <li><strong>282 competitor ads analysed</strong><span>Reviewed for both message and visual design.</span></li>
-        <li><strong>34 ad files across 2 formats</strong><span>17 feed and 17 vertical ads, scored 8.13 out of 9 against a 7.14 competitor baseline.</span></li>
-        <li><strong>56-second product film</strong><span>Made with AI video, voice and a custom sound mix.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="wrap">
-      <h2>Experience</h2>
-      <div class="role"><span><b>Senior Performance Marketer</b>, Imarticus Learning</span><span>Jan 2024 to present</span></div>
-      <div class="role"><span><b>Digital Marketer, founding team</b>, Bversity</span><span>Jul 2022 to Dec 2023</span></div>
-      <div class="role"><span><b>Early roles</b> in lead generation, email marketing and design</span><span>Dec 2020 to Jun 2022</span></div>
-    </div>
-  </section>
-</main>
-
-<footer id="contact">
-  <div class="wrap">
-    <h2>Let's talk growth</h2>
-    <p>Open to remote performance marketing and growth roles.</p>
-    <div class="cta">
-      <a href="mailto:amarthya999@gmail.com">Email me</a>
-      <a href="tel:+919042999747">Call +91 90429 99747</a>
-      <a href="https://www.linkedin.com/in/sudheeramarthya/">View LinkedIn</a>
-      <a href="Sudheer_Amarthya_Resume.pdf">Open resume</a>
-    </div>
+      <div class="cards" id="sysCards"></div>
+    </section>
   </div>
-</footer>
-
+</div>
 <script>
 (() => {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -686,6 +789,180 @@
   pause.addEventListener('click', () => { paused = !paused; pause.textContent = paused ? 'Play animation' : 'Pause animation'; });
   fl.pause.addEventListener('click', () => { flowPaused = !flowPaused; fl.pause.textContent = flowPaused ? 'Play animation' : 'Pause animation'; });
   requestAnimationFrame(loop);
+})();
+</script>
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = id => document.getElementById(id);
+  const titles = { overview:'Overview', meta:'Meta Ads', google:'Google Ads', reports:'Dashboards', ai:'AI workflows', seo:'SEO and AEO', creative:'Creative', systems:'Systems' };
+  const spark = (pts, color = '#1a73e8') => {
+    const max = Math.max(...pts), x = i => i * 200 / (pts.length - 1), y = v => 31 - v / max * 28;
+    return `<svg viewBox="0 0 200 34" preserveAspectRatio="none" aria-hidden="true"><path d="${pts.map((v, i) => `${i ? 'L' : 'M'}${x(i)} ${y(v).toFixed(1)}`).join('')}" fill="none" stroke="${color}" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
+  };
+  const cards = (id, rows) => { $(id).innerHTML = rows.map(r => `<div class="card"><span>${r[0]}</span><b>${r[1]}</b>${r[2] ? spark(r[2], r[3]) : ''}</div>`).join(''); };
+  const bar = (label, value, pct, cls = '') => `<div class="lv-row"><span>${label}</span><b>${value}</b></div><div class="bar-s"><i class="${cls}" data-w="${pct}"></i></div>`;
+  const fillBars = root => requestAnimationFrame(() => root.querySelectorAll('[data-w]').forEach(b => { b.style.width = b.dataset.w + '%'; }));
+
+  // Overview
+  cards('ovCards', [['Cost per lead','-37%',[10,9,8.6,7.8,7,6.3],'#0a7d4f'],['Meta conversion','1.30%',[.75,.8,.92,1.04,1.18,1.3]],['Google conversion','1.5%',[.65,.72,.9,1.1,1.3,1.5]],['Qualified lead rate','+55%',[100,108,118,131,144,155],'#0a7d4f']]);
+  $('ovChannels').innerHTML = '<thead><tr><th>Channel</th><th>Status</th><th>Proof</th></tr></thead><tbody>' + [
+    ['Meta Ads','Active','Results','meta'],['Google Ads','Active','Results','google'],['CRM attribution','Active','Results','reports'],['AI and automation','Active','Built','ai'],['SEO and AEO','Active','Audit and build','seo'],['Creative','Active','Pre-launch score','creative']
+  ].map(r => `<tr data-open="${r[3]}" style="cursor:pointer"><td><b>${r[0]}</b></td><td><span class="dot"></span>${r[1]}</td><td>${r[2]}</td></tr>`).join('') + '</tbody>';
+  $('ovChannels').addEventListener('click', e => { const tr = e.target.closest('[data-open]'); if (tr) go(tr.dataset.open); });
+
+  // Meta
+  const metaData = {
+    campaigns:{ head:['','Campaign','Delivery','Result','Change'], rows:[
+      ['Lead form optimisation','Active','Cost per lead','-37%','up','ad-5'],
+      ['Higher-intent forms','Active','Qualified rate','+55%','up','ad-4'],
+      ['Conversion improvement','Active','Conversion rate','0.75% to 1.30%','up','ad-2'],
+      ['Creative testing','Completed','CTR','0.35% to 0.85%','up','ad-1'],
+      ['Webinar reactivation','Completed','ROAS','9+','up','ad-3'],
+      ['Scholarship nurture','Completed','Form completion','6% to 16%','up','ad-6']
+    ]},
+    adsets:{ head:['','Ad set (sample)','Delivery','Per lead','Qualified','Per qualified'], rows:[
+      ['Past buyers lookalike','Active','₹470','29%','₹1,620','ad-2'],
+      ['Interest, career switch','Active','₹360','19%','₹1,895','ad-1'],
+      ['Broad, metro cities','Active','₹310','8%','₹3,875','ad-5'],
+      ['Retargeting, form openers','Active','₹240','22%','₹1,090','ad-3']
+    ]},
+    ads:{ head:['','Ad','Delivery','Pre-launch score','Next step'], rows:[
+      ['Nobody follows up','Scored','8/9','Update hook','ad-2'],
+      ['A customer called','Scored','8/9','Keep','ad-3'],
+      ['Four channels','Scored','8/9','Keep','ad-1'],
+      ['Which ad brought them','Scored','7/9','Update hook','ad-4'],
+      ['A parent asked','Scored','9/9','Scale first','ad-6']
+    ]}
+  };
+  function renderMeta(tab) {
+    const d = metaData[tab];
+    $('metaTable').className = 'grid-t pick';
+    $('metaTable').innerHTML = '<thead><tr>' + d.head.map((h, i) => `<th${i ? '' : ' class="tg"'}>${h}</th>`).join('') + '</tr></thead><tbody>' + d.rows.map((r, i) => {
+      const img = r[r.length - 1];
+      const off = r[1] === 'Completed' || r[1] === 'Scored';
+      const name = tab === 'ads' ? `<img class="thumb" src="media/${img}.jpg" alt="">${r[0]}` : r[0];
+      let cells;
+      if (tab === 'campaigns') cells = `<td>${r[2]}</td><td class="up">${r[3]}</td>`;
+      else cells = r.slice(2, -1).map(c => `<td>${c}</td>`).join('');
+      return `<tr data-img="${img}"${i ? '' : ' class="on"'}><td class="tg"><span class="toggle${off ? ' is-off' : ''}"></span></td><td><b>${name}</b></td><td><span class="dot${off ? ' off' : ''}"></span>${r[1]}</td>${cells}</tr>`;
+    }).join('') + '</tbody>';
+    $('metaPreview').src = `media/${d.rows[0].at(-1)}.jpg`;
+    document.querySelectorAll('#metaTabs [data-tab]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tab === tab)));
+  }
+  $('metaTabs').addEventListener('click', e => { if (e.target.dataset.tab) renderMeta(e.target.dataset.tab); });
+  $('metaTable').addEventListener('click', e => {
+    const tr = e.target.closest('[data-img]');
+    if (!tr) return;
+    $('metaTable').querySelectorAll('tr').forEach(r => r.classList.remove('on'));
+    tr.classList.add('on');
+    $('metaPreview').src = `media/${tr.dataset.img}.jpg`;
+  });
+  renderMeta('campaigns');
+  cards('metaCards', [['Sale rate, paid-intent Yes vs No','6x'],['Cost per sale, better form','-42% est.'],['Competitor ads reviewed','1,766']]);
+  $('metaLevels').innerHTML = [['Creative',[['Reel',82,'good'],['Static',54,''],['Offer ad',18,'bad']]],['Ad set',[['Lookalike',76,'good'],['Interest',58,''],['Broad',24,'bad']]],['Campaign',[['Lead form',66,'good'],['Website',49,''],['Offline city',31,'bad']]],['Form',[['Higher intent',72,'good'],['Long form',61,''],['Short form',28,'bad']]]]
+    .map(([t, rows]) => `<div><h3>${t}</h3>${rows.map(r => bar(r[0], r[1], r[1], r[2])).join('')}</div>`).join('');
+
+  // Google
+  $('gChips').innerHTML = [['Conversion rate','1.5%','#1a73e8'],['Before','0.65%','#d93025'],['Negative keywords','800+','#f29900'],['Quality checks','4 levels','#188038']].map(c => `<div class="chip" style="background:${c[2]}"><span>${c[0]}</span><b>${c[1]}</b></div>`).join('');
+  const line = [.65,.68,.74,.8,.92,1.02,1.1,1.21,1.3,1.38,1.44,1.5];
+  const X = i => 44 + i * 760 / 11, Y = v => 200 - v / 1.8 * 180;
+  const gPath = line.map((v, i) => `${i ? 'L' : 'M'}${X(i)} ${Y(v).toFixed(1)}`).join('');
+  $('gLine').innerHTML = [0,.6,1.2,1.8].map(v => `<path d="M44 ${Y(v)}H860" stroke="#e6e9ed"/><text x="36" y="${Y(v)+4}" text-anchor="end">${v.toFixed(1)}%</text>`).join('')
+    + `<path id="gPath" d="${gPath}" fill="none" stroke="#1a73e8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${X(11)}" cy="${Y(1.5)}" r="5" fill="#1a73e8"/><text x="${X(11)+10}" y="${Y(1.5)+5}" style="fill:#1c2b33;font-weight:700">1.5%</text>`;
+  $('gNeg').innerHTML = [['Master list',492,100,'good'],['Bengaluru list',105,21,''],['Mumbai list',102,21,''],['Delhi list',93,19,''],['Check first',21,5,'bad']].map(r => bar(r[0], r[1], r[2], r[3])).join('');
+  $('gKeywords').innerHTML = '<thead><tr><th>Keyword</th><th>Match</th><th>Quality Score</th><th>Per lead</th><th>Qualified</th><th>Action</th></tr></thead><tbody>' + [
+    ['performance marketing course','Phrase',8,'₹640','31%','▲ Scale','up'],['digital marketing with placement','Exact',7,'₹710','28%','▲ Scale','up'],['digital marketing course','Phrase',5,'₹510','18%','● Split','keep'],['marketing course fees','Broad',4,'₹420','9%','◆ Review','keep'],['free marketing course','Broad',3,'₹90','0%','■ Exclude','down']
+  ].map(r => `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td><div class="bar-s" style="width:92px;display:inline-block;margin:0 7px 0 0;vertical-align:middle"><i class="${r[2] > 6 ? 'good' : r[2] < 5 ? 'bad' : ''}" data-w="${r[2]*10}"></i></div>${r[2]}/10</td><td>${r[3]}</td><td>${r[4]}</td><td class="${r[6]}">${r[5]}</td></tr>`).join('') + '</tbody>';
+
+  const terms = [['free course','Exclude'],['course pdf','Exclude'],['salary check','Exclude'],['other city','Exclude'],['course fees','Check first'],['online diploma','Check first'],['placement course','Keep'],['pro course','Keep']];
+  const colOf = n => document.querySelector(`#clean [data-col="${n}"]`);
+  let cleanStep = 0;
+  function cleanReset() { document.querySelectorAll('#clean [data-col]').forEach(c => { c.innerHTML = ''; }); colOf('in').innerHTML = terms.map(t => `<div class="term" data-t="${t[0]}">${t[0]}</div>`).join(''); cleanStep = 0; }
+  function cleanTick() {
+    if (cleanStep >= terms.length + 3) return cleanReset();
+    if (cleanStep < terms.length) {
+      const [t, col] = terms[cleanStep];
+      const el = document.querySelector(`#clean [data-t="${t}"]`);
+      if (el) colOf(col).append(el);
+    }
+    cleanStep++;
+  }
+  cleanReset();
+  if (reduced) { terms.forEach(t => colOf(t[1]).append(document.querySelector(`#clean [data-t="${t[0]}"]`))); }
+
+  // Dashboards
+  $('shots').innerHTML = [['ui-dashboard','Funnel dashboard'],['ui-insights','Insights'],['ui-ad-performance','Ad performance'],['ui-budget','Budget and spend']].map(s => `<figure class="browser"><div class="lid"><i></i><i></i><i></i><span>${s[1]}, sample data</span></div><img src="media/${s[0]}.jpg" alt="${s[1]} screen on sample data" loading="lazy"></figure>`).join('');
+  $('speed').innerHTML = [['Under 1 hour','1.7%',100,'good'],['1 to 4 hours','1.2%',71,'good'],['4 to 24 hours','0.8%',47,''],['1 to 3 days','0.5%',29,'bad'],['Over 3 days','0.2%',12,'bad']].map(r => bar(r[0], r[1], r[2], r[3])).join('');
+  const heat = [[9,6,11,4,8],[5,12,7,3,6],[10,8,4,9,5],[3,6,8,11,7]];
+  $('heat').innerHTML = '<div></div>' + 'ABCDE'.split('').map(c => `<div><b>Adv ${c}</b></div>`).join('') + heat.map((r, i) => `<div><b>City ${i + 1}</b></div>` + r.map(v => `<div style="background:rgba(26,115,232,${(v / 12 * .85).toFixed(2)});color:${v > 7 ? '#fff' : '#1c2b33'}">${v}%</div>`).join('')).join('');
+  const seg = [['21 to 24',46,'#1a73e8'],['25 to 29',28,'#0b8469'],['30 to 34',16,'#c4620e'],['35+',10,'#8a5cbe']];
+  let off = 0; const C = 2 * Math.PI * 38;
+  $('donut').innerHTML = `<div class="donut"><svg viewBox="0 0 100 100" aria-hidden="true">${seg.map(s => { const len = s[1] / 100 * C; const out = `<circle cx="50" cy="50" r="38" fill="none" stroke="${s[2]}" stroke-width="15" stroke-dasharray="${len - 1} ${C - len + 1}" stroke-dashoffset="${-off}" transform="rotate(-90 50 50)"/>`; off += len; return out; }).join('')}</svg><ul>${seg.map(s => `<li><i style="background:${s[2]}"></i>${s[0]}: ${s[1]}%</li>`).join('')}</ul></div>`;
+
+  // AI stack map
+  const left = ['Meta Ads','Google Ads','CRM','Apify','Search Console','GA4'], right = ['Dashboards','Reports','Fix lists','Creative briefs'];
+  const lp = left.map((n, i) => [n, 96, 42 + i * 63]), rp = right.map((n, i) => [n, 900, 80 + i * 80]);
+  const dots = (d, i) => reduced ? '' : `<circle r="4.5" fill="#ffc53d"><animateMotion dur="3s" begin="${(i * .4).toFixed(1)}s" repeatCount="indefinite" path="${d}"/></circle>`;
+  let links = '', moving = '';
+  lp.forEach((n, i) => { const d = `M${n[1] + 80} ${n[2]} C330 ${n[2]} 330 200 415 200`; links += `<path d="${d}" fill="none" stroke="#c9d0d8"/>`; moving += dots(d, i); });
+  rp.forEach((n, i) => { const d = `M585 200 C680 200 680 ${n[2]} ${n[1] - 80} ${n[2]}`; links += `<path d="${d}" fill="none" stroke="#c9d0d8"/>`; moving += dots(d, i + 2); });
+  const node = n => `<rect class="nd" x="${n[1] - 80}" y="${n[2] - 21}" width="160" height="42" rx="8"/><text class="nt" x="${n[1]}" y="${n[2]}">${n[0]}</text>`;
+  $('toolMap').innerHTML = links + moving + lp.map(node).join('') + rp.map(node).join('') + `<rect class="core" x="415" y="150" width="170" height="100" rx="13"/><text class="ct" x="500" y="186" style="font-size:18px">Claude Code</text><text class="ct" x="500" y="214" style="font-weight:500">+ Gemini API</text>`;
+
+  // SEO
+  cards('seoCards', [['Pages with schema','70'],['FAQ answers','268'],['Sitemap URLs','81'],['Languages','6']]);
+  const yes = '<span class="up">✓</span>', no = '<span class="down">✕</span>';
+  $('aeoTable').innerHTML = '<thead><tr><th>Prompt</th><th>ChatGPT</th><th>Gemini</th><th>Perplexity</th><th>AI Overview</th></tr></thead><tbody>' + [['Best course prompt',yes,no,yes,no],['Fees prompt',no,yes,yes,no],['Placement prompt',no,no,yes,yes],['Reviews prompt',yes,yes,no,no],['City prompt',no,yes,no,yes]].map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('') + '</tbody>';
+  $('gap').innerHTML = [['How-to questions',92,'bad'],['City pages',71,'bad'],['Comparison pages',58,''],['Salary topics',44,''],['Brand terms',18,'good']].map(r => bar(r[0], r[1] + ' gaps', r[1], r[2])).join('');
+
+  // Creative
+  $('adGallery').innerHTML = [['ad-6','9/9'],['ad-1','8/9'],['ad-2','8/9'],['ad-3','8/9'],['ad-4','7/9'],['ad-5','Concept']].map(a => `<figure><img src="media/${a[0]}.jpg" alt="Pre-launch static ad" loading="lazy"><figcaption>${a[1]}</figcaption></figure>`).join('');
+  $('score').innerHTML = bar('My ad set', '8.13 / 9', 90, 'good') + bar('Competitor baseline, 282 ads', '7.14 / 9', 79, '');
+
+  // Systems
+  const journey = [['New lead',70,50],['Instant reply',245,50],['Wait for reply',420,50],['Tap button',595,50],['Send brochure',245,205],['Book call',420,205],['Remind',595,205],['Notify owner',420,345]];
+  const jl = [[0,1],[1,2],[2,3],[3,6],[6,5],[5,4],[5,7]];
+  const jp = jl.map(([a, b]) => `M${journey[a][1]} ${journey[a][2]} L${journey[b][1]} ${journey[b][2]}`);
+  $('journey').innerHTML = jp.map(d => `<path d="${d}" stroke="#c9d0d8" stroke-width="2" fill="none"/>`).join('') + jp.map(dots).join('')
+    + journey.map(n => `<rect class="nd" x="${n[1]-68}" y="${n[2]-23}" width="136" height="46" rx="9"/><text class="nt" x="${n[1]}" y="${n[2]}">${n[0]}</text>`).join('');
+  cards('sysCards', [['Reply time','122s to 1s',[122,100,60,20,4,1],'#0a7d4f'],['Journey steps','27'],['Rep app screens','24'],['Reports','Hourly']]);
+  const chat = [['out','Hi, can I get fee details?'],['in','Hi Priya, choose what you need:<button>Fees</button><button>Batch dates</button><button>Talk to advisor</button>'],['out','Talk to advisor'],['in','Done. Pick a time for your call.'],['out','Today, 6 pm'],['in','Booked. Reminder set.']];
+  let chatStep = 0;
+  function chatTick() {
+    const box = $('msgs');
+    if (chatStep >= chat.length + 2) { box.innerHTML = ''; chatStep = 0; }
+    if (chatStep < chat.length) box.insertAdjacentHTML('beforeend', `<div class="msg ${chat[chatStep][0] === 'out' ? '' : 'out'}">${chat[chatStep][1]}</div>`);
+    chatStep++;
+  }
+  if (reduced) chat.forEach(chatTick); else chatTick();
+
+  // Page routing
+  function go(page, push = true) {
+    if (!titles[page]) page = 'overview';
+    document.querySelectorAll('.pg').forEach(p => { p.hidden = p.dataset.pg !== page; });
+    document.querySelectorAll('#amNav [data-go]').forEach(b => { b.dataset.go === page ? b.setAttribute('aria-current', 'page') : b.removeAttribute('aria-current'); });
+    $('amTitle').textContent = titles[page];
+    document.querySelectorAll('.pg video').forEach(v => { if (!v.closest('[hidden]')) return; v.pause(); });
+    const live = document.querySelector(`.pg[data-pg="${page}"]`);
+    fillBars(live);
+    if (page === 'google' && !reduced) {
+      const p = $('gPath'), L = p.getTotalLength();
+      p.style.transition = 'none'; p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+      requestAnimationFrame(() => requestAnimationFrame(() => { p.style.transition = 'stroke-dashoffset 1.5s ease'; p.style.strokeDashoffset = 0; }));
+    }
+    if (page === 'overview' && !reduced) { const v = live.querySelector('video'); v.play().catch(() => {}); }
+    scrollTo(0, 0);
+    if (push) history.replaceState(null, '', '#' + page);
+  }
+  $('amNav').addEventListener('click', e => { if (e.target.dataset.go) go(e.target.dataset.go); });
+  addEventListener('hashchange', () => go(location.hash.slice(1), false));
+  if (!reduced) setInterval(() => {
+    if (document.hidden) return;
+    if (!document.querySelector('[data-pg="google"]').hidden) cleanTick();
+    if (!document.querySelector('[data-pg="systems"]').hidden) chatTick();
+  }, 950);
+  go(location.hash.slice(1) || 'overview', false);
 })();
 </script>
 </body>
