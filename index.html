@@ -866,7 +866,7 @@
     ['Google Ads','Click to lead, old vs new page','0%','6.4%','+6.4 pts','google'],
     ['CRM attribution','Lead to interest','14%','23%','+64%','reports'],
     ['Lead nurture','Form completion','6%','16%','+167%','systems'],
-    ['AI and automation','First reply time','122s','1s','-99%','ai'],
+    ['AI and automation','Messaging spend traced to campaign','5.2%','91.4%','+86.2 pts','ai'],
     ['Creative','Competitor vs my score','7.14','8.13','+14%','creative']
   ].map(r => `<tr data-open="${r[5]}" style="cursor:pointer"><td><b>${r[0]}</b><small class="ch-m">${r[1]}</small></td><td class="ch-from">${r[2]}</td><td class="ch-arrow" aria-hidden="true">▶</td><td class="ch-to">${r[3]}</td><td class="up">${r[4]}</td></tr>`).join('') + '</tbody>';
   $('ovChannels').addEventListener('click', e => { const tr = e.target.closest('[data-open]'); if (tr) go(tr.dataset.open); });
