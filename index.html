@@ -343,6 +343,12 @@
   .pg .flows { grid-template-columns:230px minmax(0,1fr); gap:12px; }
   .flow-list button { font-size:13.5px; padding:7px 9px; }
   .flow-window { min-height:430px; }
+  .mmm-row { display:grid; grid-template-columns:132px minmax(0,1fr) 54px; align-items:center; gap:8px; margin:9px 0; font-size:13px; }
+  .mmm-track { position:relative; height:22px; background:#f0f2f5; border-radius:4px; }
+  .mmm-tag { position:absolute; left:0; top:15px; height:5px; background:#9aa4ae; border-radius:3px; }
+  .mmm-range { position:absolute; top:2px; height:11px; background:#2456B8; border-radius:3px; }
+  .mmm-row b { text-align:right; }
+  .mmm-note { margin:6px 0 0; color:var(--soft); font-size:12.5px; }
   .wbs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
   .wb { min-width:0; margin:0; overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:8px; box-shadow:0 5px 15px rgba(20,30,40,.08); }
   .wb-t { display:flex; align-items:center; gap:7px; padding:6px 9px; color:#fff; background:#217346; font-size:12.5px; }
@@ -503,6 +509,7 @@
 
     <section class="pg" data-pg="reports" hidden>
       <div class="wbs">
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Incrementality and MMM</span><em>Real ranges</em></div><h3>Sales share: CRM tag vs model</h3><div id="mmmChart"></div><div class="wb-tabs"><i>Start here</i><i>MMM</i><i>City model</i><i>Pause tests</i><i>Test plan</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>SEO and AEO dashboard</span><em>Sample numbers</em></div><h3>Nonbrand clicks per month</h3><div data-chart="seoLine"></div><div class="wb-tabs"><i>Dashboard</i><i>Action plan</i><i>Keyword gap</i><i>AI answer test</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>SEO and AEO dashboard</span><em>Sample numbers</em></div><h3>AI assistant sessions per month</h3><div data-chart="aiArea"></div><div class="wb-tabs"><i>Dashboard</i><i>AEO-GEO</i><i>AI platforms</i><i>Bing</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>Instagram analysis</span><em>Sample numbers</em></div><h3>Accounts reached per month</h3><div data-chart="igLine"></div><div class="wb-tabs"><i>Scorecard</i><i>Monthly trend</i><i>Content mix</i><i>Reel review</i></div></figure>
@@ -759,6 +766,8 @@
 
   // AI workflow mockups.
   const flows = [
+    { name:'Incrementality and MMM', proof:'Used on real work', prompt:'Find how many sales the ads really caused, not just what the CRM tags to them.', steps:['Pull weekly spend from Meta and Google APIs','Join 312K CRM leads and won sales','Run MMM, city models and pause tests'], title:'Sample output: verdict', out:[['CRM-tagged share','71%'],['Model range','30% to 60%'],['Next step','City pause test']], tool:'Separates real lift from attribution, with ranges stated honestly.' },
+    { name:'AI call analysis', proof:'Used on real work', prompt:'Listen to sales calls and tell me why leads do not buy.', steps:['Collect call recordings','Gemini summarises each call','Rank objections and fixes'], title:'Sample output: objections', out:[['Top objection','Fees'],['Calls reviewed','230'],['Fix','Earlier EMI message']], tool:'Turns calls into creative and sales fixes.' },
     { name:'Connected quality checks', proof:'Used on real work', prompt:'Check CRM, Meta Ads and Google Ads together, then show quality problems at every level.', steps:['Join CRM stages with ad data','Calculate quality by creative, ad set, campaign and keyword','Rank issues by spend and impact'], title:'Sample output: top issue', out:[['Level','Keyword'],['Quality metric','Cost per qualified lead'],['Next step','Move budget to better intent']], tool:'Claude Code works across CRM and ad data, so issues get solved sooner.' },
     { name:'Search term cleaning', proof:'Used on real work', prompt:'Clean Google search terms using all-time history and CRM quality.', steps:['Pull historical search terms','Check which terms produced qualified leads','Create exclude, check-first and city lists'], title:'Sample output: cleaning result', out:[['Exclude','Zero-quality terms'],['Check first','Mixed-intent terms'],['Real negative keywords built','800+']], tool:'Clear waste is listed automatically. Unclear terms stay for review.' },
     { name:'Ads management with Claude Code', proof:'Used on real work', prompt:'Find why results dropped this week, then show me the fix before anything changes.', steps:['Read ad, form and CRM data','Find the cause by campaign and creative','Prepare the fix for my approval'], title:'Sample output: issue report', out:[['Issue','Qualified rate fell'],['Likely cause','New short form'],['Proposed fix','Test the longer form again']], tool:'Claude Code speeds up checks and fixes. I approve budget and campaign changes.' },
@@ -859,7 +868,7 @@
 
   // Overview
   cards('ovCards', [['Cost per lead','-37%',[10,9,8.6,7.8,7,6.3],'#0a7d4f'],['Meta conversion','1.30%',[.75,.8,.92,1.04,1.18,1.3]],['Google click to lead','6.4%',[1.2,2.1,3,4.2,5.4,6.4]],['Qualified lead rate','+55%',[100,108,118,131,144,155],'#0a7d4f']]);
-  cards('ovMore', [['Lead to sale','3.1%'],['Qualified to sale','19%'],['Fast-contact sale rate','13.3%'],['Quarterly ROAS','3.2'],['Webinar ROAS','9+'],['Leads analysed','63K+']]);
+  cards('ovMore', [['Monthly paid budget','₹62L'],['Best month vs target','151%'],['Best-month ROAS','5.6x'],['Lead to sale','3.1%'],['Fast-contact sale rate','13.3%'],['CRM leads modelled','312K']]);
   $('ovChannels').innerHTML = '<thead><tr><th>Channel</th><th>From</th><th></th><th>To</th><th>Change</th></tr></thead><tbody>' + [
     ['Sales conversion','Reached after 7 days vs within 1 hour','0.9%','13.3%','+12.4 pts','reports'],
     ['Meta Ads','Click-through rate','0.35%','0.85%','+143%','meta'],
@@ -1086,6 +1095,8 @@
     scatter: scatter([[206,4.4,9,C.green],[197,4.1,8,C.green],[212,3.9,7,C.green],[107,3.7,7,C.green],[150,3.3,6,C.green],[13,4.2,8,C.orange],[20,3.8,6,C.orange],[34,3.5,6,C.orange],[55,3.2,5,C.orange],[40,2.9,5,C.blue],[26,3.1,5,C.blue],[9,2.5,4,C.blue],[16,2.1,4,C.blue],[66,2.4,4,C.blue]]),
     budget: bars([{ n:'Search', c:C.blue, v:[8.1,7.6,6.2,5.8] }, { n:'Meta', c:C.green, v:[1.1,1.8,3.4,4.2] }, { n:'Display', c:C.orange, v:[.6,.8,.9,1.1] }], ['Programme A','Programme B','Programme C','Programme D'], { stacked:true, fmt:v => '₹' + +v.toFixed(1) + 'L' })
   };
+  const mmmRows = [['Programme A, paid',71,30,60],['Programme B, Google',24,10,35],['Programme B, Meta',5,0,12],['Programme C, paid',40,5,25]];
+  document.getElementById('mmmChart').innerHTML = '<ul class="wb-legend"><li><i style="background:#9aa4ae"></i>CRM-tagged share</li><li><i style="background:#2456B8"></i>Model range</li></ul>' + mmmRows.map(r => `<div class="mmm-row"><span>${r[0]}</span><div class="mmm-track"><i class="mmm-tag" style="width:${r[1]}%"></i><i class="mmm-range" style="left:${r[2]}%;width:${Math.max(r[3]-r[2],1)}%"></i></div><b>${r[2]}-${r[3]}%</b></div>`).join('') + '<p class="mmm-note">CRM tags gave paid ads more credit than the models support.</p>';
   document.querySelectorAll('[data-chart]').forEach(el => { el.innerHTML = charts[el.dataset.chart]; });
   requestAnimationFrame(() => document.querySelectorAll('.wb [data-w]').forEach(b => { b.style.width = b.dataset.w + '%'; }));
 })();
