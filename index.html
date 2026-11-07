@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sudheer Amarthya, AI-first growth marketer</title>
-<meta name="description" content="AI-first growth marketer in Bengaluru. Paid media, CRM attribution, automation, SEO and AEO, with proof of what each one did.">
+<title>Sudheer Amarthya, AI-first performance marketer</title>
+<meta name="description" content="AI-first performance marketer in Bengaluru. Meta and Google Ads, CRM attribution, data analysis and automation, with proof of what each one did.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -422,7 +422,7 @@
       <button type="button" data-go="google">Google Ads</button>
       <button type="button" data-go="reports">Dashboards</button>
       <button type="button" data-go="ai">AI workflows</button>
-      <button type="button" data-go="seo">SEO and AEO</button>
+      <button type="button" data-go="seo">Data analysis</button>
       <button type="button" data-go="creative">Creative</button>
       <button type="button" data-go="systems">Systems</button>
     </nav>
@@ -436,7 +436,7 @@
 
   <div class="am-main">
     <header class="am-top">
-      <div><strong id="amTitle">Overview</strong><span>AI-first growth marketer, Bengaluru</span></div>
+      <div><strong id="amTitle">Overview</strong><span>AI-first performance marketer, Bengaluru</span></div>
       <a class="am-cta" href="mailto:amarthya999@gmail.com">Contact me</a>
     </header>
 
@@ -510,8 +510,8 @@
     <section class="pg" data-pg="reports" hidden>
       <div class="wbs">
         <figure class="wb"><div class="wb-t"><b>X</b><span>Incrementality and MMM</span><em>Real ranges</em></div><h3>Sales share: CRM tag vs model</h3><div id="mmmChart"></div><div class="wb-tabs"><i>Start here</i><i>MMM</i><i>City model</i><i>Pause tests</i><i>Test plan</i></div></figure>
-        <figure class="wb"><div class="wb-t"><b>X</b><span>SEO and AEO dashboard</span><em>Sample numbers</em></div><h3>Nonbrand clicks per month</h3><div data-chart="seoLine"></div><div class="wb-tabs"><i>Dashboard</i><i>Action plan</i><i>Keyword gap</i><i>AI answer test</i></div></figure>
-        <figure class="wb"><div class="wb-t"><b>X</b><span>SEO and AEO dashboard</span><em>Sample numbers</em></div><h3>AI assistant sessions per month</h3><div data-chart="aiArea"></div><div class="wb-tabs"><i>Dashboard</i><i>AEO-GEO</i><i>AI platforms</i><i>Bing</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Website analytics dashboard</span><em>Sample numbers</em></div><h3>Nonbrand clicks per month</h3><div data-chart="seoLine"></div><div class="wb-tabs"><i>Dashboard</i><i>Action plan</i><i>Keyword gap</i><i>AI answer test</i></div></figure>
+        <figure class="wb"><div class="wb-t"><b>X</b><span>Website analytics dashboard</span><em>Sample numbers</em></div><h3>AI assistant sessions per month</h3><div data-chart="aiArea"></div><div class="wb-tabs"><i>Dashboard</i><i>AEO-GEO</i><i>AI platforms</i><i>Bing</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>Instagram analysis</span><em>Sample numbers</em></div><h3>Accounts reached per month</h3><div data-chart="igLine"></div><div class="wb-tabs"><i>Scorecard</i><i>Monthly trend</i><i>Content mix</i><i>Reel review</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>Instagram analysis</span><em>Sample numbers</em></div><h3>Follows vs unfollows</h3><div data-chart="igBars"></div><div class="wb-tabs"><i>Format and timing</i><i>Captions and CTA</i><i>Audience</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>Funnel speed vs conversion</span><em>Real percentages</em></div><h3>Sale rate by time to reach lead</h3><div id="speed"></div><div class="wb-tabs"><i>Summary</i><i>Funnel</i><i>Stage timing</i><i>Speed vs conv</i></div></figure>
@@ -642,8 +642,8 @@
     <section class="pg" data-pg="seo" hidden>
       <div class="cards" id="seoCards"></div>
       <div class="split">
-        <div class="box"><div class="box-h"><h2>AI answer test</h2><span class="pill">Sample grid</span></div><div class="scroll"><table class="grid-t center" id="aeoTable"></table></div></div>
-        <div class="box"><div class="box-h"><h2>Keyword gap</h2><span class="pill">Sample</span></div><div id="gap"></div></div>
+        <div class="box"><div class="box-h"><h2>Analysis library</h2><span class="pill">Real work</span></div><div class="scroll"><table class="grid-t" id="aeoTable"></table></div></div>
+        <div class="box"><div class="box-h"><h2>Where sales leak</h2><span class="pill">Real percentages</span></div><div id="gap"></div></div>
       </div>
     </section>
 
@@ -857,7 +857,7 @@
 (() => {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = id => document.getElementById(id);
-  const titles = { overview:'Overview', meta:'Meta Ads', google:'Google Ads', reports:'Dashboards', ai:'AI workflows', seo:'SEO and AEO', creative:'Creative', systems:'Systems' };
+  const titles = { overview:'Overview', meta:'Meta Ads', google:'Google Ads', reports:'Dashboards', ai:'AI workflows', seo:'Data analysis', creative:'Creative', systems:'Systems' };
   const spark = (pts, color = '#1a73e8') => {
     const max = Math.max(...pts), x = i => i * 200 / (pts.length - 1), y = v => 31 - v / max * 28;
     return `<svg viewBox="0 0 200 34" preserveAspectRatio="none" aria-hidden="true"><path d="${pts.map((v, i) => `${i ? 'L' : 'M'}${x(i)} ${y(v).toFixed(1)}`).join('')}" fill="none" stroke="${color}" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
@@ -980,10 +980,18 @@
   $('toolMap').innerHTML = links + moving + lp.map(node).join('') + rp.map(node).join('') + `<rect class="core" x="415" y="150" width="170" height="100" rx="13"/><text class="ct" x="500" y="186" style="font-size:18px">Claude Code</text><text class="ct" x="500" y="214" style="font-weight:500">+ Gemini API</text>`;
 
   // SEO
-  cards('seoCards', [['Pages with schema','70'],['FAQ answers','268'],['Sitemap URLs','81'],['Languages','6']]);
-  const yes = '<span class="up">✓</span>', no = '<span class="down">✕</span>';
-  $('aeoTable').innerHTML = '<thead><tr><th>Prompt</th><th>ChatGPT</th><th>Gemini</th><th>Perplexity</th><th>AI Overview</th></tr></thead><tbody>' + [['Best course prompt',yes,no,yes,no],['Fees prompt',no,yes,yes,no],['Placement prompt',no,no,yes,yes],['Reviews prompt',yes,yes,no,no],['City prompt',no,yes,no,yes]].map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('') + '</tbody>';
-  $('gap').innerHTML = [['How-to questions',92,'bad'],['City pages',71,'bad'],['Comparison pages',58,''],['Salary topics',44,''],['Brand terms',18,'good']].map(r => bar(r[0], r[1] + ' gaps', r[1], r[2])).join('');
+  cards('seoCards', [['CRM leads modelled','312K'],['Sales analysed','6,386'],['Calls analysed','230'],['Workbooks built','156']]);
+  $('aeoTable').innerHTML = '<thead><tr><th>Analysis</th><th>Data</th><th>Finding</th></tr></thead><tbody>' + [
+    ['Incrementality and MMM','312K leads, weekly spend','CRM tags overstate paid credit'],
+    ['Funnel speed','63K leads, stage history','1-hour contact sells far more'],
+    ['Customer profile','4,442 buyers, 230 calls','6% of leads give 25% of buyers'],
+    ['Creative cost','Meta ads with CRM quality','46 creatives took 51% of spend'],
+    ['Search terms','All-time Google terms','800+ negatives built'],
+    ['Website and AI answers','Search Console, GA4, Bing','0 of 4,521 web leads had UTMs'],
+    ['Instagram','5,689 posts','Lead drop traced to bio link'],
+    ['Competitor ads','853 video ads','Long-running hooks ranked']
+  ].map(r => `<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('') + '</tbody>';
+  $('gap').innerHTML = [['Reached in 1 hour, sale rate',13.3,100,'good'],['Reached after 7 days, sale rate',0.9,7,'bad'],['Qualified to sale',19,100,'good'],['Lead to sale',3.1,23,''],['Paid-intent Yes vs No, sale rate','6x',100,'good']].map(r => bar(r[0], typeof r[1] === 'number' ? r[1] + '%' : r[1], r[2], r[3])).join('');
 
   // Creative
   $('adGallery').innerHTML = [['ad-6','9/9'],['ad-1','8/9'],['ad-2','8/9'],['ad-3','8/9'],['ad-4','7/9'],['ad-5','Concept']].map(a => `<figure><img src="media/${a[0]}.jpg" alt="Pre-launch static ad" loading="lazy"><figcaption>${a[1]}</figcaption></figure>`).join('');
