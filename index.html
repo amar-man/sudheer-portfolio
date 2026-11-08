@@ -358,6 +358,67 @@
   .rec footer span { color:var(--soft); }
   .pill-link { font-size:12.5px; font-weight:600; }
   @media (max-width:820px) { .rec-grid { grid-template-columns:1fr; } }
+  /* ---- rebuild: home, cases, tools, badges ---- */
+  .nav-label { margin:14px 11px 4px; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--soft); }
+  .pill.real { color:#0a6b44; background:#e3f5ec; }
+  .pill.sample { color:#5f6b76; background:#eceff2; }
+  .pill.built { color:#1a56b0; background:#e8f0fe; }
+  .sa-intro { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:18px; margin-bottom:16px; }
+  .sa-intro-text { padding:26px 28px; color:#fff; background:linear-gradient(135deg,#1c2b33,#22404f); border-radius:14px; }
+  .sa-intro-kicker { margin:0 0 10px; color:#8ab4f8; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+  .sa-intro h1 { margin:0 0 12px; font:800 clamp(28px,3.4vw,40px)/1.12 var(--display); letter-spacing:-.01em; }
+  .sa-intro-sub { margin:0 0 20px; color:#d4dee6; font-size:16px; line-height:1.55; max-width:56ch; }
+  .sa-intro-cta { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  .sa-intro-cta button { border:0; cursor:pointer; font:600 15px var(--body); padding:10px 16px; }
+  .sa-intro h1 { max-width:none; }
+  .sa-intro .sa-intro-text a:not(.am-cta):not(.open-dash) { color:#8ab4f8; text-decoration-color:rgba(138,180,248,.6); font-weight:600; }
+  .sa-intro-side { padding:22px 24px; background:#fff; border:1px solid var(--line); border-radius:14px; }
+  .sa-intro-side h2 { margin:0 0 10px; font:700 16px var(--body); }
+  .sa-intro-side ul { margin:0; padding-left:18px; display:grid; gap:10px; font-size:14.5px; line-height:1.5; }
+  .proof { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-bottom:22px; }
+  .proof-card { padding:14px 16px; background:#fff; border:1px solid var(--line); border-radius:10px; }
+  .proof-card b { display:block; margin:8px 0 2px; font:800 30px/1.1 var(--display); }
+  .proof-card > p { margin:0 0 8px; color:var(--soft); font-size:13.5px; line-height:1.45; }
+  .proof-card details { font-size:13px; }
+  .proof-card summary { cursor:pointer; color:var(--blue); font-weight:600; }
+  .proof-card details p { margin:6px 0 0; color:var(--ink); line-height:1.5; }
+  .sec-h { display:flex; justify-content:space-between; align-items:center; gap:10px; margin:6px 0 10px; }
+  .sec-h h2 { margin:0; font:700 18px var(--body); }
+  .link-btn { border:0; background:none; color:var(--blue); font:600 14px var(--body); cursor:pointer; text-decoration:underline; text-decoration-color:rgba(26,115,232,.45); text-underline-offset:3px; }
+  .feat { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-bottom:22px; }
+  .feat-card { display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; text-align:left; padding:16px; background:#fff; border:1px solid var(--line); border-radius:10px; cursor:pointer; font:inherit; color:inherit; transition:border-color .15s, box-shadow .15s; }
+  .feat-card:hover { border-color:var(--blue); box-shadow:0 2px 10px rgba(26,115,232,.12); }
+  .feat-card h3 { margin:10px 0 6px; font:700 16px/1.3 var(--body); }
+  .feat-card p { margin:0 0 10px; color:var(--soft); font-size:14px; line-height:1.5; }
+  .feat-card em { font-style:normal; color:var(--blue); font-weight:600; font-size:13.5px; }
+  .sample-note { margin:8px 0 18px; color:var(--soft); font-size:13.5px; }
+  .page-intro { margin:0 0 16px; max-width:80ch; color:var(--soft); font-size:15px; line-height:1.55; }
+  .case { margin-bottom:18px; padding:18px 20px; background:#fff; border:1px solid var(--line); border-radius:12px; scroll-margin-top:70px; }
+  .case-h h2 { margin:8px 0 14px; font:700 20px/1.3 var(--body); }
+  .case-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+  .case-step { padding:12px 14px; background:var(--mist); border-radius:8px; }
+  .case-step.decide { background:#e8f0fe; border-left:3px solid var(--blue); }
+  .case-step h3 { margin:0 0 6px; font:700 12px var(--body); letter-spacing:.06em; text-transform:uppercase; color:var(--soft); }
+  .case-step.decide h3 { color:var(--blue); }
+  .case-step p { margin:0; font-size:14px; line-height:1.55; }
+  .case-demo { margin-top:12px; }
+  .case-demo .trace { padding:18px 20px; }
+  .case-demo .trace-number { font-size:clamp(56px,8vw,96px); }
+  .case-demo .trace-note { min-height:0; }
+  .how { margin:12px 0 0; padding-top:10px; border-top:1px dashed var(--line); color:var(--soft); font-size:13.5px; line-height:1.5; }
+  .how b { color:var(--ink); }
+  .tool-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-bottom:22px; }
+  .tool { padding:14px 16px; background:#fff; border:1px solid var(--line); border-radius:10px; }
+  .tool-h { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:6px; }
+  .tool-h h3 { margin:0; font:700 16px var(--body); }
+  .tool p { margin:0 0 6px; font-size:14px; line-height:1.5; }
+  .tool .replaces { margin:0; color:var(--soft); font-size:13.5px; }
+  .tool .replaces b { color:var(--ink); }
+  .lib-note { margin:0 0 14px; padding:10px 14px; background:#fff8e1; border:1px solid #f3e1a6; border-radius:8px; font-size:14px; line-height:1.5; }
+  @media (max-width:1100px) { .case-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .proof { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:820px) { .sa-intro, .feat, .tool-grid { grid-template-columns:1fr; } }
+  @media (max-width:900px) { .nav-label { display:none; } }
+  @media (max-width:560px) { .case-grid, .proof { grid-template-columns:1fr; } .sec-h { flex-wrap:wrap; } }
   .wbs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
   .wb { min-width:0; margin:0; overflow:hidden; background:#fff; border:1px solid var(--line); border-radius:8px; box-shadow:0 5px 15px rgba(20,30,40,.08); }
   .wb-t { display:flex; align-items:center; gap:7px; padding:6px 9px; color:#fff; background:#217346; font-size:12.5px; }
@@ -430,14 +491,16 @@
   <aside class="rail" aria-label="Portfolio sections">
     <div class="rail-brand"><b>SA</b><span>Sudheer Amarthya</span></div>
     <nav id="amNav">
-      <button type="button" data-go="overview">Overview</button>
+      <button type="button" data-go="overview">Home</button>
+      <button type="button" data-go="cases">Case studies</button>
+      <button type="button" data-go="ai">AI tools</button>
+      <p class="nav-label">Project library</p>
       <button type="button" data-go="meta">Meta Ads</button>
       <button type="button" data-go="google">Google Ads</button>
       <button type="button" data-go="reports">Dashboards</button>
-      <button type="button" data-go="ai">AI workflows</button>
       <button type="button" data-go="seo">Data analysis</button>
       <button type="button" data-go="creative">Creative</button>
-      <button type="button" data-go="systems">Systems</button>
+      <button type="button" data-go="systems">Automation</button>
     </nav>
     <div class="rail-foot">
       <a href="mailto:amarthya999@gmail.com">Email</a>
@@ -449,29 +512,48 @@
 
   <div class="am-main">
     <header class="am-top">
-      <div><strong id="amTitle">Overview</strong><span>AI-first performance marketer, Bengaluru</span></div>
+      <div><strong id="amTitle">Home</strong><span>Senior performance marketer · Revenue · Analytics · AI automation · Bengaluru</span></div>
       <a class="am-cta" href="mailto:amarthya999@gmail.com">Contact me</a>
     </header>
 
     <section class="pg" data-pg="overview">
-      <div class="cards" id="ovCards"></div>
-      <div class="cards six" id="ovMore"></div>
-      <div class="split">
-        <div class="trace" aria-live="polite">
-          <p class="trace-label" id="traceLabel">One ad: cost per lead in the ad account</p>
-          <strong class="trace-number" id="traceNumber">₹60</strong>
-          <p class="trace-note" id="traceNote">Example from one ad over 14 days. Looks cheap in the ad account.</p>
-          <button type="button" id="traceButton">Check it against the CRM</button>
+      <div class="sa-intro">
+        <div class="sa-intro-text">
+          <p class="sa-intro-kicker">Senior performance marketer · 5 years · high-ticket lead generation</p>
+          <h1>I grow revenue from paid media, not just lead volume.</h1>
+          <p class="sa-intro-sub">I plan about ₹62L a month on Meta and Google against revenue targets. I find where leads leak between the ad and the sale, and I build the analytics and AI automation that let a team act on it faster.</p>
+          <div class="sa-intro-cta"><button type="button" class="am-cta" data-jump="cases">See case studies</button><a href="Sudheer_Amarthya_Resume.pdf">Download resume</a></div>
         </div>
-        <div class="box">
-          <div class="box-h"><h2>Channels</h2></div>
-          <table class="grid-t" id="ovChannels"></table>
+        <div class="sa-intro-side">
+          <h2>Problems I solve</h2>
+          <ul>
+            <li><b>Cheap leads that never buy.</b> I judge ads on qualified leads and sales from the CRM, not cost per lead.</li>
+            <li><b>Budgets nobody can tie to revenue.</b> I plan spend against revenue targets and measure what the ads really caused.</li>
+            <li><b>Teams waiting on reports.</b> I build dashboards, data jobs and AI tools so decisions happen the same day.</li>
+          </ul>
         </div>
       </div>
+
+      <div class="proof">
+        <div class="proof-card"><span class="pill real">Real result</span><b>₹62L</b><p>Monthly Meta and Google budget I plan, across 3 programmes</p><details><summary>How it's measured</summary><p>Total monthly paid budget for the 3 programmes in the company's monthly budget file. That is about ₹7.4Cr a year.</p></details></div>
+        <div class="proof-card"><span class="pill real">Real result</span><b>151%</b><p>Of revenue target, one programme in October 2026</p><details><summary>How it's measured</summary><p>One programme, October 2026. Digital revenue of ₹9.98L against a target of ₹6.6L. Admissions: 16 against a target of 11. Source: the monthly budget file.</p></details></div>
+        <div class="proof-card"><span class="pill real">Real result</span><b>₹5.6</b><p>Revenue earned for every ₹1 of ad spend, same programme and month</p><details><summary>How it's measured</summary><p>₹9.98L digital revenue (Search ₹8.13L, Meta ₹1.10L, affiliates ₹0.75L) divided by ₹1.78L of paid ad spend, for October 2026. Revenue is admissions booked in the CRM that month.</p></details></div>
+        <div class="proof-card"><span class="pill real">Real result</span><b>−37%</b><p>Cost per lead after lead form and creative changes</p><details><summary>How it's measured</summary><p>Meta cost per lead before and after the lead form changes and creative tests, on the same campaigns.</p></details></div>
+      </div>
+
+      <div class="sec-h"><h2>Featured case studies</h2><button type="button" class="link-btn" data-jump="cases">All 5 case studies →</button></div>
+      <div class="feat">
+        <button type="button" class="feat-card" data-jump="cases" data-case="case-a"><span class="pill real">Real data</span><h3>The cheapest ad was the most expensive</h3><p>₹60 per lead in Ads Manager. ₹597 per qualified lead in the CRM.</p><em>Decision: judge ads on qualified leads →</em></button>
+        <button type="button" class="feat-card" data-jump="cases" data-case="case-c"><span class="pill real">Real data</span><h3>Google spend on searches that never buy</h3><p>800+ negative keywords built from all-time search terms and CRM quality.</p><em>Decision: block clear waste, review mixed intent →</em></button>
+        <button type="button" class="feat-card" data-jump="cases" data-case="case-e"><span class="pill real">Real data</span><h3>What the ads really caused</h3><p>CRM tags gave paid ads 71% of the credit. The model says 30% to 60%.</p><em>Decision: test before moving budget →</em></button>
+      </div>
+
+      <div class="sec-h"><h2>How the work is built</h2><button type="button" class="link-btn" data-jump="ai">See the AI tools →</button></div>
       <figure class="laptop">
         <div class="lid"><i></i><i></i><i></i><span>Real dashboard, sample data</span></div>
         <video src="media/dashboard-walkthrough.mp4" poster="media/dashboard-poster.jpg" controls muted loop playsinline preload="metadata" aria-label="Real dashboard interface on sample data"></video>
       </figure>
+      <p class="sample-note"><span class="pill sample">Sample data, demo only</span> This is my real dashboard, recorded on invented numbers so no company data is shown.</p>
       <div class="box recs">
         <div class="box-h"><h2>What colleagues say</h2><a class="pill-link" href="https://www.linkedin.com/in/sudheeramarthya/details/recommendations/">LinkedIn recommendations</a></div>
         <div class="rec-grid">
@@ -482,7 +564,70 @@
       </div>
     </section>
 
+    <section class="pg" data-pg="cases" hidden>
+      <p class="page-intro">Each case follows the same order: the problem, what the data showed, what I decided and why, and how the result is measured. Programme names are shown as A, B and C.</p>
+      <article class="case" id="case-a">
+        <div class="case-h"><span class="pill real">Real data</span><h2>The cheapest ad was the most expensive</h2></div>
+        <div class="case-grid">
+          <div class="case-step"><h3>Problem</h3><p>One Meta ad looked like the best performer. It had the lowest cost per lead in the account, so the usual move would be to give it more budget.</p></div>
+          <div class="case-step"><h3>What the data showed</h3><p>Over 14 days it cost ₹60 per lead, but only 12 of its 119 leads reached the qualified stage in the CRM. That makes it ₹597 per qualified lead, about 10x the headline number.</p></div>
+          <div class="case-step decide"><h3>My decision and why</h3><p>I judge ads on cost per qualified lead from the CRM, not cost per lead from Ads Manager. An ad that is cheap but rarely qualifies is the first to lose budget, even when it looks best in the ad account.</p></div>
+          <div class="case-step"><h3>Result</h3><p>This became the quality check I now run at creative, ad set, campaign and keyword level, and it is built into my ads intelligence tool.</p></div>
+        </div>
+        <div class="case-demo">
+          <div class="trace" aria-live="polite">
+          <p class="trace-label" id="traceLabel">One ad: cost per lead in the ad account</p>
+          <strong class="trace-number" id="traceNumber">₹60</strong>
+          <p class="trace-note" id="traceNote">Example from one ad over 14 days. Looks cheap in the ad account.</p>
+          <button type="button" id="traceButton">Check it against the CRM</button>
+        </div>
+        </div>
+        <p class="how"><b>How it's measured:</b> Meta spend for the ad ÷ leads from that ad that reached the qualified stage in the CRM, same 14 days.</p>
+      </article>
+      <article class="case" id="case-b">
+        <div class="case-h"><span class="pill real">Real data</span><h2>One form question that finds buyers</h2></div>
+        <div class="case-grid">
+          <div class="case-step"><h3>Problem</h3><p>Two lead form setups cost about the same per lead, so on Ads Manager numbers they looked equal.</p></div>
+          <div class="case-step"><h3>What the data showed</h3><p>One setup gave a 55% higher qualified (SQL) rate and an estimated 42% lower cost per sale. Its paid-intent question mattered most: leads who answered "Yes" bought more than 6x as often as those who answered "No".</p></div>
+          <div class="case-step decide"><h3>My decision and why</h3><p>I recommended the setup with the paid-intent question. It filters for people ready to pay without raising cost per lead, and it gives sales a clear signal of who to call first.</p></div>
+          <div class="case-step"><h3>Result</h3><p>55% more qualified leads for the same cost per lead, and a buying signal sales can use on day one.</p></div>
+        </div>
+        <p class="how"><b>How it's measured:</b> SQL rate = leads that reached the SQL stage ÷ all leads, per form setup. Cost per sale is estimated from the 19% SQL-to-sale rate.</p>
+      </article>
+      <article class="case" id="case-c">
+        <div class="case-h"><span class="pill real">Real data</span><h2>Google spend on searches that never buy</h2></div>
+        <div class="case-grid">
+          <div class="case-step"><h3>Problem</h3><p>Google Search was paying for clicks on searches that never turned into qualified leads.</p></div>
+          <div class="case-step"><h3>What the data showed</h3><p>I joined every search term the account had ever paid for with CRM lead quality. Some terms had never produced a qualified lead in their whole history. Others were mixed: sometimes good, sometimes junk.</p></div>
+          <div class="case-step decide"><h3>My decision and why</h3><p>I split them into three lists: exclude (no qualified leads, ever), check first (mixed intent, reviewed by hand) and keep. Clear waste was blocked through Google Ads API scripts with a change log; mixed terms were never blocked automatically, because blocking a good term costs more than one wasted click.</p></div>
+          <div class="case-step"><h3>Result</h3><p>800+ negative keywords added, and 6.4% of Search clicks became leads.</p></div>
+        </div>
+        <p class="how"><b>How it's measured:</b> Click-to-lead = CRM leads from Search ÷ Search clicks (2,076 clicks → 132 leads) in the search plan workbook.</p>
+      </article>
+      <article class="case" id="case-d">
+        <div class="case-h"><span class="pill real">Real data</span><h2>The biggest leak was after the lead arrived</h2></div>
+        <div class="case-grid">
+          <div class="case-step"><h3>Problem</h3><p>Marketing was measured on leads, but most leads never bought, and nobody could say where they were lost.</p></div>
+          <div class="case-step"><h3>What the data showed</h3><p>From 63K leads and their stage history: leads called within 1 hour bought at 13.3%. Leads first reached after 7 days bought at 0.9%. Overall, 3.1% of leads bought.</p></div>
+          <div class="case-step decide"><h3>My decision and why</h3><p>I took this to sales as a 1-hour first-call target, and stopped treating more leads as the answer when follow-up speed was the bigger leak.</p></div>
+          <div class="case-step"><h3>Result</h3><p>One number the sales team can manage every day, and a clear case that fixing follow-up is worth more than cheaper leads.</p></div>
+        </div>
+        <p class="how"><b>How it's measured:</b> Sale rate by time from lead creation to first successful contact, from CRM stage history.</p>
+      </article>
+      <article class="case" id="case-e">
+        <div class="case-h"><span class="pill real">Real data</span><h2>What the ads really caused</h2></div>
+        <div class="case-grid">
+          <div class="case-step"><h3>Problem</h3><p>CRM tags gave paid ads most of the credit for sales. If those tags were wrong, budget decisions would be wrong too.</p></div>
+          <div class="case-step"><h3>What the data showed</h3><p>I built marketing mix models and city models on 312K leads, 6,386 sales and weekly spend from 2024 to 2026. For Programme A, CRM tags gave paid ads 71% of sales. The models put the real share at 30% to 60%.</p></div>
+          <div class="case-step decide"><h3>My decision and why</h3><p>Not to cut or move big budgets on CRM tags alone. Instead I designed city pause tests: pause ads in matched cities, then compare sales, to measure real lift before shifting money.</p></div>
+          <div class="case-step"><h3>Result</h3><p>A test plan the team can run before any large budget change, with ranges stated honestly.</p></div>
+        </div>
+        <p class="how"><b>How it's measured:</b> Marketing mix model and city model on weekly Meta and Google spend, CRM leads and won sales, 2024 to 2026.</p>
+      </article>
+    </section>
+
     <section class="pg" data-pg="meta" hidden>
+      <p class="lib-note"><b>Project library.</b> The layout copies Ads Manager. Rows marked <span class="pill sample">Sample</span> use invented numbers; the cards below the table are real results.</p>
       <div class="crumb">Ads Manager view <em>Real results and sample rows are labelled</em></div>
       <div class="tabs" id="metaTabs">
         <button type="button" data-tab="campaigns" aria-pressed="true">Campaigns</button>
@@ -501,6 +646,7 @@
     </section>
 
     <section class="pg" data-pg="google" hidden>
+      <p class="lib-note"><b>Project library.</b> Charts marked <span class="pill sample">Sample</span> use invented numbers to show the method. The 6.4% click-to-lead rate and 800+ negatives are real.</p>
       <div class="crumb">Google Ads view <em>Real results and sample rows are labelled</em></div>
       <div class="chips" id="gChips"></div>
       <div class="box">
@@ -529,6 +675,7 @@
     </section>
 
     <section class="pg" data-pg="reports" hidden>
+      <p class="lib-note"><b>Project library.</b> Charts from my real workbooks. Each one says <span class="pill real">Real</span> or <span class="pill sample">Sample numbers</span>, because company data is replaced where needed.</p>
       <div class="wbs">
         <figure class="wb"><div class="wb-t"><b>X</b><span>Incrementality and MMM</span><em>Real ranges</em></div><h3>Sales share: CRM tag vs model</h3><div id="mmmChart"></div><div class="wb-tabs"><i>Start here</i><i>MMM</i><i>City model</i><i>Pause tests</i><i>Test plan</i></div></figure>
         <figure class="wb"><div class="wb-t"><b>X</b><span>Website analytics dashboard</span><em>Sample numbers</em></div><h3>Nonbrand clicks per month</h3><div data-chart="seoLine"></div><div class="wb-tabs"><i>Dashboard</i><i>Action plan</i><i>Keyword gap</i><i>AI answer test</i></div></figure>
@@ -643,6 +790,18 @@
     </section>
 
     <section class="pg" data-pg="ai" hidden>
+      <p class="page-intro">What each tool does, in plain words, and the manual work it replaces. All were built with Claude Code; I set the rules and test the results, and I approve every budget or campaign change myself.</p>
+      <div class="tool-grid">
+        <div class="tool"><div class="tool-h"><h3>Ads intelligence engine</h3><span class="pill built">Built</span></div><p>Checks every ad each morning and tells me what is wrong, why, and what to fix first, such as an ad getting tired 5 days before its cost goes up.</p><p class="replaces"><b>Replaces:</b> Opening Meta, Google and the CRM side by side and comparing ads one by one.</p></div>
+        <div class="tool"><div class="tool-h"><h3>CAPI signal engine</h3><span class="pill real">Used on real work</span></div><p>When a lead becomes qualified, or is marked junk, in the CRM, it tells Meta automatically, so Meta learns to find more buyers.</p><p class="replaces"><b>Replaces:</b> Manual conversion uploads, and ads that optimise for any form fill.</p></div>
+        <div class="tool"><div class="tool-h"><h3>WhatsApp sales agent</h3><span class="pill real">Built and live</span></div><p>Replies to leads from ads within seconds, asks qualifying questions, follows up for 72 hours and hands warm leads to a salesperson.</p><p class="replaces"><b>Replaces:</b> Reps sending first replies and reminders by hand.</p></div>
+        <div class="tool"><div class="tool-h"><h3>Workflow builder</h3><span class="pill real">Used by a paying client</span></div><p>Lets a marketer set up WhatsApp, email and SMS follow-ups by dragging boxes, triggered by what the lead does.</p><p class="replaces"><b>Replaces:</b> Asking a developer for every new follow-up journey.</p></div>
+        <div class="tool"><div class="tool-h"><h3>AI marketing agent</h3><span class="pill built">Built</span></div><p>A chat assistant: ask "who went quiet this week?" and it finds them and drafts a follow-up campaign for approval.</p><p class="replaces"><b>Replaces:</b> Pulling lists from the CRM and writing campaigns from scratch.</p></div>
+        <div class="tool"><div class="tool-h"><h3>Hourly data jobs and team dashboard</h3><span class="pill real">Built and in use</span></div><p>Pulls CRM, Meta and Google data every hour on my own server and updates one dashboard the whole team can filter.</p><p class="replaces"><b>Replaces:</b> Daily exports and hand-made Excel reports.</p></div>
+        <div class="tool"><div class="tool-h"><h3>Sales call analysis</h3><span class="pill real">Used on real work</span></div><p>Gemini reviews sales call recordings and ranks the reasons people do not buy. 230 calls so far.</p><p class="replaces"><b>Replaces:</b> Managers listening to calls one at a time.</p></div>
+        <div class="tool"><div class="tool-h"><h3>Search term cleaning</h3><span class="pill real">Used on real work</span></div><p>Reads every Google search term against CRM lead quality and lists what to block, what to check and what to keep.</p><p class="replaces"><b>Replaces:</b> A monthly manual search-term review.</p></div>
+      </div>
+      <div class="sec-h"><h2>See them run</h2><span class="pill sample">Sample outputs, demo only</span></div>
       <div class="box">
         <div class="box-h"><h2>Claude Code connected stack</h2></div>
         <svg class="map" id="toolMap" viewBox="0 0 1000 400" role="img" aria-label="Marketing tools flowing through Claude Code into dashboards, reports, fix lists and creative briefs"></svg>
@@ -662,6 +821,10 @@
 
     <section class="pg" data-pg="seo" hidden>
       <div class="cards" id="seoCards"></div>
+      <div class="box">
+          <div class="box-h"><h2>Before and after</h2><span class="pill real">Real results</span></div>
+          <table class="grid-t" id="ovChannels"></table>
+        </div>
       <div class="split">
         <div class="box"><div class="box-h"><h2>Analysis library</h2><span class="pill">Real work</span></div><div class="scroll"><table class="grid-t" id="aeoTable"></table></div></div>
         <div class="box"><div class="box-h"><h2>Where sales leak</h2><span class="pill">Real percentages</span></div><div id="gap"></div></div>
@@ -681,6 +844,7 @@
     </section>
 
     <section class="pg" data-pg="systems" hidden>
+      <p class="lib-note"><b>Project library.</b> Automation journeys and a sample lead chat. Messages and names are invented.</p>
       <div class="sys">
         <figure class="phone"><div class="screen chat" id="chat"><div class="chat-h">Sample lead chat</div><div class="msgs" id="msgs"></div></div></figure>
         <div class="box"><div class="box-h"><h2>Automation journey</h2><span class="pill">Sample</span></div><svg class="map" id="journey" viewBox="0 0 700 410" role="img" aria-label="Automation journey from lead to booking"></svg></div>
@@ -882,12 +1046,12 @@
 (() => {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = id => document.getElementById(id);
-  const titles = { overview:'Overview', meta:'Meta Ads', google:'Google Ads', reports:'Dashboards', ai:'AI workflows', seo:'Data analysis', creative:'Creative', systems:'Systems' };
+  const titles = { overview:'Home', cases:'Case studies', ai:'AI tools', meta:'Meta Ads', google:'Google Ads', reports:'Dashboards', seo:'Data analysis', creative:'Creative', systems:'Automation' };
   const spark = (pts, color = '#1a73e8') => {
     const max = Math.max(...pts), x = i => i * 200 / (pts.length - 1), y = v => 31 - v / max * 28;
     return `<svg viewBox="0 0 200 34" preserveAspectRatio="none" aria-hidden="true"><path d="${pts.map((v, i) => `${i ? 'L' : 'M'}${x(i)} ${y(v).toFixed(1)}`).join('')}" fill="none" stroke="${color}" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
   };
-  const cards = (id, rows) => { $(id).innerHTML = rows.map(r => `<div class="card"><span>${r[0]}</span><b>${r[1]}</b>${r[2] ? spark(r[2], r[3]) : ''}</div>`).join(''); };
+  const cards = (id, rows) => { if (!$(id)) return; $(id).innerHTML = rows.map(r => `<div class="card"><span>${r[0]}</span><b>${r[1]}</b>${r[2] ? spark(r[2], r[3]) : ''}</div>`).join(''); };
   const bar = (label, value, pct, cls = '') => `<div class="lv-row"><span>${label}</span><b>${value}</b></div><div class="bar-s"><i class="${cls}" data-w="${pct}"></i></div>`;
   const fillBars = root => requestAnimationFrame(() => root.querySelectorAll('[data-w]').forEach(b => { b.style.width = b.dataset.w + '%'; }));
 
@@ -1058,6 +1222,16 @@
     if (push) history.replaceState(null, '', '#' + page);
   }
   $('amNav').addEventListener('click', e => { if (e.target.dataset.go) go(e.target.dataset.go); });
+  document.addEventListener('click', e => {
+    const j = e.target.closest('[data-jump]'); if (!j) return;
+    go(j.dataset.jump);
+    if (j.dataset.case) requestAnimationFrame(() => { const el = $(j.dataset.case); if (el) el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' }); });
+  });
+  // Every badge reads as real or sample at a glance
+  document.querySelectorAll('.pill:not(.real):not(.sample):not(.built), .wb-t em').forEach(p => {
+    const t = p.textContent.toLowerCase();
+    if (t.includes('sample')) p.classList.add('sample'); else if (t.includes('real')) p.classList.add('real');
+  });
   addEventListener('hashchange', () => go(location.hash.slice(1), false));
   if (!reduced) setInterval(() => {
     if (document.hidden) return;
