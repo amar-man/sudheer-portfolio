@@ -118,6 +118,12 @@
     .filters select { width:100%; }
   }
   @media (prefers-reduced-motion:reduce) { .track i, .kpi { transition:none; } }
+  /* Links: blue with underline so they read as clickable */
+  a:not(.am-cta):not(.open-dash) { color:#1a73e8; text-decoration:underline; text-decoration-color:rgba(26,115,232,.45); text-decoration-thickness:1.5px; text-underline-offset:3px; transition:text-decoration-color .15s, color .15s; }
+  a:not(.am-cta):not(.open-dash):hover, a:not(.am-cta):not(.open-dash):focus-visible { color:#1558b0; text-decoration-color:currentColor; }
+  .am-cta:hover { background:#1558b0; }
+  a.back:not(.am-cta):not(.open-dash) { color:#8ab4f8; text-decoration-color:rgba(138,180,248,.6); }
+  a.back:not(.am-cta):not(.open-dash):hover { color:#c2dbff; }
 </style>
 </head>
 <body>
